@@ -46,6 +46,7 @@
 
             <!--Grid row-->
             <div class="row mb-4 wow fadeIn">
+                
                 {% for article in articles %}
                 <!--Grid column-->
                 <div class="col-lg-4 col-md-6 mb-4">
@@ -69,7 +70,7 @@
                             <p class="card-text">Written by <strong>{{article.author}}</strong></p>
                             <p class="card-text">Topic related to: <strong>{{article.topic_related_to}}</strong></p>
                             <p class="card-text">Tags: {{article.topic_related_to}}</p>
-                            <a href="{% url 'article-detail' slug.slug %}" class="btn btn-primary btn-md">Read Article
+                            <a href="{{article.get_absolute_url}}" class="btn btn-primary btn-md">Read Article
                                 <i class="fas fa-book ml-2"></i>
                             </a>
                         </div>
@@ -79,6 +80,7 @@
                 </div>
                 <!--Grid column-->
                 {% endfor %}
+                
             </div>
             <!--Grid row-->
 

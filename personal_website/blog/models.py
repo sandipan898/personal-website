@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.fields.related import OneToOneField
 from taggit.managers import TaggableManager
+from django.shortcuts import reverse
 
 # Create your models here.
 
@@ -14,12 +15,21 @@ class Article(models.Model):
     tags = TaggableManager()
     upvotes = models.IntegerField(default=0, blank=True, null=True)
     downvotes = models.IntegerField(default=0, blank=True, null=True)
-    thumbnail = models.ImageField()
+    thumbnail = models.ImageField(blank=True, null=True)
     published_on = models.DateField(auto_now_add=True, blank=True, null=True)
-    slug = models.SlugField()
+    slug = models.SlugField(blank=True, null=True)
     
     def __str__(self):
         return "Article \"{}\" of Author {}".format(self.title, self.author)
+
+    def save(self, *args, **kwargs):
+        self.slug = self.slug or slugify(self.title)
+        super().save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return reverse("article-detail", kwargs={
+            'slug': self.slug
+        })
 
 
 class Comment(models.Model):

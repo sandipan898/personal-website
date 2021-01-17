@@ -29,7 +29,7 @@ def article_list_view(request):
 class PostDetailView(DetailView):
     model = Article
     template_name = 'blog/detail-page.html'
-    slug_url_kwarg = 'slug'
-    # reverse('show_post', args=[the_post.slug])
+
+
 post_detail_view = PostDetailView.as_view()
     

@@ -5,3 +5,5 @@ from .models import Article, Comment
 
 admin.site.register(Article)
 admin.site.register(Comment)
+class ArticleAdmin(admin.ModelAdmin):
+    prepopulated_fields = {'slug': ('title',)}
