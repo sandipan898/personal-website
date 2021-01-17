@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views import generic
 from .models import Article
 from django.views.generic import DetailView
@@ -21,8 +21,11 @@ def article_list_view(request):
     return render(request, template_name=template_name)  
   
 
-class PostDetailView(DetailView):
-    model = Article
+def post_detail_view(request, slug):
     template_name = 'blog/detail-page.html'
-post_detail_view = PostDetailView.as_view()
+    # queryset = Article.objects.filter(slug=slug)
+    queryset = get_object_or_404(Article, slug=slug)
+    return render(request, context={'article': queryset}, template_name=template_name)
+
+# post_detail_view = PostDetailView.as_view()
     
