@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<main class="mt-5 pt-5">
+    <div class="container">
+        <section class="mt-4">
+
+            <form>
+                <!-- Text input -->
+                <div class="form-outline mb-4">
+                    <input type="text" id="form6Example3" class="form-control" />
+                    <label class="form-label" for="form6Example3">Post Title</label>
+                </div>
+
+                <!-- Message input -->
+                <div class="form-outline mb-4">
+                    <textarea class="form-control" id="form6Example7" rows="4"></textarea>
+                    <label class="form-label" for="form6Example7">Post Content</label>
+                </div>
+
+                <!-- Checkbox -->
+                <div class="form-check d-flex justify-content-center mb-4">
+                    <input class="form-check-input me-2" type="checkbox" value="" id="form6Example8" checked />
+                    <label class="form-check-label" for="form6Example8"> Publish Now </label>
+                </div>
+
+                <!-- Submit button -->
+                <button type="submit" class="btn btn-primary btn-block mb-4">Place order</button>
+            </form>
+        </section>
+    </div>
+</main>
+{% endblock %}

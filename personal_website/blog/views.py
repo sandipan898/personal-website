@@ -26,3 +26,8 @@ def post_detail_view(request, slug):
     selected_article = get_object_or_404(Article, slug=slug)
     related_articles = Article.objects.all()
     return render(request, context={'article': selected_article, 'related_articles': related_articles}, template_name=template_name)
+
+
+class CreateArticleView(generic.CreateView):
+    model = Article
+    fields = '__all__'
