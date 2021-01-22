@@ -1,15 +1,18 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.db.models.fields.related import OneToOneField
 from taggit.managers import TaggableManager
 from django.shortcuts import reverse
 from django.template.defaultfilters import slugify
 
 # Create your models here.
 
-class ArticleUser(User):
+class ArticleUser(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
     bio = models.TextField(null=True, blank=True)
     image = models.ImageField(null=True, blank=True)
+
+    def __str__(self):
+        return self.user.username
 
     @property
     def imageURL(self):
@@ -44,6 +47,14 @@ class Article(models.Model):
         return reverse("article-detail", kwargs={
             'slug': self.slug
         })
+
+    @property
+    def imageURL(self):
+        try:
+            url = self.thumbnail.url
+        except:
+            url = ''
+        return url
 
 
 class Comment(models.Model):
