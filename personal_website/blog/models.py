@@ -7,6 +7,19 @@ from django.template.defaultfilters import slugify
 
 # Create your models here.
 
+class ArticleUser(User):
+    bio = models.TextField(null=True, blank=True)
+    image = models.ImageField(null=True, blank=True)
+
+    @property
+    def imageURL(self):
+        try:
+            url = self.image.url
+        except:
+            url = ''
+        return url
+
+
 class Article(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     topic_related_to = models.CharField(max_length=400, blank=True, null=True)
