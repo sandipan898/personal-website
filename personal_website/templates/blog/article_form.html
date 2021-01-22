@@ -1,33 +1,84 @@
 {% extends 'base.html' %}
 {% block content %}
-
+{% block extra_head %}
+<style>
+div.django-ckeditor-widget {
+    /* margin: 2px !important;
+    background-color: black !important; */
+}
+</style>
+{% endblock %}
 <main class="mt-5 pt-5">
     <div class="container">
         <section class="mt-4">
 
-            <form>
-                <!-- Text input -->
-                <div class="form-outline mb-4">
-                    <input type="text" id="form6Example3" class="form-control" />
-                    <label class="form-label" for="form6Example3">Post Title</label>
-                </div>
+        <!--Grid column-->
+        <div class="card mb-4 wow fadeIn col-md-12 mb-4">
+            <h1 class="my-4">
+                <strong>Post Article</strong>
+            </h1>
+                <form>
+                    {% csrf_token %}
+                    <!-- <div class="form-outline mb-4">
+                        <input type="text"
+                            name="{{ form.title.name }}"
+                            id="{{ form.title.id_for_label }}"
+                            {% if form.name.field.required %}required{% endif %}
+                            class="form-control" 
+                            >
+                        <label class="form-label" for="{{ form.title.id_for_label }}">Post Title</label>
+                    </div>
+                    <div class="form-outline mb-4">
+                        <input 
+                            class="form-control" 
+                            id="{{ form.content.id_for_label }}" 
+                            />
+                        <label class="form-label" for="content">Post Content</label>
+                    </div>
 
-                <!-- Message input -->
-                <div class="form-outline mb-4">
-                    <textarea class="form-control" id="form6Example7" rows="4"></textarea>
-                    <label class="form-label" for="form6Example7">Post Content</label>
-                </div>
+                    <div class="form-outline mb-4">
+                        <input type="text" id="topic_related_to" class="form-control" />
+                        <label class="form-label" for="topic_related_to">Post Topic related to</label>
+                    </div>  
 
-                <!-- Checkbox -->
-                <div class="form-check d-flex justify-content-center mb-4">
-                    <input class="form-check-input me-2" type="checkbox" value="" id="form6Example8" checked />
-                    <label class="form-check-label" for="form6Example8"> Publish Now </label>
-                </div>
-
-                <!-- Submit button -->
-                <button type="submit" class="btn btn-primary btn-block mb-4">Place order</button>
-            </form>
-        </section>
+                    <div class="form-outline mb-4">
+                        <input type="text" id="topic_related_to" class="form-control" />
+                        <label class="form-label" for="topic_related_to">Enter Tags related to your Post</label>
+                    </div> -->
+                    
+                    {{ form.non_field_errors }}
+                    <div class="form-outline mb-4">
+                        {{ form.title.errors }}
+                        <label class="form-label" for="{{ form.title.id_for_label }}">Post Title</label>
+                        {{ form.title }}
+                    </div>
+                    <div class="form-outline mb-4">
+                        {{ form.content.errors }}
+                        <h6><strong>Post Content</strong></h6>
+                        <!-- <label class="form-label" for="{{ form.content.id_for_label }}">Post Content</label> -->
+                        {{ form.content }}
+                    </div>
+                    <div class="form-outline mb-4">
+                        {{ form.topic_related_to.errors }}
+                        <label class="form-label" for="{{ form.topic_related_to.id_for_label }}">Post Topic related to</label>
+                        {{ form.topic_related_to }}
+                    </div>
+                    <div class="form-outline mb-4">
+                        {{ form.tags.errors }}
+                        <label class="form-label" for="{{ form.tags.id_for_label }}">Enter related Tags</label>
+                        {{ form.tags }}
+                    </div>
+                    {{form.media}}
+                    <button type="submit" class="btn btn-primary btn-block mb-4">Post Article</button>
+                </form>
+            </section>
+        </div>
     </div>
 </main>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor/4.15.0/ckeditor.js" integrity="sha512-bNMnTgKRxN1n+5rgfcf160HT2koHRcwLcSq/3JDOY9R65mja48E4Hh+a+IQXVaY2NoJCVC+pr0qE3Vz194QwnA==" crossorigin="anonymous"></script> -->
+    <script>
+        CKEDITOR.replace('{{ form.content.id_for_label }}', {
+            // plugins: 'wysiwygarea, toolbar, basicstyles, link'
+        })
+    </script>
 {% endblock %}

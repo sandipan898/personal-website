@@ -3,6 +3,7 @@ from django.views import generic
 from .models import Article
 from django.views.generic import DetailView
 from django.urls import reverse
+from .forms import ArticlePostForm
 
 # Create your views here.
 
@@ -29,5 +30,5 @@ def post_detail_view(request, slug):
 
 
 class CreateArticleView(generic.CreateView):
-    model = Article
-    fields = '__all__'
+    template_name = 'blog/article_form.html'
+    form_class = ArticlePostForm

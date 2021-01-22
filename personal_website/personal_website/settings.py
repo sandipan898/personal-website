@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'portfolio',
     'qna',
 
-    'taggit'
+    'taggit',
+    'ckeditor'
 ]
 
 MIDDLEWARE = [

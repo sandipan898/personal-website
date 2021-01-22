@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from taggit.managers import TaggableManager
 from django.shortcuts import reverse
 from django.template.defaultfilters import slugify
+from ckeditor.fields import RichTextField
 
 # Create your models here.
 
@@ -27,7 +28,8 @@ class Article(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     topic_related_to = models.CharField(max_length=400, blank=True, null=True)
     title = models.CharField(max_length=200)
-    content = models.TextField(blank=True, null=True)
+    # content = models.TextField(blank=True, null=True)
+    content = RichTextField(blank=True, null=True)
     published = models.BooleanField(default=False, blank=True, null=True)
     tags = TaggableManager()
     upvotes = models.IntegerField(default=0, blank=True, null=True)
