@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'qna',
 
     'taggit',
-    'ckeditor'
+    'ckeditor',
+    'crispy_forms'
 ]
 
 MIDDLEWARE = [
@@ -131,3 +132,5 @@ STATIC_URL = '/static/'
 
 MEDIA_URL = '/images/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

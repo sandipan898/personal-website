@@ -1,9 +1,11 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views import generic
 from .models import Article
 from django.views.generic import DetailView
 from django.urls import reverse
 from .forms import ArticlePostForm
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 # Create your views here.
 
@@ -32,3 +34,28 @@ def post_detail_view(request, slug):
 class CreateArticleView(generic.CreateView):
     template_name = 'blog/article_form.html'
     form_class = ArticlePostForm
+
+@login_required
+def create_article_view(request):
+    template_name = 'blog/article_form.html'
+    context = {}
+    if request.method == "POST":
+        form = ArticlePostForm(request.POST or None)
+        print(request.POST)
+        if form.is_valid():
+            print(form.cleaned_data)
+            Article.objects.create(
+                user=request.user, 
+                topic_related_to = form.cleaned_data['topic_related_to'],
+                title = form.cleaned_data['title'],
+                content = form.cleaned_data['content'],
+                tags = form.cleaned_data['tags'],
+                thumbnail = form.cleaned_data['thumbnail'],
+            )
+            messages.success(request, ("Post will be published Soon!"))
+            return redirect('home')
+    else:
+        form = ArticlePostForm()
+        context['form'] = form
+    
+    return render(request, template_name, context=context)

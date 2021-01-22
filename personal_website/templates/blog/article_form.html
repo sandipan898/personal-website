@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
 {% block content %}
-{% block extra_head %}
 <style>
 div.django-ckeditor-widget {
     /* margin: 2px !important;
     background-color: black !important; */
 }
 </style>
-{% endblock %}
 <main class="mt-5 pt-5">
     <div class="container">
         <section class="mt-4">
@@ -46,7 +46,7 @@ div.django-ckeditor-widget {
                         <label class="form-label" for="topic_related_to">Enter Tags related to your Post</label>
                     </div> -->
                     
-                    {{ form.non_field_errors }}
+                    <!-- {{ form.non_field_errors }}
                     <div class="form-outline mb-4">
                         {{ form.title.errors }}
                         <label class="form-label" for="{{ form.title.id_for_label }}">Post Title</label>
@@ -55,7 +55,6 @@ div.django-ckeditor-widget {
                     <div class="form-outline mb-4">
                         {{ form.content.errors }}
                         <h6><strong>Post Content</strong></h6>
-                        <!-- <label class="form-label" for="{{ form.content.id_for_label }}">Post Content</label> -->
                         {{ form.content }}
                     </div>
                     <div class="form-outline mb-4">
@@ -68,6 +67,12 @@ div.django-ckeditor-widget {
                         <label class="form-label" for="{{ form.tags.id_for_label }}">Enter related Tags</label>
                         {{ form.tags }}
                     </div>
+                    <div class="form-outline mb-4">
+                        {{ form.thumbnail.errors }}
+                        <label class="form-label" for="{{ form.thumbnail.id_for_label }}">Enter related Tags</label>
+                        {{ form.thumbnail }}
+                    </div> -->
+                    {{form.as_p | crispy }}
                     {{form.media}}
                     <button type="submit" class="btn btn-primary btn-block mb-4">Post Article</button>
                 </form>
