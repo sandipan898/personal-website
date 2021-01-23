@@ -33,7 +33,7 @@ class Article(models.Model):
     tags = TaggableManager()
     upvotes = models.IntegerField(default=0, blank=True, null=True)
     downvotes = models.IntegerField(default=0, blank=True, null=True)
-    thumbnail = models.ImageField(blank=True, null=True, upload_to='images/')
+    thumbnail = models.ImageField(blank=True, null=True, upload_to='')
     published_on = models.DateField(auto_now_add=True, blank=True, null=True)
     slug = models.SlugField(blank=True, null=True)
     
