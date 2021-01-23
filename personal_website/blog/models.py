@@ -26,14 +26,15 @@ class ArticleUser(models.Model):
 
 class Article(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
+    featured = models.BooleanField(default=False, blank=True, null=True)
     topic_related_to = models.CharField(max_length=400, blank=True, null=True)
     title = models.CharField(max_length=200)
     content = RichTextField(blank=True, null=True)
     published = models.BooleanField(default=False, blank=True, null=True)
-    tags = TaggableManager()
+    tags = TaggableManager(blank=True)
     upvotes = models.IntegerField(default=0, blank=True, null=True)
     downvotes = models.IntegerField(default=0, blank=True, null=True)
-    thumbnail = models.ImageField(blank=True, null=True, upload_to='')
+    thumbnail = models.ImageField(blank=True, null=True)
     published_on = models.DateField(auto_now_add=True, blank=True, null=True)
     slug = models.SlugField(blank=True, null=True)
     

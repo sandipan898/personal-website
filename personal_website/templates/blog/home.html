@@ -50,14 +50,13 @@
                 {% for article in articles %}
                 <!--Grid column-->
                 <div class="col-lg-4 col-md-6 mb-4">
-
                     <!--Card-->
                     <div class="card">
 
                         <!--Card image-->
                         <div class="view overlay">
-                            <img src="{{article.thumbnail}}" alt="">
-                            <a href="/article/{{article.id}}/detail/">
+                            <img class="container" src="{{article.imageURL}}" alt="">
+                            <a href="{{article.get_absolute_url}}">
                                 <div class="mask rgba-white-slight"></div>
                             </a>
                         </div>

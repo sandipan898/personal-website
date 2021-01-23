@@ -12,7 +12,7 @@ from django.contrib import messages
 
 def home_view(request):
     template_name = 'blog/home.html'
-    articles = Article.objects.all()
+    articles = Article.objects.filter(featured=True)
 
     context = {
         "articles": articles
