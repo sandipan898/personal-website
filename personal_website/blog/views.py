@@ -21,7 +21,12 @@ def home_view(request):
     
 def article_list_view(request):
     template_name = 'blog/article-list.html'
-    return render(request, template_name=template_name)  
+    articles = Article.objects.all()
+
+    context = {
+        "articles": articles
+    }
+    return render(request, template_name=template_name, context=context)  
   
 def post_detail_view(request, slug):
     template_name = 'blog/detail-page.html'
@@ -31,27 +36,24 @@ def post_detail_view(request, slug):
     return render(request, context={'article': selected_article, 'related_articles': related_articles}, template_name=template_name)
 
 
-class CreateArticleView(generic.CreateView):
-    template_name = 'blog/article_form.html'
-    form_class = ArticlePostForm
-
 @login_required
 def create_article_view(request):
     template_name = 'blog/article_form.html'
     context = {}
     if request.method == "POST":
-        form = ArticlePostForm(request.POST or None)
+        form = ArticlePostForm(request.POST, request.FILES or None)
         print(request.POST)
         if form.is_valid():
             print(form.cleaned_data)
-            Article.objects.create(
-                user=request.user, 
+            new_article = Article.objects.create(
+                author=request.user, 
                 topic_related_to = form.cleaned_data['topic_related_to'],
                 title = form.cleaned_data['title'],
                 content = form.cleaned_data['content'],
                 tags = form.cleaned_data['tags'],
-                thumbnail = form.cleaned_data['thumbnail'],
+                thumbnail = form.cleaned_data.get('thumbnail'),
             )
+            new_article.save()
             messages.success(request, ("Post will be published Soon!"))
             return redirect('home')
     else:

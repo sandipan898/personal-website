@@ -12,20 +12,20 @@ from .models import Article
 
 class ArticlePostForm(forms.ModelForm):
     title = forms.CharField(
-        label="title",
+        label="Post Title",
         max_length=200,
         widget=forms.TextInput(attrs={
             'class': 'form-control',
         })
     )
     content = forms.CharField(
-        label="content",
+        label="Post Content",
         max_length=200,
         widget=CKEditorWidget()
     )
     topic_related_to = forms.CharField(
         required=False,
-        label='topic_related_to', 
+        label='Post Topic related to', 
         max_length=400,
         widget=forms.TextInput(attrs={
             'class': 'form-control',
@@ -33,7 +33,7 @@ class ArticlePostForm(forms.ModelForm):
     )
     tags = forms.CharField(
         required=False,
-        label="tags",
+        label="Enter Tags related to your Post",
         max_length=100,
         widget=forms.TextInput(attrs={
             'class': 'form-control',

@@ -3,7 +3,6 @@ from .views import (
         home_view, 
         article_list_view, 
         post_detail_view, 
-        CreateArticleView,
         create_article_view
     )
 
