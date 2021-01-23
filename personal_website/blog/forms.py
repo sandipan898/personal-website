@@ -11,13 +11,6 @@ from .models import Article
 #     thumbnail = forms.ImageField()
 
 class ArticlePostForm(forms.ModelForm):
-    topic_related_to = forms.CharField(
-        label='topic_related_to', 
-        max_length=400,
-        widget=forms.TextInput(attrs={
-            'class': 'form-control',
-        })
-    )
     title = forms.CharField(
         label="title",
         max_length=200,
@@ -26,25 +19,34 @@ class ArticlePostForm(forms.ModelForm):
         })
     )
     content = forms.CharField(
-        label="title",
+        label="content",
         max_length=200,
         widget=CKEditorWidget()
     )
+    topic_related_to = forms.CharField(
+        required=False,
+        label='topic_related_to', 
+        max_length=400,
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+        })
+    )
     tags = forms.CharField(
+        required=False,
         label="tags",
         max_length=100,
         widget=forms.TextInput(attrs={
             'class': 'form-control',
         })
     )
-    thumbnail = forms.ImageField()
+    thumbnail = forms.ImageField(required=False)
 
     class Meta:
         model = Article
         fields = [
-            "topic_related_to",
             "title",
             "content",
+            "topic_related_to",
             "tags",
             "thumbnail",
         ]
