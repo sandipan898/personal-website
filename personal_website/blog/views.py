@@ -3,9 +3,10 @@ from django.views import generic
 from .models import Article
 from django.views.generic import DetailView
 from django.urls import reverse
-from .forms import ArticlePostForm
+from .forms import ArticlePostForm, SignUpUserForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.contrib.auth import login, authenticate
 
 # Create your views here.
 
@@ -30,7 +31,6 @@ def article_list_view(request):
   
 def post_detail_view(request, slug):
     template_name = 'blog/detail-page.html'
-    # queryset = Article.objects.filter(slug=slug)
     selected_article = get_object_or_404(Article, slug=slug)
     related_articles = Article.objects.all()
     return render(request, context={'article': selected_article, 'related_articles': related_articles}, template_name=template_name)
@@ -61,3 +61,24 @@ def create_article_view(request):
         context['form'] = form
     
     return render(request, template_name, context=context)
+
+
+def signup_view(request):
+    form = SignUpUserForm(request.POST)
+    if form.is_valid():
+        user = form.save()
+        user.refresh_from_db()
+        user.profile.first_name = form.cleaned_data.get('first_name')
+        user.profile.last_name = form.cleaned_data.get('last_name')
+        user.profile.email = form.cleaned_data.get('email')
+        user.profile.email = form.cleaned_data.get('bio')
+        user.profile.email = form.cleaned_data.get('image')
+        user.save()
+        username = form.cleaned_data.get('username')
+        password = form.cleaned_data.get('password1')
+        user = authenticate(username=username, password=password)
+        login(request, user)
+        return redirect('home')
+    else:
+        form = SignUpUserForm()
+    return render(request, 'signup.html', {'form': form})
