@@ -13,30 +13,48 @@
                 <form class="form"  role="form" action="{% url 'user-signup' %}" method="POST">
                     {% csrf_token %}
                     <div class="form-group form-row">
-                        <div class=" col-md-6">
-                            {{ form.title|as_crispy_field }}
+                        <div class="form-group col-md-8 mb-0">
+                            {{ form.username|as_crispy_field }}
                         </div>
                     </div>
                     <div class="form-group form-row">
-                        <div class=" col-md-14">
-                            {{ form.content}}
+                        <div class=" col-md-8">
+                            {{ form.first_name|as_crispy_field }}
                         </div>
                     </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-4 mb-0">
-                            {{ form.topic_related_to|as_crispy_field }}
+                    <div class="form-group form-row">
+                        <div class=" col-md-8">
+                            {{ form.last_name|as_crispy_field}}
                         </div>
-                        <div class="form-group col-md-4 mb-0">
-                            {{ form.tags|as_crispy_field }}
+                    </div>
+                    <div class="form-group form-row">
+                        <div class="form-group col-md-8 mb-0">
+                            {{ form.email|as_crispy_field }}
                         </div>
-                        <div class="form-group col-md-4 mb-0">
-                            {{ form.thumbnail|as_crispy_field }}
+                    </div>
+                    <div class="form-group form-row">
+                        <div class="form-group col-md-8 mb-0">
+                            {{ form.password1|as_crispy_field }}
+                        </div>
+                    </div>
+                    <div class="form-group form-row">
+                        <div class="form-group col-md-8 mb-0">
+                            {{ form.password2|as_crispy_field }}
+                        </div>
+                    </div>
+                    <div class="form-group form-row">
+                        <div class="form-group col-md-8 mb-0">
+                            {{ form.image|as_crispy_field }}
+                        </div>
+                    </div>
+                    <div class="form-group form-row">
+                        <div class="form-group col-md-8 mb-0">
+                            {{ form.bio|as_crispy_field }}
                         </div>
                     </div>
                     <div class="form-row">
                         
                     </div>
-                    {% endfor %}
                     
                     <div class="pt-4">
                         <button type="submit" class="btn btn-primary active">Sign Up</button>

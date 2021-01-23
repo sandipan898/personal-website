@@ -26,7 +26,7 @@ class SignupUserForm(UserCreationForm):
                     'class': 'form-control',
                     #'style': 'width: 500px',
                 }))
-    bio = forms.CharField(label="Last name", max_length=100, widget=forms.TextInput(attrs={
+    bio = forms.CharField(label="Bio", max_length=400, widget=forms.Textarea(attrs={
                     'class': 'form-control',
                     #'style': 'width: 500px',
                 }))
