@@ -4,6 +4,8 @@ from taggit.managers import TaggableManager
 from django.shortcuts import reverse
 from django.template.defaultfilters import slugify
 from ckeditor.fields import RichTextField
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 # Create your models here.
 
@@ -69,3 +71,9 @@ class Comment(models.Model):
     def __str__(self):
         return "comment {} of article {}".format(self.id, self.article.title)
         
+
+@receiver(post_save, sender=User)
+def update_profile_signal(sender, instance, created, **kwargs):
+    if created:
+        ArticleUser.objects.create(user=instance)
+    instance.profile.save()

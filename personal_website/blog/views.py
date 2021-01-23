@@ -2,8 +2,8 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.views import generic
 from .models import Article
 from django.views.generic import DetailView
-from django.urls import reverse
-from .forms import ArticlePostForm, SignUpUserForm
+from django.urls import reverse, reverse_lazy
+from .forms import ArticlePostForm, SignupUserForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth import login, authenticate
@@ -63,22 +63,7 @@ def create_article_view(request):
     return render(request, template_name, context=context)
 
 
-def signup_view(request):
-    form = SignUpUserForm(request.POST)
-    if form.is_valid():
-        user = form.save()
-        user.refresh_from_db()
-        user.profile.first_name = form.cleaned_data.get('first_name')
-        user.profile.last_name = form.cleaned_data.get('last_name')
-        user.profile.email = form.cleaned_data.get('email')
-        user.profile.email = form.cleaned_data.get('bio')
-        user.profile.email = form.cleaned_data.get('image')
-        user.save()
-        username = form.cleaned_data.get('username')
-        password = form.cleaned_data.get('password1')
-        user = authenticate(username=username, password=password)
-        login(request, user)
-        return redirect('home')
-    else:
-        form = SignUpUserForm()
-    return render(request, 'signup.html', {'form': form})
+class UserSignupView(generic.CreateView):
+    form_class = SignupUserForm
+    template_name = "auth/signup.html"
+    success_url = reverse_lazy('user-login')
