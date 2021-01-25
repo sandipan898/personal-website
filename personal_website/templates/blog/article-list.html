@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 
+{% load static %}
 {% block extra_head %}
 {% endblock %}
 
@@ -35,33 +36,36 @@
       <section class="pt-5" id="articles">
 
         <!-- Heading & Description -->
-        <div class="wow fadeIn">
+        <div class="wow fadeIn white-text">
           <!--Section heading-->
-          <h2 class="h1 text-center mb-5">What is MDB?</h2>
+          <h2 class="h3 text-center mb-4">Categories</h2>
           <!--Section description-->
-          <p class="text-center">MDB is world's most popular Material Design framework for building responsive,
-            mobile-first websites
-            and apps. </p>
-          <p class="text-center mb-5 pb-5">Trusted by over
-            <strong>400 000</strong> developers and designers. Easy to use & customize. 400+ material UI elements,
-            templates
-            & tutorials.
-          </p>
+          <p class="h5 text-center">Choose your catagory of Articles</p>
+          <ul class="row">
+            <li>
+              Python
+            </li>
+            <li>
+              Python
+            </li>
+            <li>
+              Python
+            </li>
+          </ul>
         </div>
         <!-- Heading & Description -->
 
         {% for article in articles %}
         <!--Grid row-->
-        <div class="row wow fadeIn">
+        <div class="row wow fadeIn winter-neva-gradient">
 
           <!--Grid column-->
-          <div class="col-lg-5 col-xl-4 mb-4">
+          <div class="col-md-5 col-lg-4 mb-4 mt-4">
             <!--Featured image-->
             <div class="view overlay rounded z-depth-1-half">
               <div class="view overlay">
                 <div class="embed-responsive embed-responsive-16by9">
-                  <img class="embed-responsive-item" src="{{article.imageURL}}"
-                   ></img>
+                  <img class="embed-responsive-item" src="{% if article.imageURL %}{{article.imageURL}} {% else %} {% static 'images/article_dummy.png' %} {% endif %}"></img>
                 </div>
               </div>
             </div>
@@ -69,7 +73,7 @@
           <!--Grid column-->
 
           <!--Grid column-->
-          <div class="col-lg-7 col-xl-7 ml-xl-4 mb-4">
+          <div class="col-md-7 col-lg-7 ml-xl-4 mb-4 mt-4">
             <h3 class="mb-3 font-weight-bold dark-grey-text">
               <strong>{{article.title}}</strong>
             </h3>
