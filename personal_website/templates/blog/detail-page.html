@@ -1,4 +1,6 @@
 {% extends 'base.html' %}
+
+{% load static %}
 {% block content %}
 <!--Main layout-->
 <main class="mt-5 pt-5">
@@ -15,16 +17,9 @@
           <h1 class="my-4">
             <strong>{{article.title}}</strong>
           </h1>
+
+          <img src="{{ article.imageURL }}" class="img-fluid m-4" alt="">
         </div>
-
-
-        <!--Featured Image-->
-        <div class="card mb-4 p-2 wow fadeIn">
-
-          <img src="{{ article.imageURL }}" class="img-fluid" alt="">
-
-        </div>
-        <!--/.Featured Image-->
 
         <!--Card-->
         <div class="card mb-4 wow fadeIn">
@@ -89,11 +84,7 @@
               <div class="media-body text-center text-md-left ml-md-3 ml-0">
                 <h5 class="mt-0 font-weight-bold">{{user.get_full_name}}
                 </h5>
-                At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum
-                deleniti atque corrupti
-                quos dolores et quas molestias excepturi sint occaecati cupiditate non provident,
-                similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum
-                fuga.
+                {{user.userprofile.bio}}
               </div>
             </div>
 
@@ -226,48 +217,50 @@
 
   </div>
   <!--Grid row-->
+  <hr class="my-5">
 
-  <!--Grid row-->
-  <div class="row">
+  <!--Section: Cards-->
+  <section class="text-center" id="related_post">
 
-    {% for article in related_articles %}
-    <!--Grid column-->
-    <div class="col-lg-4 col-md-6 mb-4">
+      <!--Grid row-->
+      <div class="row m-4 wow fadeIn">
+          {% for article in related_articles %}
+          <!--Grid column-->
+          <div class="col-lg-3 col-md-6 mb-4">
 
-      <!--Card-->
-      <div class="card">
+            <!--Card-->
+            <div class="card">
 
-        <!--Card image-->
-        <div class="view overlay">
-          <img src="{{article.thumbnail}}" alt="">
-          <a href="/article/{{article.id}}/detail/">
-            <div class="mask rgba-white-slight"></div>
-          </a>
+              <!--Card image-->
+              <div class="view overlay">
+                <img class="container mt-4" src="{% if article.imageURL %}{{article.imageURL}} {% else %} {% static 'images/article_dummy.png' %} {% endif %}" alt="">
+                <a href="{{article.get_absolute_url}}">
+                  <div class="mask rgba-white-slight"></div>
+                </a>
+              </div>
+
+              <!--Card content-->
+              <div class="card-body">
+                <!--Title-->
+                <h4 class="card-title">{{article.title}}</h4>
+                <!--Text-->
+                <p class="card-text">Written by <strong>{{article.author}}</strong></p>
+                <p class="card-text">Topic related to: <strong>{{article.topic_related_to}}</strong></p>
+                <p class="card-text">Tags: {{article.topic_related_to}}</p>
+                <a href="{{article.get_absolute_url}}" class="btn btn-primary btn-md">Read Article
+                  <i class="fas fa-book ml-2"></i>
+                </a>
+              </div>
+            </div>
+            <!--/.Card-->
+
+          </div>
+          <!--Grid column-->
+          {% endfor %}
+        <!--Grid row-->
         </div>
+      </section>
 
-        <!--Card content-->
-        <div class="card-body">
-          <!--Title-->
-          <h4 class="card-title">{{article.title}}</h4>
-          <!--Text-->
-          <p class="card-text">Written by <strong>{{article.author}}</strong></p>
-          <p class="card-text">Topic related to: <strong>{{article.topic_related_to}}</strong></p>
-          <p class="card-text">Tags: {{article.topic_related_to}}</p>
-          <a href="{{article.get_absolute_url}}" class="btn btn-primary btn-md">Read Article
-            <i class="fas fa-book ml-2"></i>
-          </a>
-        </div>
-      </div>
-      <!--/.Card-->
-
-    </div>
-    <!--Grid column-->
-    {% endfor %}
-
-  </div>
-  <!--Grid row-->
-
-  </section>
   <!--Section: Post-->
 
   </div>
