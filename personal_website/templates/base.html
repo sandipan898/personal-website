@@ -9,13 +9,14 @@
 
     {% block extra_head %} {% endblock %}
 </head>
-<body>
+<body class="blue-gradient">
     <header>
         {% include 'blog/navbar.html' %}
     </header>
-    {% block content %}
-    {% endblock %}
-
+    <div class="">
+        {% block content %}
+        {% endblock %}
+    </div>
     {% include "blog/footer.html" %}
 
     {% include "blog/scripts.html" %}

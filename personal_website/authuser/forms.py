@@ -5,54 +5,89 @@ from django.contrib.auth.password_validation import password_validators_help_tex
 from django.contrib.auth.models import User
 
 class SignupUserForm(UserCreationForm):
-    email = forms.EmailField(label="Email", widget=forms.TextInput(attrs={
-                    'class': 'form-control',
-                    #'style': 'width: 500px',
-        }))
-    first_name = forms.CharField(label="First name", max_length=100, 
-                widget=forms.TextInput(attrs={
-                    'class': 'form-control',
-                    #'style': 'width: 500px',
-        })
+    email = forms.EmailField(
+        label="Email",
+        required=False, 
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control',
+            }
+        )
     )
-    last_name = forms.CharField(label="Last name", max_length=100, widget=forms.TextInput(attrs={
-                    'class': 'form-control',
-                    #'style': 'width: 500px',
-                }))
-    username = UsernameField(widget=forms.TextInput(attrs={
-                    'class': 'form-control',
-                    #'style': 'width: 500px',
-                }))
-    bio = forms.CharField(label="Bio", max_length=400, widget=forms.Textarea(attrs={
-                    'class': 'form-control',
-                    #'style': 'width: 500px',
-                }))
+    first_name = forms.CharField(
+        label="First name", 
+        required=False, 
+        max_length=100, 
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control',
+            }
+        )
+    )
+    last_name = forms.CharField(
+        label="Last name", 
+        required=False, 
+        max_length=100, 
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control',
+            }
+        )
+    )
+    username = UsernameField(
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control',
+            }
+        )
+    )
+    bio = forms.CharField(
+        label="Bio", 
+        required=False, 
+        max_length=400, 
+        widget=forms.Textarea(
+            attrs={
+                'class': 'form-control',
+            }
+        )
+    )
     
     password1 = forms.CharField(
-                    label="Password",
-                    widget=forms.PasswordInput(attrs={
-                    'class': 'form-control',
-                    #'style': 'width: 500px',
-                    'autocomplete': 'new-password',
-                    }), help_text=password_validators_help_text_html()
-                )
+        label="Password",
+        widget=forms.PasswordInput(
+            attrs={
+                'class': 'form-control',
+                #'style': 'width: 500px',
+                'autocomplete': 'new-password',
+            }
+        ), 
+        help_text=password_validators_help_text_html()
+    )
+
     password2 = forms.CharField(
-                    label="Re-enter Password",
-                    widget=forms.PasswordInput(attrs={
-                    'class': 'form-control',
-                    #'style': 'width: 500px',
-                    'autocomplete': 'new-password',
-                    }), help_text=("Enter the same password as before, for verification.")
-                )
-    image = forms.ImageField(allow_empty_file=True)
+        label="Re-enter Password",
+        widget=forms.PasswordInput(
+            attrs={
+                'class': 'form-control',
+                'autocomplete': 'new-password',
+            }
+        ), 
+        help_text=("Enter the same password as before, for verification.")
+    )
+
+    image = forms.ImageField(
+        allow_empty_file=True, 
+        required=False,
+        # widget=forms.ImageField()
+    )
 
 
     class Meta:
         model = User
         fields = [
+            "username",
             "first_name",
             "last_name",
-            "username",
             "email",
             "bio",
             "password1",

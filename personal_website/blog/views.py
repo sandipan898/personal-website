@@ -7,6 +7,7 @@ from .forms import ArticlePostForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth import login, authenticate
+from django.core.files.uploadedfile import SimpleUploadedFile
 
 # Create your views here.
 

@@ -23,9 +23,9 @@ class UserProfile(models.Model):
         return url
 
 
-# @receiver(post_save, sender=User)
-# def update_profile_signal(sender, instance, created, **kwargs):
-#     if created:
-#         UserProfile.objects.create(user=instance)
-#     instance.userprofile.save()
+@receiver(post_save, sender=User)
+def update_userprofile_signal(sender, instance, created, **kwargs):
+    if created:
+        UserProfile.objects.create(user=instance)
+    instance.userprofile.save()
     

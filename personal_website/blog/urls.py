@@ -5,11 +5,11 @@ from .views import (
         article_list_view, 
         post_detail_view, 
         create_article_view, 
-    )
+)
 
 urlpatterns = [
     path('', home_view, name='home'),
     path('article/all', article_list_view, name='article-list'),
-    path('article/<slug:slug>/', post_detail_view, name='article-detail'),
+    path('article/detail/<slug:slug>/', post_detail_view, name='article-detail'),
     path('article/create/', create_article_view, name='create-article'),
 ]

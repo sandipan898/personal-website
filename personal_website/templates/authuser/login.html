@@ -10,7 +10,7 @@
 {% endblock %}
 
 {% block content %}
-<main class="mt-5 pt-5 morpheus-den-gradient">
+<main class="mt-5 pt-5">
     <div class="container">
         <section class="card heavy-rain-gradient wow fadeIn">
             <div class="card-body py-5 px-5 my-5">
@@ -20,7 +20,25 @@
      
                 <form role="form" action="{% url 'user-login' %}" method="POST">
                     {% csrf_token %}
-                    {{form| crispy}}
+                    {{ form.non_field_errors }}
+
+                    {% for field in form %}
+                    <div class="form-group form-row">
+                        <div class="form-group col-md-8 mb-0">
+                            <div class="form-outline mb-4 p-2">
+                                <input class="form-control" id="{{field.id_for_label}}" type="{{field.type}}" name="{{field.name}}" maxlength="100" {{field.required}}>
+                                <label class="form-label" for="{{field.id_for_label}}">{{field.label}}</label>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4 mb-0 text-primary">
+                            {{field.help_text}}
+                        </div>
+                        <div class="form-group col-md-4 mb-0 red-text">
+                            {{field.errors}}
+                        </div>
+                    </div>
+                    
+                    {% endfor %}
                     <button type="submit" class="btn btn-lg btn-primary active">Sign in</button>
                 </form> 
             </div>
