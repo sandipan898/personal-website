@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'blog',
     'portfolio',
     'qna',
+    'authuser',
 
     'taggit',
     'ckeditor',

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block extra_head %}
+<!-- <style>
+    body {
+        background: #555555 ;
+    }
+</style> -->
+{% endblock %}
+
+{% block content %}
+<main class="mt-5 pt-5 morpheus-den-gradient">
+    <div class="container">
+        <section class="card heavy-rain-gradient wow fadeIn">
+            <div class="card-body py-5 px-5 my-5">
+                <h1 class="my-4">
+                    <strong>SignUp</strong>
+                </h1>
+     
+                <form role="form" action="{% url 'user-login' %}" method="POST">
+                    {% csrf_token %}
+                    {{form| crispy}}
+                    <button type="submit" class="btn btn-lg btn-primary active">Sign in</button>
+                </form> 
+            </div>
+        </section>
+    </div>
+</main>
+
+{% endblock %}

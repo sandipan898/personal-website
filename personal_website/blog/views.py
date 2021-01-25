@@ -3,7 +3,7 @@ from django.views import generic
 from .models import Article
 from django.views.generic import DetailView
 from django.urls import reverse, reverse_lazy
-from .forms import ArticlePostForm, SignupUserForm
+from .forms import ArticlePostForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth import login, authenticate
@@ -61,9 +61,3 @@ def create_article_view(request):
         context['form'] = form
     
     return render(request, template_name, context=context)
-
-
-class UserSignupView(generic.CreateView):
-    form_class = SignupUserForm
-    template_name = "auth/signup.html"
-    success_url = reverse_lazy('user-login')

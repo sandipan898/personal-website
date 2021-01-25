@@ -9,23 +9,6 @@ from django.dispatch import receiver
 
 # Create your models here.
 
-class ArticleUser(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
-    bio = models.TextField(null=True, blank=True)
-    image = models.ImageField(null=True, blank=True)
-
-    def __str__(self):
-        return self.user.username
-
-    @property
-    def imageURL(self):
-        try:
-            url = self.image.url
-        except:
-            url = ''
-        return url
-
-
 class Article(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     featured = models.BooleanField(default=False, blank=True, null=True)
@@ -72,8 +55,3 @@ class Comment(models.Model):
         return "comment {} of article {}".format(self.id, self.article.title)
         
 
-@receiver(post_save, sender=User)
-def update_profile_signal(sender, instance, created, **kwargs):
-    if created:
-        ArticleUser.objects.create(user=instance)
-    instance.profile.save()
