@@ -36,22 +36,74 @@
       <section class="pt-5" id="articles">
 
         <!-- Heading & Description -->
-        <div class="wow fadeIn white-text">
+        <div class="wow fadeIn">
           <!--Section heading-->
           <h2 class="h3 text-center mb-4">Categories</h2>
           <!--Section description-->
           <p class="h5 text-center">Choose your catagory of Articles</p>
-          <ul class="row">
-            <li>
-              Python
-            </li>
-            <li>
-              Python
-            </li>
-            <li>
-              Python
-            </li>
-          </ul>
+          <div class="container">
+          <div class="row mb-12 wow fadeIn">
+            <div class="col-sm-2">
+              <a href="#">link1</a>
+            </div>
+            <div class="col-sm-2">
+              <a href="#">link1</a>
+            </div>
+            <div class="col-sm-2">
+              <a href="#">link1</a>
+            </div>
+            <div class="col-sm-2">
+              <a href="#">link1</a>
+            </div>
+            <div class="col-sm-2">
+              <a href="#">link1</a>
+            </div>
+            <div class="col-sm-2">
+              <a href="#">link1</a>
+            </div>
+          </div>
+
+          <div class="row mb-12 wow fadeIn">
+            <div class="col-sm-2">
+              <a href="#">link1</a>
+            </div>
+            <div class="col-sm-2">
+              <a href="#">link1</a>
+            </div>
+            <div class="col-sm-2">
+              <a href="#">link1</a>
+            </div>
+            <div class="col-sm-2">
+              <a href="#">link1</a>
+            </div>
+            <div class="col-sm-2">
+              <a href="#">link1</a>
+            </div>
+            <div class="col-sm-2">
+              <a href="#">link1</a>
+            </div>    
+          </div>
+          <div class="row mb-12 wow fadeIn">
+            <div class="col-sm-2">
+              <a href="#">link1</a>
+            </div>
+            <div class="col-sm-2">
+              <a href="#">link1</a>
+            </div>
+            <div class="col-sm-2">
+              <a href="#">link1</a>
+            </div>
+            <div class="col-sm-2">
+              <a href="#">link1</a>
+            </div>
+            <div class="col-sm-2">
+              <a href="#">link1</a>
+            </div>
+            <div class="col-sm-2">
+              <a href="#">link1</a>
+            </div>
+          </div>
+        </div>
         </div>
         <!-- Heading & Description -->
 
@@ -65,7 +117,8 @@
             <div class="view overlay rounded z-depth-1-half">
               <div class="view overlay">
                 <div class="embed-responsive embed-responsive-16by9">
-                  <img class="embed-responsive-item" src="{% if article.imageURL %}{{article.imageURL}} {% else %} {% static 'images/article_dummy.png' %} {% endif %}"></img>
+                  <img class="embed-responsive-item"
+                    src="{% if article.imageURL %}{{article.imageURL}} {% else %} {% static 'images/article_dummy.png' %} {% endif %}"></img>
                 </div>
               </div>
             </div>
@@ -82,7 +135,7 @@
             <p class="card-text">Tags: {{article.topic_related_to}}</p>
             <a href="{{article.get_absolute_url}}" class="btn btn-primary btn-md">Read Article
               <i class="fas fa-book ml-2"></i>
-          </a>
+            </a>
           </div>
           <!--Grid column-->
         </div>
