@@ -3,6 +3,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm, UsernameField
 from django.contrib.auth.password_validation import password_validators_help_text_html
 from django.contrib.auth.models import User
+from django.contrib.auth.forms import AuthenticationForm
 
 class SignupUserForm(UserCreationForm):
     email = forms.EmailField(
@@ -102,3 +103,23 @@ class SignupUserForm(UserCreationForm):
             elif User.objects.get_object_or_404(username=username):
                 raise forms.ValidationError("This username is already taken")
             return username
+
+
+class UserLoginForm(AuthenticationForm):
+    def __init__(self, *args, **kwargs):
+        super(UserLoginForm, self).__init__(*args, **kwargs)
+
+    username = UsernameField(
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control',
+            }
+        )
+    )
+    password = forms.CharField(
+        widget=forms.PasswordInput(
+            attrs={
+                'class': 'form-control',
+            }
+        )
+    )

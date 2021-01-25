@@ -129,3 +129,26 @@
     </div>
 </div>
 
+
+<!-- Login Form -->
+<div class="form-group form-row">
+    <div class="form-group col-md-8 mb-0">
+        <div class="form-outline mb-4 p-2">
+            <input class="form-control" id="id_username" type="text" name="text" maxlength="100" {{field.required}}>
+            <label class="form-label" for="id_username">Username</label>
+        </div>
+    </div>
+    <div class="form-group col-md-8 mb-0">
+        <div class="form-outline mb-4 p-2">
+            <input class="form-control" id="id_passsword" type="password" name="password" maxlength="100" {{field.required}}>
+            <label class="form-label" for="id_passsword">Password</label>
+        </div>
+    </div>
+    {% for field in form %}
+        <div class="form-group col-md-4 mb-0 text-primary">
+            {{field.help_text}}
+        </div>
+        <div class="form-group col-md-4 mb-0 red-text">
+            {{field.errors}}
+        </div>
+    {% endfor %}
