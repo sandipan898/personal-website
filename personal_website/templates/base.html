@@ -5,20 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    {% include "blog/styles.html" %}
+    {% include "styles.html" %}
 
     {% block extra_head %} {% endblock %}
 </head>
 <body class="heavy-rain-gradient">
-    <header>
-        {% include 'blog/navbar.html' %}
-    </header>
-    <div class="">
-        {% block content %}
-        {% endblock %}
-    </div>
-    {% include "blog/footer.html" %}
+    
+    {% block body %}
+    {% endblock %}
 
-    {% include "blog/scripts.html" %}
+    {% include "scripts.html" %}
 </body>
 </html>
