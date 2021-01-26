@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views import generic
-from .models import Article
+from .models import Article, get_all_related_topic
 from django.views.generic import DetailView
 from django.urls import reverse, reverse_lazy
 from .forms import ArticlePostForm
@@ -24,9 +24,11 @@ def home_view(request):
 def article_list_view(request):
     template_name = 'blog/article-list.html'
     articles = Article.objects.all()
+    related_topics = get_all_related_topic()
 
     context = {
-        "articles": articles
+        "articles": articles,
+        "related_topics": related_topics
     }
     return render(request, template_name=template_name, context=context)  
   
@@ -55,7 +57,7 @@ def create_article_view(request):
                 thumbnail = form.cleaned_data.get('thumbnail'),
             )
             new_article.save()
-            messages.success(request, ("Post will be published Soon!"))
+            messages.success(request, "Post will be published Soon!")
             return redirect('home')
     else:
         form = ArticlePostForm()
