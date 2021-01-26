@@ -55,3 +55,10 @@ class Comment(models.Model):
         return "comment {} of article {}".format(self.id, self.article.title)
         
 
+def get_all_related_topic(): 
+    articles = Article.objects.all()
+    related_topics = []
+    for article in articles:
+        related_topics.append(article.topic_related_to)
+
+    return related_topics

@@ -37,75 +37,23 @@
 
         <!-- Heading & Description -->
         <div class="wow fadeIn content">
+          <hr class="mb-5">
           <!--Section heading-->
           <h2 class="h3 text-center mb-4">Categories</h2>
           <!--Section description-->
           <p class="h5 text-center">Choose your catagory of Articles</p>
           <div class="">
-          <div class="row mb-12 wow fadeIn">
-            <div class="col-sm-2">
-              <a href="#">link1</a>
-            </div>
-            <div class="col-sm-2">
-              <a href="#">link1</a>
-            </div>
-            <div class="col-sm-2">
-              <a href="#">link1</a>
-            </div>
-            <div class="col-sm-2">
-              <a href="#">link1</a>
-            </div>
-            <div class="col-sm-2">
-              <a href="#">link1</a>
-            </div>
-            <div class="col-sm-2">
-              <a href="#">link1</a>
+            <div class="row wow fadeIn">
+              {% for topic in related_topics %}
+              <div class="col-sm-2">
+                <a href="#">topic</a>
+              </div>
+              {% endfor %}
             </div>
           </div>
-
-          <div class="row mb-12 wow fadeIn">
-            <div class="col-sm-2">
-              <a href="#">link1</a>
-            </div>
-            <div class="col-sm-2">
-              <a href="#">link1</a>
-            </div>
-            <div class="col-sm-2">
-              <a href="#">link1</a>
-            </div>
-            <div class="col-sm-2">
-              <a href="#">link1</a>
-            </div>
-            <div class="col-sm-2">
-              <a href="#">link1</a>
-            </div>
-            <div class="col-sm-2">
-              <a href="#">link1</a>
-            </div>    
-          </div>
-          <div class="row mb-12 wow fadeIn">
-            <div class="col-sm-2">
-              <a href="#">link1</a>
-            </div>
-            <div class="col-sm-2">
-              <a href="#">link1</a>
-            </div>
-            <div class="col-sm-2">
-              <a href="#">link1</a>
-            </div>
-            <div class="col-sm-2">
-              <a href="#">link1</a>
-            </div>
-            <div class="col-sm-2">
-              <a href="#">link1</a>
-            </div>
-            <div class="col-sm-2">
-              <a href="#">link1</a>
-            </div>
-          </div>
-        </div>
         </div>
         <!-- Heading & Description -->
+        <hr class="mb-5">
 
         {% for article in articles %}
         <!--Grid row-->
