@@ -1,6 +1,21 @@
 <header>
+  <!-- Intro settings -->
+  <style>
+    /* Default height for small devices */
+    #intro-example {
+      height: 400px;
+    }
+
+    /* Height for devices larger than 992px */
+    @media (min-width: 992px) {
+      #intro-example {
+        height: 600px;
+      }
+    }
+  </style>
+
   <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+  <nav class="navbar navbar-expand-lg navbar-light bg-white">
     <div class="container-fluid">
       <button
         class="navbar-toggler"
@@ -35,19 +50,29 @@
 
   <!-- Background image -->
   <div
+    id="intro-example"
     class="p-5 text-center bg-image"
-    style="
-      background-image: url('https://mdbootstrap.com/img/new/slides/041.jpg');
-      height: 400px;
-    "
+    style="background-image: url('https://mdbootstrap.com/img/new/slides/041.jpg')"
   >
-    <div class="mask" style="background-color: rgba(0, 0, 0, 0.6)">
+    <div class="mask" style="background-color: rgba(0, 0, 0, 0.7)">
       <div class="d-flex justify-content-center align-items-center h-100">
         <div class="text-white">
-          <h1 class="mb-3">Heading</h1>
-          <h4 class="mb-3">Subheading</h4>
-          <a class="btn btn-outline-light btn-lg" href="#!" role="button"
-            >Call to action</a
+          <h1 class="mb-3">Learn Bootstrap 5 with MDB</h1>
+          <h5 class="mb-4">Best & free guide of responsive web design</h5>
+          <a
+            class="btn btn-outline-light btn-lg m-2"
+            href="https://www.youtube.com/watch?v=c9B4TPnak1A"
+            role="button"
+            rel="nofollow"
+            target="_blank"
+            >Start tutorial</a
+          >
+          <a
+            class="btn btn-outline-light btn-lg m-2"
+            href="https://mdbootstrap.com/docs/standard/"
+            target="_blank"
+            role="button"
+            >Download MDB UI KIT</a
           >
         </div>
       </div>
