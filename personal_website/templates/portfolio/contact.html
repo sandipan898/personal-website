@@ -1,0 +1,56 @@
+<!-- section: contact -->
+{% load crispy_forms_tags %}
+<section class="mb-4" id="contact">
+	<div class="container justify-content-center wow fadeIn">
+		<strong class="h3">Get in Touch</strong> {{name}}
+		<p>Let me know your feedback</p>
+		<div class="row justify-content-center align-items-center">
+			<div class="span12">
+				<form action="" method="post" role="form" class="card-body">
+					{% csrf_token %}
+					{% comment %}
+					{{form | crispy}}
+					{% endcomment %}
+
+					<div class="row pl-4">
+						<div class="span6">
+							<div class="field your-name form-group mr-3">
+								<input type="text" name="name" class="form-control" id="name" placeholder="Your Name"/>
+							</div>
+							<div class="field your-email form-group mr-3">
+								<input type="text" class="form-control" name="from_email" id="from_email" placeholder="Your Email"/>
+							</div>
+							<div class="field subject form-group mr-3">
+								<input type="text" class="form-control" name="subject" id="subject" placeholder="Subject"/>
+							</div>
+						</div>
+						<div class="span6">
+							<div class="form-group">
+								<textarea id="sendMessage" class="form-control" name="message" rows="5" placeholder="Message"></textarea>
+							</div>
+						</div>						
+					</div>
+
+					<button type="submit" class="btn btn-dark">SEND MESSAGE</button>
+
+					<!-- {% if form.errors %}
+						{% for field in form %}
+							{% for error in field.errors %}
+								<div class="alert alert-danger">
+									<strong>{{ error|escape }}</strong>
+								</div>
+							{% endfor %}
+						{% endfor %}
+						{% for error in form.non_field_errors %}
+							<div class="alert alert-danger">
+								<strong>{{ error|escape }}</strong>
+							</div>
+						{% endfor %}
+					{% endif %} -->
+				</form>
+
+			</div>
+			<!-- ./span12 -->
+		</div>
+	</div>
+</section>
