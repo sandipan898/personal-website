@@ -41,9 +41,9 @@ def home_view(request):
                     message, 
                     from_email, 
                     ['sandipan.das898@gmail.com'])
-                messages.success(request, ('Your message has been sent successfully!'))
+                messages.success(request, ('Thanks for youe valuable feedback!'))
             except BadHeaderError:
-                messages.error(request, ('Invalid header found.'))
+                print('Invalid header found.')
     else:
         form = ContactForm()
         context['form'] = form
