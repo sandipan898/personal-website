@@ -50,15 +50,15 @@ ICON_CHOICES = (
 
 
 class Education(models.Model):
-    degree_title = models.TextField(unique=True, max_length=500)
-    university_name = models.CharField(max_length=200)
+    degree_name = models.TextField(unique=True, max_length=500)
+    school_name = models.CharField(max_length=200)
     start_date = models.DateField()
-    end_date = models.DateField()
-    location = models.CharField(max_length=100, blank=True)
-    grade = models.CharField(max_length=5, choices=GRADE_CHOICES)
+    end_date = models.DateField(blank=True, null=True)
+    location = models.CharField(max_length=100, blank=True, null=True)
+    grade = models.CharField(max_length=5, choices=GRADE_CHOICES, blank=True, null=True)
 
     def __str__(self):
-        return f"{self.degree_title}"
+        return f"{self.degree_name}"
 
 
 class Skill(models.Model):

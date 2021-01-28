@@ -3,7 +3,7 @@ from django.shortcuts import render
 # Create your views here.
 
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Education, Skill, Project, Feature
+from .models import Education, Skill, Project
 from django.core.mail import BadHeaderError, send_mail
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib import messages
