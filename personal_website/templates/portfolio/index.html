@@ -28,234 +28,222 @@
 <!--Main layout-->
 {% block content  %}
 
-    <main>
-        <div class="container-fluid pt-4" style="width: 100%">
+    
+<!DOCTYPE html>
+<html lang="en">
 
-            <section class="card blue-gradient wow fadeIn" id="summery">
+<head>
+  <!-- Required meta tags always come first -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Material Design Bootstrap Template</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+  <!-- Bootstrap core CSS -->
+  <link href="../../css/bootstrap.min.css" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="../../css/mdb.min.css" rel="stylesheet">
+  <style>
+  /* Required for full background image */
 
-                <div class="card-body text-white text-center py-3 my-5">
+  html,
+  body,
+  header,
+  .view {
+    height: 100%;
+  }
 
-                    <h1 class="mb-4">
-                        <strong>Summery</strong>
-                    </h1>
-                    <p>
-                        <strong>
-                                I'm Sandipan Das a Computer Science and Engineering student and currently looking </br> for a software developer or similar job position that suits my job profile and skills most.
-                        </strong>
-                    </p>
-                </div>
-            </section>
+  @media (max-width: 740px) {
+    html,
+    body,
+    header,
+    .view {
+      height: 1000px;
+    }
+  }
+  @media (min-width: 800px) and (max-width: 850px) {
+    html,
+    body,
+    header,
+    .view {
+      height: 650px;
+    }
+  }
 
-            <!--Section: Cards-->
-            <section class="pt-5" id="about">
+  .top-nav-collapse {
+    background-color: #3f51b5 !important;
+  }
 
-                <!-- Heading & Description -->
-                <div class="card peach-gradient wow fadeIn pt-4">
-                    <!--Section heading-->
-                    <h2 class="h1 text-center mb-4"><i class="fas fa-user-circle"></i>  About Me</h2>
-                    <!--Section description-->
-                    <hr class="mb-5">
-                    <div class="container">
-                        <p class="h2 text-center">Key Points <i class="fas fa-info-circle"></i></p>
-                        <p class="text-center h6">
-                            <ul>
-                                <li>A Computer Science and Engineering student</li>
-                                <li>Passionate about Coding and Development.</li>
-                                <li>Passionate about exploring new technologies.</li>
-                                <li>Dedicated to lifelong learning</li>
-                                <li>Youtuber</li>
-                                <li>Very Promising in works</li>
-                            </ul>
-                        </p>
-                    </div>
-                    <hr class="my-5">
-                    <!-- Key Points -->
+  .navbar:not(.top-nav-collapse) {
+    background: transparent !important;
+  }
 
-                    <!-- Education -->
-                    <div class="container wow fadeIn">
-                        <!--Section heading-->
-                        {% if educations %}
-                        <h2 id="education" class="h2 text-center mb-4">My Educations <i class="fas fa-graduation-cap"></i></h2>
-                        {% for obj in educations %}
-                            <p class="h4 pl-4 pt-3"><i class="fas fa-book-open"></i> {{obj.degree_title}}</p>
-                            <p class="text-align-left pl-4  ">
-                                <i class="fas fa-university"></i>
-                                <b>University:</b> {{obj.university_name}} | CGPA: 9.25/10.0 <br>
-                                <i class="fas fa-calendar-alt"></i>  Start Date: {{obj.start_date}} | End Date: {{obj.end_date}}
-                                <br><i class="fas fa-map-marker-alt"></i> Location: {{obj.location}}
-                            </p>
-                        {% endfor %}
-                        <!-- Education -->
-                        
-                        <hr class="mb-5">
-                        {% endif %}
+  @media (max-width: 991px) {
+    .navbar:not(.top-nav-collapse) {
+      background: #3f51b5 !important;
+    }
+  }
 
-                        {% comment %}
-                        <!--Section description-->
-                        <p class="h4 pl-4 pt-3"><i class="fas fa-book-open"></i>  High School degree on Computer Science.</p>
-                        <p class="text-align-left pl-4  ">
-                            <i class="fas fa-university"></i>
-                            <b>University:</b> Kanailal Vidyamandir | Percentile: 88.67% <br>
-                            <i class="fas fa-calendar-alt"></i>  Start Date: Jan, 2016 | End Date: May, 2018
-                        </p>
-                        <p class="h4 pl-4 pt-3"><i class="fas fa-book-open"></i>Secondary Education degree</p>
-                        <p class="text-align-left pl-4  ">
-                            <i class="fas fa-university"></i>
-                            <b>School:</b> Kanailal Vidyamandir | Percentile: 87.75% <br>
-                            <i class="fas fa-calendar-alt"></i>  Start Date: Jan, 2006 | End Date: Dec, 2016
-                        </p>
-                        {% endcomment %}
-                    </div>
+  .rgba-gradient {
+    background: -webkit-linear-gradient(45deg, rgba(0, 0, 0, 0.7), rgba(72, 15, 144, 0.4) 100%);
+    background: -webkit-gradient(linear, 45deg, from(rgba(0, 0, 0, 0.7), rgba(72, 15, 144, 0.4) 100%));
+    background: linear-gradient(to 45deg, rgba(0, 0, 0, 0.7), rgba(72, 15, 144, 0.4) 100%);
+  }
 
-                    <!-- Skills -->
-                    <div class="container">
-                            <div class="wow fadeIn">
-                                <!--Section heading-->
-                                <h2 class="h2 text-center mb-4">Skills That I have  <i class="fab fa-stack-overflow"></i></h2>
-                            </div>
-                    </div>
-                    <!-- Heading & Description -->
-                    <div class="container">
-                        <div class="card-columns">
+  .card {
+    background-color: rgba(126, 123, 215, 0.2);
+  }
 
-                        <!--Programming-->
-                        {% if programming %}
-                        <div class="card mt-2 mb-4 juicy-peach-gradient">
+  .md-form label {
+    color: #ffffff;
+  }
 
-                            <!-- Card content -->
-                            <div class="card-body">
-                                <!-- Title -->
-                                <h2 class="h3 pl-4 pb-2"><i class="fas fa-code"></i> Programming</h2>
-                                <!-- Text -->
-                                {% comment %}
-                                <p class="h6 pt-2"><i class="fab fa-python"></i> Python</p>
-                                <div class="container">
-                                <div class="skills python">90%</div>
-                                </div>
+  h6 {
+    line-height: 1.7;
+  }
+  </style>
+</head>
 
-                                <p class="h6 pt-2"><i class="fas fa-file-code"></i> C</p>
-                                <div class="container">
-                                <div class="skills c">90%</div>
-                                </div>
-
-                                <p class="h6 pt-2"><i class="fab fa-html5"></i> HTML</p>
-                                <div class="container">
-                                <div class="skills html">75%</div>
-                                </div>
-
-                                <p class="h6 pt-2"><i class="fab fa-css3-alt"></i> CSS</p>
-                                <div class="container">
-                                <div class="skills css">70%</div>
-                                </div>
-
-                                <p class="h6 pt-2"><i class="fas fa-file-code"></i> C++</p>
-                                <div class="container">
-                                <div class="skills cpp">40%</div>
-                                </div>
-
-                                <p class="h6 pt-2"><i class="fab fa-js"></i> JavaScript</p>
-                                <div class="container">
-                                <div class="skills js">30%</div>
-                                </div>
-                                {% endcomment %}
-                                
-                                {% for item in programming %}
-                                <p class="h6 pt-2"><i class="{{item.icon}}"></i> {{ item.skill_name }}</p>
-                                <div class="container">
-                                    <div class="skills" style="width: {{item.skill_level}}0%; background-color: {{item.color}};">{{ item.skill_level }}0%</div>
-                                </div>
-                                {% endfor %}
-                                
-                            </div>
-                        </div>
-                        {% endif %}
-                        {% if technology_objects %}
-                            <!-- Technologies -->
-                            <div class="card mt-2 mb-4 warm-flame-gradient">
-
-                                <!-- Card content -->
-                                <div class="card-body">
-
-                                    <!-- Title -->
-                                    <h2 class="h3 pl-4 pb-3"><i class="fas fa-cogs"></i>Technologies</h2>
-                                    <!-- Text -->
-                                        {% for obj in technology_objects %}
-                                        <p class="h5 pl-4 pt-2">{{obj.skill_name}}</p>
-                                        {% endfor %}
-
-                                    {% comment %}<p class="h5 pl-4 pt-2">Software Development</p>
-                                    <p class="h5 pl-4 pt-2 ">GUI Development </p>
-                                    <p class="h5 pl-4 pt-2">Web Development</p>
-                                    <p class="h5 pl-4 pt-2">Data Science</p>
-                                    <p class="h5 pl-4 pt-2">Algorithm Analysis</p>
-                                    <p class="h5 pl-4 pt-2">Frontend Development</p>
-                                    <p class="h5 pl-4 pt-2">DBMS</p>
-                                    <p class="h5 pl-4 pt-2">Cybersecurity & Ethical Hacking</p>
-                                    {% endcomment %}
-                                </div>
-                            </div>
-                        {% endif %}
-
-                        {% if tool_objects %}
-                        <!-- Technologies -->
-                            <div class="card mt-2 mb-4 mean-fruit-gradient">
-
-                                <!-- Card content -->
-                                <div class="card-body">
-
-                                    <!-- Title -->
-                                    <h2 class="h3 pl-4 pb-3"><i class="fas fa-toolbox"></i> Tools</h2>
-                                    <!-- Text -->
-                                    {% for obj in tool_objects %}
-                                        <p class="h5 pl-4 pt-2 ">{{obj.skill_name}}</p>
-                                    {% endfor %}
-
-                                    {% comment %}
-                                    <p class="h5 pl-4 pt-2">Django </p>
-                                    <p class="h5 pl-4 pt-2">Flask</p>
-                                    <p class="h5 pl-4 pt-2">Data Structures</p>
-                                    <p class="h5 pl-4 pt-2">Bootstrap 4</p>
-                                    <p class="h5 pl-4 pt-2">Machine Learning</p>
-                                    <p class="h5 pl-4 pt-2">SQL</p>
-                                    {% endcomment %}
-                                </div>
-                            </div>
-                        {% endif %}
-                    </div>
-                    <hr class="mb-5">
-
-                    <!-- Skills -->
-                </div>
-            </section>
-            <!--Section: Cards-->
-
-             <!--Section: Project-->
-            {%if projects%}
-                 <section class="pt-5" id="projects">
-                    <!-- Content -->
-                    <div class="card near-moon-gradient wow fadeIn pt-4">
-
-                        <div class="container">
-                            <div class="wow fadeIn">
-                                <!--Section heading-->
-                                <h2 class="h1 text-center mb-4"><i class="fas fa-project-diagram"></i> Project Works</h2>
-                            </div>
-                            <hr class="mb-5">
-                        </div>
-
-                        <!--Project Works-->
-                        <div class="container">
-                            {% include 'portfolio/projects.html' %}
-                        </div>
-                    </div>
-                    <!-- Content -->
-                </section>
-                <!--Section: Project-->
-            {% endif %}
-
+<body>
+  <!-- Main navigation -->
+  <header>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
+      <div class="container">
+        <a class="navbar-brand" href="#">
+          <strong>MDB</strong>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-7" aria-controls="navbarSupportedContent-7" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent-7">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Link</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Profile</a>
+            </li>
+          </ul>
+          <form class="form-inline">
+            <div class="md-form my-0">
+              <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+            </div>
+          </form>
         </div>
+      </div>
+    </nav>
+    <!-- Navbar -->
+    <!-- Full Page Intro -->
+    <div class="view" style="background-image: url('http://mdbootstrap.com/img/Photos/Others/images/91.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+      <!-- Mask & flexbox options-->
+      <div class="mask rgba-gradient d-flex justify-content-center align-items-center">
+        <!-- Content -->
+        <div class="container">
+          <!--Grid row-->
+          <div class="row mt-5">
+            <!--Grid column-->
+            <div class="col-md-6 mb-5 mt-md-0 mt-5 white-text text-center text-md-left">
+              <h1 class="h1-responsive font-weight-bold wow fadeInLeft" data-wow-delay="0.3s">Sign up right now! </h1>
+              <hr class="hr-light wow fadeInLeft" data-wow-delay="0.3s">
+              <h6 class="mb-3 wow fadeInLeft" data-wow-delay="0.3s">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem repellendus quasi fuga
+              nesciunt dolorum nulla magnam veniam sapiente, fugiat! Commodi sequi non animi ea
+              dolor molestiae, quisquam iste, maiores. Nulla.</h6>
+              <a class="btn btn-outline-white wow fadeInLeft" data-wow-delay="0.3s">Learn more</a>
+            </div>
+            <!--Grid column-->
+            <!--Grid column-->
+            <div class="col-md-6 col-xl-5 mb-4">
+              <!--Form-->
+              <div class="card wow fadeInRight" data-wow-delay="0.3s">
+                <div class="card-body">
+                  <!--Header-->
+                  <div class="text-center">
+                    <h3 class="white-text">
+                      <i class="fas fa-user white-text"></i> Register:</h3>
+                    <hr class="hr-light">
+                  </div>
+                  <!--Body-->
+                  <div class="md-form">
+                    <i class="fas fa-user prefix white-text active"></i>
+                    <input type="text" id="form3" class="white-text form-control">
+                    <label for="form3" class="active">Your name</label>
+                  </div>
+                  <div class="md-form">
+                    <i class="fas fa-envelope prefix white-text active"></i>
+                    <input type="email" id="form2" class="white-text form-control">
+                    <label for="form2" class="active">Your email</label>
+                  </div>
+                  <div class="md-form">
+                    <i class="fas fa-lock prefix white-text active"></i>
+                    <input type="password" id="form4" class="white-text form-control">
+                    <label for="form4">Your password</label>
+                  </div>
+                  <div class="text-center mt-4">
+                    <button class="btn btn-indigo">Sign up</button>
+                    <hr class="hr-light mb-3 mt-4">
+                    <div class="inline-ul text-center d-flex justify-content-center">
+                      <a class="p-2 m-2 tw-ic">
+                        <i class="fab fa-twitter white-text"></i>
+                      </a>
+                      <a class="p-2 m-2 li-ic">
+                        <i class="fab fa-linkedin-in white-text"> </i>
+                      </a>
+                      <a class="p-2 m-2 ins-ic">
+                        <i class="fab fa-instagram white-text"> </i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--/.Form-->
+            </div>
+            <!--Grid column-->
+          </div>
+          <!--Grid row-->
+        </div>
+        <!-- Content -->
+      </div>
+      <!-- Mask & flexbox options-->
+    </div>
+    <!-- Full Page Intro -->
+  </header>
+  <!-- Main navigation -->
+  <!--Main Layout-->
+  <main>
+    <div class="container">
+      <!--Grid row-->
+      <div class="row py-5">
+        <!--Grid column-->
+        <div class="col-md-12 text-center">
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        </div>
+        <!--Grid column-->
+      </div>
+      <!--Grid row-->
+    </div>
+  </main>
+  <!--Main Layout-->
+  <!-- SCRIPTS -->
+  <!-- JQuery -->
+  <script type="text/javascript" src="../../js/jquery-3.3.1.min.js"></script>
+  <!-- Tooltips -->
+  <script type="text/javascript" src="../../js/popper.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="../../js/bootstrap.min.js"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="../../js/mdb.min.js"></script>
+  <script>
+  new WOW().init();
+  </script>
+</body>
 
-    </main>
-    <!--Main layout-->
+</html>
 
 {% endblock %}
