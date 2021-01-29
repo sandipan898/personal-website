@@ -3,6 +3,7 @@ from django.db import models
 # Create your models here.
 
 from django.db import models
+from colorfield.fields import ColorField
 
 # Create your models here.
 SKILL_CHOICES = (

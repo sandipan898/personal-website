@@ -85,7 +85,6 @@ class HomeView(View):
     def post(self, *args, **kwargs):
         form = ContactForm(self.request.POST)          
         if form.is_valid():
-            print(form.cleaned_data)
 
             subject = form.cleaned_data['subject']
             from_email = form.cleaned_data['from_email']
@@ -98,6 +97,7 @@ class HomeView(View):
                     message, 
                     from_email, 
                     ['sandipan.das898@gmail.com'])
+                    
                 messages.success(self.request, 'Your message has been sent successfully!')
                 return redirect('home')
             except BadHeaderError:
