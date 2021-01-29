@@ -53,8 +53,7 @@ def post_detail_view(request, slug):
     else:
         form = ArticlePostForm()
         context['form'] = form
-
-
+        
     return render(request, context={'article': selected_article, 'related_articles': related_articles}, template_name=template_name)
 
 
