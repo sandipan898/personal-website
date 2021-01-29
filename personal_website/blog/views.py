@@ -51,7 +51,7 @@ def post_detail_view(request, slug):
             messages.success(request, "Comment posted!")
             return redirect('home')
     else:
-        form = ArticlePostForm()
+        form = CommentForm()
         context['form'] = form
         
     return render(request, context={'article': selected_article, 'related_articles': related_articles}, template_name=template_name)

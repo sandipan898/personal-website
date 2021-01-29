@@ -79,8 +79,8 @@
           <div class="card-body">
 
             <div class="media d-block d-md-flex mt-3">
-              <img class="d-flex mb-3 mx-auto z-depth-1" src="{{ user.imageURL }}"
-                alt="Generic placeholder image" style="width: 100px;">
+              <img class="d-flex mb-3 mx-auto z-depth-1" src="{{ user.imageURL }}" alt="Generic placeholder image"
+                style="width: 100px;">
               <div class="media-body text-center text-md-left ml-md-3 ml-0">
                 <h5 class="mt-0 font-weight-bold">{{user.get_full_name}}
                 </h5>
@@ -181,24 +181,28 @@
           <div class="card-body">
 
             <!-- Default form reply -->
-            <form>
+            <form class="form" action="article-detail" method="POST">
 
-              <!-- Comment -->
-              <div class="form-group">
-                <label for="replyFormComment">Your comment</label>
-                <textarea class="form-control" id="replyFormComment" rows="5"></textarea>
+              {% csrf_token %}
+              {{ form.non_field_errors }}
+
+              {% for field in form %}
+              <div class="form-group form-row">
+                <div class="form-group col-md-8 mb-0">
+                  <div class="form-outline mb-4 p-2">
+                    {{field}}
+                    <label class="form-label" for="{{field.id_for_label}}">{{field.label}}</label>
+                  </div>
+                </div>
+                <div class="form-group col-md-4 mb-0 text-primary">
+                  {{field.help_text}}
+                </div>
+                <div class="form-group col-md-4 mb-0 red-text">
+                  {{field.errors}}
+                </div>
               </div>
 
-              <!-- Name -->
-              <label for="replyFormName">Your name</label>
-              <input type="email" id="replyFormName" class="form-control">
-
-              <br>
-
-              <!-- Email -->
-              <label for="replyFormEmail">Your e-mail</label>
-              <input type="email" id="replyFormEmail" class="form-control">
-
+              {% endfor %}
 
               <div class="text-center mt-4">
                 <button class="btn btn-info btn-md" type="submit">Post</button>
@@ -214,51 +218,53 @@
       <!--Grid column-->
 
   </div>
-  
+
   <!--Grid row-->
   <hr class="my-5">
 
   <!--Section: Cards-->
   <section class="text-center" id="related_post">
 
-      <!--Grid row-->
-      <div class="row m-4 wow fadeIn">
-          {% for article in related_articles %}
-          <!--Grid column-->
-          <div class="col-lg-3 col-md-6 mb-4">
+    <!--Grid row-->
+    <div class="row m-4 wow fadeIn">
+      {% for article in related_articles %}
+      <!--Grid column-->
+      <div class="col-lg-3 col-md-6 mb-4">
 
-            <!--Card-->
-            <div class="card">
+        <!--Card-->
+        <div class="card">
 
-              <!--Card image-->
-              <div class="view overlay">
-                <img class="container mt-4" src="{% if article.imageURL %}{{article.imageURL}} {% else %} {% static 'images/article_dummy.png' %} {% endif %}" alt="">
-                <a href="{{article.get_absolute_url}}">
-                  <div class="mask rgba-white-slight"></div>
-                </a>
-              </div>
-
-              <!--Card content-->
-              <div class="card-body">
-                <!--Title-->
-                <h4 class="card-title">{{article.title}}</h4>
-                <!--Text-->
-                <p class="card-text">Written by <strong>{{article.author}}</strong></p>
-                <p class="card-text">Topic related to: <strong>{{article.topic_related_to}}</strong></p>
-                <p class="card-text">Tags: {{article.topic_related_to}}</p>
-                <a href="{{article.get_absolute_url}}" class="btn btn-primary btn-md">Read Article
-                  <i class="fas fa-book ml-2"></i>
-                </a>
-              </div>
-            </div>
-            <!--/.Card-->
-
+          <!--Card image-->
+          <div class="view overlay">
+            <img class="container mt-4"
+              src="{% if article.imageURL %}{{article.imageURL}} {% else %} {% static 'images/article_dummy.png' %} {% endif %}"
+              alt="">
+            <a href="{{article.get_absolute_url}}">
+              <div class="mask rgba-white-slight"></div>
+            </a>
           </div>
-          <!--Grid column-->
-          {% endfor %}
-        <!--Grid row-->
+
+          <!--Card content-->
+          <div class="card-body">
+            <!--Title-->
+            <h4 class="card-title">{{article.title}}</h4>
+            <!--Text-->
+            <p class="card-text">Written by <strong>{{article.author}}</strong></p>
+            <p class="card-text">Topic related to: <strong>{{article.topic_related_to}}</strong></p>
+            <p class="card-text">Tags: {{article.topic_related_to}}</p>
+            <a href="{{article.get_absolute_url}}" class="btn btn-primary btn-md">Read Article
+              <i class="fas fa-book ml-2"></i>
+            </a>
+          </div>
         </div>
-      </section>
+        <!--/.Card-->
+
+      </div>
+      <!--Grid column-->
+      {% endfor %}
+      <!--Grid row-->
+    </div>
+  </section>
 
   <!--Section: Post-->
 
