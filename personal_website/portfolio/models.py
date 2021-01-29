@@ -3,7 +3,6 @@ from django.db import models
 # Create your models here.
 
 from django.db import models
-from colorfield.fields import ColorField
 
 # Create your models here.
 SKILL_CHOICES = (
@@ -11,27 +10,6 @@ SKILL_CHOICES = (
             ('TE', 'Technologies'),
             ('TO', 'Tools'),
         )
-
-COLOR_CHOICES = (
-            ('red', 'RED'),
-            ('pink', 'PINK'),
-            ('purple', 'PURPLE'),
-            ('indigo', 'INDIGO'),
-            ('blue', 'BLUE'),
-            ('light-blue', 'LIGHT BLUE'),
-            ('cyan', 'CYAN'),
-            ('tael', 'TEAL'),
-            ('green', 'GREEN'),
-            ('light-green', 'LIGHT GREEN'),
-            ('yellow', 'YELLOW'),
-            ('amber', 'AMBER'),
-            ('orange', 'ORANGE'),
-            ('deep-orange', 'DEEP ORANGE'),
-            ('brown', 'BROWN'),
-            ('grey', 'GREY'),
-            ('blue-grey', 'BLUE GREY'),
-            ('black', 'BLACK'),
-)
 
 GRADE_CHOICES = (
             ('C', 'CGPA'),
@@ -92,9 +70,16 @@ class Project(models.Model):
     technologies = models.TextField(blank=True, null=True)
     features = models.TextField()
     thumbnail = models.ImageField(blank=False, null=True)
-    card_color = models.CharField(choices=COLOR_CHOICES, max_length=20, blank=True, null=True)
     project_link = models.URLField(blank=True, null=True)
     
     def __str__(self):
         return f"{self.title}"
+
+    @property
+    def imageURL(self):
+        try:
+            url = self.thumbnail.url
+        except:
+            url = ''
+        return url
 

@@ -41,7 +41,7 @@ def home_view(request):
                     message, 
                     from_email, 
                     ['sandipan.das898@gmail.com'])
-                messages.success(request, ('Thanks for youe valuable feedback!'))
+                messages.success(request, ('Thanks for your valuable feedback!'))
             except BadHeaderError:
                 print('Invalid header found.')
     else:
@@ -49,8 +49,8 @@ def home_view(request):
         context['form'] = form
 
     context1 = {
-                'technology_objects': technology,
-                'tool_objects': tool,
+                'technologies': technology,
+                'tools': tool,
                 'educations': education,
                 'projects': projects,
         }

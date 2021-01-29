@@ -1,57 +1,51 @@
 {% load static %}
 
-<!-- Grid row -->
-<div class="row">
-    {% for obj in projects %}
-        <!-- Grid column -->
-        <div class="col-md-6 mb-3">
-            <!--Card-->
-            <div class="card {{obj.card_color}}">
+{% for project in projects %}
+<!--Grid row-->
+<div class="row wow fadeIn bg-white">
 
-                <!--Card image-->
-                <div class="view">
-                    <img src="{{obj.front_icon.url}}" class="card-img-top" style="" alt="photo">
-                    <a href="{{obj.visit_link}}" target="_blank">
+    <!--Grid column-->
+    <div class="col-md-5 col-lg-4 mb-4 mt-4">
+        <!--Featured image-->
+        <div class="view card overlay rounded z-depth-1-half mb-3">
+            <div class="view overlay">
+                <div class="embed-responsive embed-responsive-16by9">
+                    <img class="embed-responsive-item"
+                        src="{% if project.imageURL %}{{project.imageURL}} {% else %} {% static 'images/article_dummy.png' %} {% endif %}">
+                    <a href="{{project.visit_link}}" target="_blank">
                         <div class="mask rgba-white-slight"></div>
                     </a>
-                </div>
-
-                <!--Card content-->
-                <div class="card-body text-center">
-                    <!--Title-->
-                    <h4 class="h5 card-title badge badge-light text-wrap pb-2" >{{obj.title}}</h4>
-                    <div align="center">
-                        <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                            Click to See Details
-                        </a>
-                    </div>
-                    <div class="collapse" id="collapseExample">
-                        <div class="card-text white-text text-align-left">
-                            <p class="h6"><b>Technologies and Modules</b></p>
-                            <ul>
-                                <li>{{obj.technologies}}</li>
-                                <li>{{obj.modules}}</li>
-                            </ul>
-                        </div>
-                        <div class="card-text white-text">
-                            <p class="h6 pt-3"><b>Description and Features</b></p>
-                            <p class="card-text white-text pb-3">
-                                {{obj.features}}
-                            </p>
-                        </div>
-                        <p class="text-center">
-                            <a href="{{obj.visit_link}}" class="nav-link border border-light rounded waves-effect white-text" target="_blank">
-                                <i class="fab fa-github mr-2 white-text"></i>GitHub
-                            </a>
-                        </p>
-                    </div>
+                    </img>
                 </div>
             </div>
-            <!--/.Card-->
         </div>
-        <!-- Grid column -->
-
-        {% endfor %}
-        <hr class="mb-5">
+        {% if project.visit_link %}
+        <a href="{{project.visit_link}}" class="btn btn-primary btn-md">
+            <i class="fab fa-github mr-2"></i>GitHub
+        </a>
+        {% endif %}
     </div>
-    <!-- Grid row -->
+    <!--Grid column-->
+
+    <!--Grid column-->
+    <div class="col-md-7 col-lg-7 ml-xl-4 mb-4 mt-4">
+        <h3 class="mb-3 font-weight-bold dark-grey-text">
+            <strong>{{project.title}}</strong>
+        </h3>
+        <div class="card-text">
+            <p class="h6"><b>Technologies and Modules</b></p>
+            {{project.technologies}}
+        </div>
+        <div class="card-text">
+            <p class="h6 pt-3"><b>Description and Features</b></p>
+            <p class="card-text pb-3">
+                {{project.features}}
+            </p>
+        </div>
+    </div>
+    <!--Grid column-->
+</div>
+<!--Grid row-->
+
+<hr class="mb-5">
+{% endfor %}
