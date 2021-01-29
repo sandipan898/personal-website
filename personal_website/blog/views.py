@@ -1,9 +1,9 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views import generic
-from .models import Article, get_all_related_topic
+from .models import Article, get_all_related_topic, Comment
 from django.views.generic import DetailView
 from django.urls import reverse, reverse_lazy
-from .forms import ArticlePostForm
+from .forms import ArticlePostForm, CommentForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth import login, authenticate
@@ -33,9 +33,28 @@ def article_list_view(request):
     return render(request, template_name=template_name, context=context)  
   
 def post_detail_view(request, slug):
+    context = {}
     template_name = 'blog/detail-page.html'
     selected_article = get_object_or_404(Article, slug=slug)
     related_articles = Article.objects.all()
+    comments = Comment.objects.filter(article=selected_article)
+
+    if request.method == "POST":
+        form = CommentForm(request.POST or None)
+        if form.is_valid():
+            new_comment = Comment.objects.create(
+                article=selected_article,
+                comment_author=form.cleaned_data['comment_author'], 
+                comment_body = form.cleaned_data['comment_body'],
+            )
+            new_comment.save()
+            messages.success(request, "Comment posted!")
+            return redirect('home')
+    else:
+        form = ArticlePostForm()
+        context['form'] = form
+
+
     return render(request, context={'article': selected_article, 'related_articles': related_articles}, template_name=template_name)
 
 

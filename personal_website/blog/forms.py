@@ -1,8 +1,14 @@
 from django import forms 
 from ckeditor.fields import RichTextField
 from ckeditor.widgets import CKEditorWidget
-from .models import Article
-   
+from django.forms import fields
+from .models import Article, Comment
+
+
+class CommentForm(forms.ModelForm): 
+    class Meta:
+        model = Comment
+        fields = ['comment_author', 'comment_body']
 
 class ArticlePostForm(forms.ModelForm):
     title = forms.CharField(
