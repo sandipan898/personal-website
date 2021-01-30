@@ -1,3 +1,4 @@
+from django import views
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views import generic
 from .models import Article, get_all_related_topic, Comment
@@ -54,7 +55,44 @@ def post_detail_view(request, slug):
         form = CommentForm()
         context['form'] = form
         
-    return render(request, context={'article': selected_article, 'related_articles': related_articles}, template_name=template_name)
+    return render(request, context={'article': selected_article, 'related_articles': related_articles, 'comments': comments}, template_name=template_name)
+
+
+class PostDetailView(views.View):
+    template_name = 'blog/detail-page.html'
+    context = {}
+    selected_article = None
+    
+    def get(self, *args, **kwargs):
+        self.selected_article = get_object_or_404(Article, slug=kwargs['slug'])
+        related_articles = Article.objects.all()
+        comments = Comment.objects.filter(article=self.selected_article)
+        form = CommentForm()
+        self.context['form'] = form
+
+        context={'article': self.selected_article, 'related_articles': related_articles, 'comments': comments}
+        
+        self.context.update(context)
+        return render(self.request, self.template_name, context=self.context)
+
+    def post(self, *args, **kwargs):
+        form = CommentForm(self.request.POST)     
+        form.clean()     
+        if form.is_valid():
+
+            new_comment = Comment.objects.create(
+                article=self.selected_article,
+                comment_author=form.cleaned_data['comment_author'], 
+                comment_body = form.cleaned_data['comment_body'],
+            )        
+            new_comment.save()
+            messages.success(self.request, "Comment posted!")
+            return redirect('home')
+
+        else:
+            print("Please fill the form correctly")
+            messages.warning(self.request, "Please fill the form correctly");
+            return redirect('home')
 
 
 @login_required
