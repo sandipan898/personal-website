@@ -181,7 +181,7 @@
           <div class="card-body">
 
             <!-- Default form reply -->
-            <form class="form" action="article-detail" method="POST">
+            <form class="form" action="{{article.get_absolute_url}}" method="POST">
 
               {% csrf_token %}
               {{ form.non_field_errors }}

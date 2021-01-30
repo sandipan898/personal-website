@@ -7,7 +7,7 @@ from .models import Article, Comment
 
 class CommentForm(forms.ModelForm): 
     comment_author = forms.CharField(
-        label="Comment Title",
+        label="Your Name",
         max_length=200,
         widget=forms.TextInput(attrs={
             'class': 'form-control',

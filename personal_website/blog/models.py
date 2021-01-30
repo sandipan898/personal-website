@@ -46,13 +46,14 @@ class Article(models.Model):
 
 class Comment(models.Model):
     article = models.ForeignKey(Article, on_delete=models.SET_NULL, blank=True, null=True)
-    comment_author = models.ForeignKey(User, on_delete=models.CASCADE) 
+    # comment_author = models.ForeignKey(User, on_delete=models.CASCADE) 
+    comment_author = models.CharField(max_length=200)
     comment_body = models.TextField(blank=True, null=True)
     upvotes = models.IntegerField(default=0, blank=True, null=True)
     downvotes = models.IntegerField(default=0, blank=True, null=True)
 
     def __str__(self):
-        return "comment {} of article {}".format(self.id, self.article.title)
+        return "comment {} of article {}".format(self.id, self.article)
         
 
 def get_all_related_topic(): 

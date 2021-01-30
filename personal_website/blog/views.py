@@ -77,7 +77,8 @@ class PostDetailView(views.View):
 
     def post(self, *args, **kwargs):
         form = CommentForm(self.request.POST)     
-        form.clean()     
+        # form.clean()     
+        print(self.selected_article)
         if form.is_valid():
 
             new_comment = Comment.objects.create(
@@ -87,12 +88,12 @@ class PostDetailView(views.View):
             )        
             new_comment.save()
             messages.success(self.request, "Comment posted!")
-            return redirect('home')
+            return redirect('article-detail')
 
         else:
             print("Please fill the form correctly")
             messages.warning(self.request, "Please fill the form correctly");
-            return redirect('home')
+            return redirect('article-detail')
 
 
 @login_required
