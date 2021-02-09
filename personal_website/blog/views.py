@@ -96,7 +96,7 @@ class PostDetailView(views.View):
             return redirect('article-detail')
 
 
-@login_required
+@login_required(login_url='/auth/login/')
 def create_article_view(request):
     template_name = 'blog/article_form.html'
     context = {}
