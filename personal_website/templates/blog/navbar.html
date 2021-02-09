@@ -37,6 +37,10 @@
                     <a class="nav-link waves-effect" href="https://mdbootstrap.com/education/bootstrap/"
                         target="_blank">Developers site</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link waves-effect" href="https://mdbootstrap.com/education/bootstrap/"
+                        target="_blank">Developer's Portfolio</a>
+                </li>
             </ul>
             <!-- Left links -->
             <!-- Right -->
@@ -52,11 +56,34 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="https://github.com/sandipan898" class="nav-link waves-effect" target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </li>
+                <!-- <li class="nav-item">
                     <a href="https://github.com/mdbootstrap/bootstrap-material-design"
                         class="nav-link border border-light rounded waves-effect" target="_blank">
                         <i class="fab fa-github mr-2"></i>MDB GitHub
                     </a>
+                </li> -->
+                {% if not user.is_authenticated %}
+                <li class="nav-item">
+                    <a href="{% url 'user-login' %}" class="nav-link waves-effect">
+                       Login <i class="fas fa-sign-in-alt"></i>
+                    </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{% url 'user-signup' %}" class="nav-link waves-effect">
+                       SignUp <i class="fas fa-user-plus"></i>
+                    </a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a href="{% url 'user-logout' %}" class="nav-link waves-effect">
+                       Logout <i class="fas fa-sign-out-alt"></i>
+                    </a>
+                </li>
+                {% endif %}
             </ul>
         </div>
         <!-- Collapsible wrapper -->
