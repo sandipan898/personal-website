@@ -28,7 +28,7 @@ PROJECT_DIR = os.path.dirname(__file__) # this is not Django setting.
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", '$o#k)@_gar7d4r1vin7-=n3zzw=5$r2g=wkou(mkrk_lxi*lvd')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
 DEBUG = os.getenv("DEBUG", "False") == "True"
 
 ALLOWED_HOSTS = ["sandipandas.herokuapp.com", "127.0.0.1"]
@@ -122,7 +122,7 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
 
     # `allauth` specific authentication methods, such as login by e-mail
-    'allauth.account.auth_backends.AuthenticationBackend',
+    # 'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
 
