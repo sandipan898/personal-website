@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponse
 from django.views.generic import DetailView
 from django.urls import reverse, reverse_lazy
 from .forms import SignupUserForm
@@ -11,3 +11,7 @@ class UserSignupView(generic.CreateView):
     form_class = SignupUserForm
     template_name = "authuser/signup.html"
     success_url = reverse_lazy('user-login')
+
+    # def get(self, request, *args):
+    #     print("User Signup")
+    #     return render(self.request, template_name=self.template_name)
