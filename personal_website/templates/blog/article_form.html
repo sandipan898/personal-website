@@ -25,7 +25,7 @@
                     </div>
                     <div class="form-group form-row">
                         <div class=" col-md-12">
-                            {{ form.content}}
+                            {{ form.content | as_crispy_field}}
                         </div>
                     </div>
                     <div class="form-row">
@@ -38,7 +38,7 @@
                     </div>
                     <div class="form-group form-row">
                         <div class="form-group col-md-8 mb-0">
-                            {{ form.thumbnail|as_crispy_field }}
+                            {{ form.thumbnail }}
                         </div>
                     </div>
                     {{form.media}}
@@ -52,7 +52,7 @@
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor/4.15.0/ckeditor.js" integrity="sha512-bNMnTgKRxN1n+5rgfcf160HT2koHRcwLcSq/3JDOY9R65mja48E4Hh+a+IQXVaY2NoJCVC+pr0qE3Vz194QwnA==" crossorigin="anonymous"></script> -->
 <script>
     CKEDITOR.replace('{{ form.content.id_for_label }}', {
-        // plugins: 'wysiwygarea, toolbar, basicstyles, link, paste tools'
+        // plugins: 'wysiwygarea, toolbar, basicstyles, link, paste tools, preview, print, find,  '
     })
 </script>
 {% endblock %}

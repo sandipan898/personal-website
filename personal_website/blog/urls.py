@@ -9,7 +9,7 @@ from .views import (
 )
 
 urlpatterns = [
-    path('', home_view, name='home'),
+    path('', home_view, name='article-home'),
     path('article/all', article_list_view, name='article-list'),
     path('article/detail/<slug:slug>/', PostDetailView.as_view(), name='article-detail'),
     path('article/create/', create_article_view, name='create-article'),

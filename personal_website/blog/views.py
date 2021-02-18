@@ -50,7 +50,7 @@ def post_detail_view(request, slug):
             )
             new_comment.save()
             messages.success(request, "Comment posted!")
-            return redirect('home')
+            return redirect('article-home')
     else:
         form = CommentForm()
         context['form'] = form
@@ -115,7 +115,7 @@ def create_article_view(request):
             )
             new_article.save()
             messages.success(request, "Post will be published Soon!")
-            return redirect('home')
+            return redirect('article-home')
     else:
         form = ArticlePostForm()
         context['form'] = form
