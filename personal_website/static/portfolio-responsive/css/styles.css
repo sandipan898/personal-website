@@ -420,6 +420,43 @@ img{
   display: block;
 }
 
+/*===== SKILLS =====*/
+.skills__container{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+}
+
+.skills__content{
+  padding: 3rem 1rem;
+  background-color: #FFF;
+  border-radius: .5rem;
+  text-align: center;
+  transition: .4s;
+  box-shadow: 0 4px 6px rgba(174, 190, 205, .45);
+}
+
+.skills__icon, .skills__subtitle{
+  margin-bottom: var(--mb-2);
+  color: var(--first-color);
+}
+
+.skills__icon{
+  font-size: 3rem;
+}
+
+.skills__subtitle{
+  font-size: var(--h3-font-size);
+}
+
+.skills__data{
+  margin-bottom: var(--mb-1);
+}
+
+.skills__content:hover{
+  transform: translateY(-.5rem);
+  box-shadow: 0 6px 8px rgba(174, 190, 205, .4);
+}
+
 /*===== SERVICES =====*/
 .services__data{
   padding: 3rem 1rem;
