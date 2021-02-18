@@ -14,7 +14,7 @@ from .forms import ContactForm
 
 def home_view(request):
 
-    template_name = 'portfolio/index.html'
+    template_name = 'portfolio/responsive/index.html'
     context = {}
     technology = Skill.objects.filter(skill_type='TE')
     tool = Skill.objects.filter(skill_type='TO')
@@ -59,7 +59,7 @@ def home_view(request):
 
 
 class HomeView(View):
-    template_name = 'portfolio/index.html'
+    template_name = 'portfolio/responsive/index.html'
     context = {}
     def get(self, *args, **kwargs):
         technology = Skill.objects.filter(skill_type='TE')
