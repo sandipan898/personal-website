@@ -33,6 +33,7 @@
                        <li class="nav__item"><a href="#about" class="nav__link">About</a></li>
                        <li class="nav__item"><a href="#services" class="nav__link">Services</a></li>
                        <li class="nav__item"><a href="#portfolio" class="nav__link">Portfolio</a></li>
+                       <li class="nav__item"><a href="#activities" class="nav__link">Activities</a></li>
                        <li class="nav__item"><a href="#contact" class="nav__link">Contact</a></li>
                    </ul>
                </div>
@@ -50,7 +51,7 @@
                     <div class="home__data">
                         <span class="home__greeting">Hello, My name is</span>
                         <h1 class="home__name">Sandipan Das</h1>
-                        <span class="home__profession">Fullstack Developer</span>
+                        <span class="home__profession">Fullstack Web Developer</span>
                         <a download="" href="{% static 'portfolio-responsive/pdf/Clay-Doe-Cv.pdf' %}" class="button button-light home__button">Download CV</a>
                     </div>
 
@@ -77,12 +78,12 @@
                         <p class="about__description"><span>Hello, I am <br></span>a Computer Science and Engineering student and passionate about coding and developing softwares</p>
 
                         <div>
-                            <span class="about__number">05</span>
+                            <span class="about__number">1+</span>
                             <span class="about__achievement">Years of Experience</span>
                         </div>
                         <div>
-                            <span class="about__number">10+</span>
-                            <span class="about__achievement">Years of Experience</span>
+                            <span class="about__number">15+</span>
+                            <span class="about__achievement">Personal Projects</span>
                         </div>
                         <div>
                             <span class="about__number">09</span>
@@ -361,6 +362,44 @@
                 </div>
             </section>
 
+            <!--===== OTHER ACTIVITIES =====-->
+            <section class="activities section bd-container" id="activities">
+                <span class="section-subtitle">Learn from me</span>
+                <h2 class="section-title">Other Activities</h2>
+
+                <div class="activities__container swiper-container">
+                    <div class="swiper-wrapper">
+                        <div class="activities__content swiper-slide">
+                            <img src="{% static 'portfolio-responsive/img/testimonial1.jpg' %}" alt="" class="activities__img">
+                            <h3 class="activities__title">All About CS</h3>
+                            <span class="activities__client">Youtube Channel</span>
+                            <p class="activities__description">
+                                Here I used to upload tutorials on the Topics <em> python, c, java, problem solving, os, computer technologies, programming tips and tricks, termux, arduino programming and many more</em>
+                            </p>
+                            <a href="" class="activities__button">Visit Channel</a>
+                        </div>
+
+                        <div class="activities__content swiper-slide">
+                            <img src="{% static 'portfolio-responsive/img/testimonial2.jpg' %}" alt="" class="activities__img">
+                            <h3 class="activities__title">Technical Blog</h3>
+                            <span class="activities__client">Blog website</span>
+                            <p class="activities__description">This is a <em>Free Bloging website</em> developed by me, where anyone can post Technology related articles .</p>
+                            <a href="" class="activities__button">Visit Site</a>
+                        </div>
+                        
+                        <div class="activities__content swiper-slide">
+                            <img src="{% static 'portfolio-responsive/img/testimonial3.jpg' %}" alt="" class="activities__img">
+                            <h3 class="activities__title">Developer Community</h3>
+                            <span class="activities__client">Community Support platform</span>
+                            <p class="activities__description">This is a developer community platform where anyone can post any quaries and questions related to Technology and Development.</p>
+                            <a href="" class="activities__button">Visit Site</a>
+                        </div>
+                    </div>
+
+                    <div class="swiper-pagination"></div>
+                </div>
+            </section>
+
             <!--===== CONTACTME =====-->
             <section class="contact section bd-container" id="contact">
                 <span class="section-subtitle">For Projects</span>
@@ -371,7 +410,7 @@
                         <div class="contact__box">
                             <i class="bx bx-home contact__icon"></i>
                             <h3 class="contact__title">Location</h3>
-                            <span class="contact__description">#123 Lima -Peru</span>
+                            <span class="contact__description">West Bengal 712136 -India</span>
                         </div>
                         
                         <div class="contact__box">
@@ -416,6 +455,8 @@
             </section>
 
         </main>
+
+
 
         <!--===== FOOTER =====-->
         <footer class="footer">

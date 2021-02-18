@@ -11,6 +11,7 @@
   --text-color: #524748;
   --first-color-light: #7B6F71;
   --first-color-lighten: #FBF9F9;
+  --dark: #000000;
 
   /*===== Font and typography =====*/
   --body-font: 'Poppins', sans-serif;
@@ -345,6 +346,22 @@ img{
   background: none;
 }
 
+.activities__button{
+  /* display: inline-block; */
+  background-color: var(--dark);
+  color: var(--first-color-lighten);
+  padding: .5rem .5rem;
+  border-radius: .25rem;
+  border: 1px solid #ffffff;
+  transition: .3s;
+  height: 3rem;
+}
+
+.activities__button:hover{
+  background-color: var(--first-color-lighten);
+  color: var(--dark);
+}
+
 /*===== ABOUT =====*/
 .about__data{
   text-align: center;
@@ -543,6 +560,39 @@ img{
 
 .swiper-pagination-bullet-active{
   background-color: var(--first-color);
+}
+
+/*===== OTHER ACTIVITIES =====*/
+.activities__content{
+  display: grid;
+  height: 450px;
+  background-color: var(--dark);
+  color: var(--first-color-lighten);
+  border-radius: .5rem;
+  padding: 2rem 1rem;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(47, 10, 13, .25);
+}
+
+.activities__img{
+  justify-self: center;
+  width: 150px; 
+  height: 150px;
+  border-radius: 10%;
+  justify-content: center;
+  margin-bottom: var(--mb-1);
+}
+
+.activities__client{
+  font-size: var(--small-font-size);
+  color: var(--first-color-light);
+  margin-bottom: var(--mb-1);
+}
+
+.activities__description{
+  font-size: var(--small-font-size);
+  margin-bottom: var(--mb-2);
+  /* color: var(--first-color-light); */
 }
 
 /*===== CONTACTME =====*/
