@@ -693,6 +693,7 @@ img{
   margin-bottom: var(--mb-1);
 }
 
+
 .contact::placeholder{
   color: var(--first-color-light);
   font-family: var(--body-font);
