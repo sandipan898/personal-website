@@ -4,7 +4,7 @@
 {% block extra_head %}
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
-<title>Home</title>
+<title>Blog Home</title>
 {% endblock %}
 
 {% block content %}
@@ -39,11 +39,11 @@
         </section>
         <!--Section: Jumbotron-->
 
-        <hr class="my-5">
+        <hr class="mt-5">
 
         <!--Section: Cards-->
         <section class="text-center" id="section">
-
+            <p class="display-6 mb-4">Featured Articles</p>
             <!--Grid row-->
             <div class="row mb-4 wow fadeIn">
                 
@@ -82,11 +82,13 @@
                 
             </div>
             <!--Grid row-->
+
+            <a href="{% url 'article-list' %}" class="btn btn-primary">Explore All Articles</a>
             <hr>
 
             <!--Grid row-->
             <div class="row mb-4 wow fadeIn">
-
+                <p class="display-6 mb-4">More for you</p>
                 <!--Grid column-->
                 <div class="col-lg-6 col-md-12 mb-4">
 
