@@ -24,7 +24,8 @@ urlpatterns = [
     path('blog/', include('blog.urls')),
     path('auth/', include('authuser.urls')),
     path('community-support/', include('qna.urls')),
-    path('', include('portfolio.urls')),
+    path('portfolio/', include('portfolio.urls')),
+    path('', include('landing.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
