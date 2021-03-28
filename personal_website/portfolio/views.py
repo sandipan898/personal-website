@@ -101,12 +101,12 @@ class HomeView(View):
                     ['sandipan.das898@gmail.com'])
                     
                 messages.success(self.request, 'Your message has been sent successfully!')
-                return redirect('home')
+                return redirect('portfolio')
             except Exception as e:
                 print(e)
                 messages.error(self.request, ('Invalid header found.'))
         else:
             print("Please fill the form correctly")
             messages.warning(self.request, "Please fill the form correctly");
-            return redirect('home')
+            return redirect('portfolio')
 
