@@ -26,6 +26,7 @@ urlpatterns = [
     path('community-support/', include('qna.urls')),
     path('portfolio/', include('portfolio.urls')),
     path('', include('landing.urls')),
+    path('codes/', include('code_arena.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
