@@ -6,7 +6,7 @@ from django.views import  View
 class HomeView(View):
     """ Defining Home Page View """
 
-    template_name = "landing/index.html"
+    template_name = "landing/landing-2/index.html"
 
     def get(self, request):
         """ Defining the GET method oon Home Page View """
