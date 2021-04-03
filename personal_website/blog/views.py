@@ -61,34 +61,39 @@ def post_detail_view(request, slug):
 class PostDetailView(views.View):
     template_name = 'blog/detail-page.html'
     context = {}
-    selected_article = None
     
     def get(self, *args, **kwargs):
-        self.selected_article = get_object_or_404(Article, slug=kwargs['slug'])
+        selected_article = get_object_or_404(Article, slug=kwargs['slug'])
         related_articles = Article.objects.all()
-        comments = Comment.objects.filter(article=self.selected_article)
+        comments = Comment.objects.filter(article=selected_article)
+        print(comments)
         form = CommentForm()
         self.context['form'] = form
 
-        context={'article': self.selected_article, 'related_articles': related_articles, 'comments': comments}
+        context = {
+            'article': selected_article,
+            'related_articles': related_articles, 
+            'comments': comments,
+            'comment_count': comments.count()
+        }
         
         self.context.update(context)
         return render(self.request, self.template_name, context=self.context)
 
-    def post(self, *args, **kwargs):
+    def post(self, *args, slug, **kwargs):
         form = CommentForm(self.request.POST)     
-        # form.clean()     
-        print(self.selected_article)
+        selected_article = get_object_or_404(Article, slug=slug)
+        print(selected_article)
         if form.is_valid():
 
             new_comment = Comment.objects.create(
-                article=self.selected_article,
+                article=selected_article,
                 comment_author=form.cleaned_data['comment_author'], 
                 comment_body = form.cleaned_data['comment_body'],
             )        
             new_comment.save()
             messages.success(self.request, "Comment posted!")
-            return redirect('article-detail')
+            return redirect('/blog/article/detail/'+slug)
 
         else:
             print("Please fill the form correctly")

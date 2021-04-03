@@ -56,6 +56,12 @@ class Comment(models.Model):
         return "comment {} of article {}".format(self.id, self.article)
         
 
+class Reply(models.Model):
+    comment = models.ForeignKey(Comment, on_delete=models.SET_NULL, blank=True, null=True)
+    reply_author = models.CharField(max_length=200)
+    reply_body = models.TextField(blank=True, null=True)
+
+
 def get_all_related_topic(): 
     articles = Article.objects.all()
     related_topics = []
