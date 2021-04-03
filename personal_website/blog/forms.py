@@ -21,6 +21,7 @@ class CommentForm(forms.ModelForm):
             'class': 'form-control',
         })
     )
+    
 
     class Meta:
         model = Comment
