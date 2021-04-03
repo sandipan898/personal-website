@@ -110,7 +110,8 @@
                 </h5>
                 {{comment.comment_body}}
 
-                {% if reply %}
+                <!-- {% if reply %}
+                {% for reply in replies %}
                 <div class="media d-block d-md-flex mt-3">
                   <img class="d-flex mb-3 mx-auto " src="https://mdbootstrap.com/img/Photos/Avatars/img (27).jpg"
                     alt="Generic placeholder image">
@@ -126,17 +127,18 @@
                     sunt explicabo.
                   </div>
                 </div>
-                {% endif %}
+                {% endfor %}
+                {% endif %} -->
 
                 <!-- Quick Reply -->
-                <div class="form-group mt-4">
+                <!-- <div class="form-group mt-4">
                   <label for="quickReplyFormComment">Reply</label>
                   <textarea class="form-control" id="quickReplyFormComment" rows="3"></textarea>
 
                   <div class="text-center">
                     <button class="btn btn-info btn-sm" type="submit">Post</button>
                   </div>
-                </div>
+                </div> -->
               </div>
             </div>
             {% endfor %}

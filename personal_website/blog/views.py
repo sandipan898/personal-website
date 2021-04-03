@@ -1,14 +1,14 @@
 from django import views
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views import generic
-from .models import Article, get_all_related_topic, Comment
 from django.views.generic import DetailView
 from django.urls import reverse, reverse_lazy
-from .forms import ArticlePostForm, CommentForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth import login, authenticate
 from django.core.files.uploadedfile import SimpleUploadedFile
+from .models import Article, get_all_related_topic, Comment, Reply
+from .forms import ArticlePostForm, CommentForm
 
 # Create your views here.
 
@@ -66,7 +66,6 @@ class PostDetailView(views.View):
         selected_article = get_object_or_404(Article, slug=kwargs['slug'])
         related_articles = Article.objects.all()
         comments = Comment.objects.filter(article=selected_article)
-        print(comments)
         form = CommentForm()
         self.context['form'] = form
 
@@ -79,8 +78,13 @@ class PostDetailView(views.View):
         
         self.context.update(context)
         return render(self.request, self.template_name, context=self.context)
-
+    
+    # @login_required(login_url='/auth/login/')
     def post(self, *args, slug, **kwargs):
+        
+        # if self.request.user == 'AnonymousUser':
+        #     return redirect('user-login')
+        
         form = CommentForm(self.request.POST)     
         selected_article = get_object_or_404(Article, slug=slug)
         print(selected_article)
@@ -89,6 +93,7 @@ class PostDetailView(views.View):
             new_comment = Comment.objects.create(
                 article=selected_article,
                 comment_author=form.cleaned_data['comment_author'], 
+                # comment_author = self.request.user.full_name,
                 comment_body = form.cleaned_data['comment_body'],
             )        
             new_comment.save()
