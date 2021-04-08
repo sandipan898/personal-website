@@ -52,7 +52,7 @@ class ArticlePostForm(forms.ModelForm):
     )
     content = forms.CharField(
         label="Post Content",
-        max_length=200,
+        max_length=2000,
         widget=CKEditorWidget()
     )
     topic_related_to = forms.CharField(

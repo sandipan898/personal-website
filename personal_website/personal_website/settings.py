@@ -31,7 +31,7 @@ SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", '$o#k)@_gar7d4r1vin7-=n3zzw=5$r2g=wk
 DEBUG = True
 # DEBUG = os.getenv("DEBUG", "False") == "True"
 
-ALLOWED_HOSTS = ["sandipandas.herokuapp.com", "127.0.0.1"]
+ALLOWED_HOSTS = ["sandipandas.herokuapp.com", "127.0.0.1", "localhost"]
 
 
 # Application definition
