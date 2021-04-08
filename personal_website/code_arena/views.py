@@ -6,9 +6,10 @@ from .models import Code
 
 
 class HomeView(View):
-    template_name = ""
+    template_name = "code_arena/index.html"
+
     def get(self, request, *args, **kwargs):
-        render(request, self.template_name)
+        return render(request, self.template_name)
 
     def post(self, request, *args, **kwargs):
         pass
