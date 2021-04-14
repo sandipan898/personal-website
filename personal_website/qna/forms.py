@@ -2,7 +2,7 @@ from django import forms
 from ckeditor.fields import RichTextField
 from ckeditor.widgets import CKEditorWidget
 from django.forms import fields
-from .models import FAQ
+from .models import Question, Answer
 
 
 class QuestionPostForm(forms.ModelForm):
@@ -13,7 +13,7 @@ class QuestionPostForm(forms.ModelForm):
             'class': 'form-control',
         })
     )
-    content = forms.CharField(
+    body = forms.CharField(
         label="Question Body",
         max_length=2000,
         widget=CKEditorWidget()
@@ -28,9 +28,32 @@ class QuestionPostForm(forms.ModelForm):
     )
 
     class Meta:
-        model = FAQ
+        model = Question
         fields = [
             "title",
             "content",
             "tags",
         ]
+
+
+class AnswerPostForm(forms.ModelForm):
+    author = forms.CharField(
+        label="Your Name",
+        max_length=200,
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+        })
+    )
+    body = forms.CharField(
+        label="Answer Body",
+        max_length=2000,
+        widget=CKEditorWidget()
+    )
+
+    class Meta:
+        model = Question
+        fields = [
+            "author",
+            "body",
+        ]
+
