@@ -262,16 +262,15 @@
                 <div class="col-lg-4 col-md-7 col-sm-9">
                     <div class="single-features mt-40">
                         <div class="features-title-icon d-flex justify-content-between">
-                            <h4 class="features-title"><a href="#">Developer's Community</a></h4>
+                            <h4 class="features-title"><a href="{% url 'qna-home' %}">Developer's Community</a></h4>
                             <div class="features-icon">
                                 <i class="lni lni-bolt"></i>
                                 <img class="shape" src="{% static 'landing/assets/images/f-shape-1.svg' %}" alt="Shape">
                             </div>
                         </div>
                         <div class="features-content">
-                            <p class="text">Short description for the ones who look for something new. Short description
-                                for the ones who look for something new.</p>
-                            <a class="features-btn" href="#">VISIT HERE</a>
+                            <p class="text">Post any question related to programming, computer science and technology. If you get stuck anywhere, your community will help you to find the right way.</p>
+                            <a class="features-btn" href="{% url 'qna-home' %}">VISIT HERE</a>
                         </div>
                     </div> <!-- single features -->
                 </div>
