@@ -31,7 +31,7 @@ class QuestionPostForm(forms.ModelForm):
         model = Question
         fields = [
             "title",
-            "content",
+            "body",
             "tags",
         ]
 
@@ -51,7 +51,7 @@ class AnswerPostForm(forms.ModelForm):
     )
 
     class Meta:
-        model = Question
+        model = Answer
         fields = [
             "author",
             "body",
