@@ -1,0 +1,59 @@
+{% extends 'qna/base-qna.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<style>
+    div.django-ckeditor-widget {
+        /* margin: 2px !important;
+    background-color: black !important; */
+    }
+</style>
+<main class="mt-5 pt-5">
+    <div class="container">
+        <section class="card wow fadeIn"
+            style="background-image: url(https://mdbootstrap.com/img/Photos/Others/gradient1.jpg);">
+            <div class="card-body text-white py-5 px-5 my-5">
+                <h1 class="my-4">
+                    <strong>Post Article</strong>
+                </h1>
+                <form method="POST" class="">
+                    {% csrf_token %}
+                    <div class="form-group form-row">
+                        <div class=" col-md-6">
+                            {{ form.title|as_crispy_field }}
+                        </div>
+                    </div>
+                    <div class="form-group form-row">
+                        <div class=" col-md-12">
+                            {{ form.content | as_crispy_field}}
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6 mb-0">
+                            {{ form.topic_related_to|as_crispy_field }}
+                        </div>
+                        <div class="form-group col-md-6 mb-0">
+                            {{ form.tags|as_crispy_field }}
+                        </div>
+                    </div>
+                    <div class="form-group form-row">
+                        <div class="form-group col-md-8 mb-0">
+                            {{ form.thumbnail }}
+                        </div>
+                    </div>
+                    {{form.media}}
+
+                    <button type="submit" class="btn btn-primary btn-block mb-4">Post Article</button>
+                </form>
+            </div>
+        </section>
+    </div>
+</main>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor/4.15.0/ckeditor.js" integrity="sha512-bNMnTgKRxN1n+5rgfcf160HT2koHRcwLcSq/3JDOY9R65mja48E4Hh+a+IQXVaY2NoJCVC+pr0qE3Vz194QwnA==" crossorigin="anonymous"></script> -->
+<script>    
+    // CKEDITOR.replace('{{ form.content.id_for_label }}', {
+    //     // plugins: 'wysiwygarea, toolbar, basicstyles, link, paste tools, preview, print, find,  '
+    //     // plugins: 'wysiwygarea, toolbar, basicstyles, a11yhelp, about, adobeair, autoembed, autogrow, autolink, bbcode, clipboard, codesnippet, codesnippetgeshi, colordialog, devtools, dialog, div, divarea, docprops, embed, embedbase, embedsemantic, filetools, find, flash, forms, iframe, iframedialog, image, image2, language, lineutils, link, liststyle, magicline, mathjax, menubutton, notification, notificationaggregator,pagebreak, pastefromword, placeholder, preview, scayt, sharedspace, showblocks, smiley, sourcedialog, specialchar, stylesheetparser, table, tableresize, tabletools, templates, uicolor, uploadimage, uploadwidget, widget, wsc, xml'
+    // })
+</script>
+{% endblock %}
