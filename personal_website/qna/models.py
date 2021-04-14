@@ -4,10 +4,10 @@ from taggit.managers import TaggableManager
 
 # Create your models here.
 
-class FAQ(models.Model):
+class Question(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    question = models.TextField(blank=True, null=True)
-    answer = models.TextField(blank=True, null=True)
+    title = models.CharField(max_length=400, blank=True, null=True)
+    body = models.TextField(blank=True, null=True)
     is_answered = models.BooleanField(default=False, blank=True, null=True)
     published = models.BooleanField(default=False, blank=True, null=True)
     tags = TaggableManager(blank=True)
@@ -15,4 +15,17 @@ class FAQ(models.Model):
     downvotes = models.IntegerField(default=0, blank=True, null=True)
 
     def __str__(self):
-        return self.question
+        return self.title
+
+
+class Answer(models.Model):
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    body = models.TextField(blank=True, null=True)
+    published = models.BooleanField(default=False, blank=True, null=True)
+    upvotes = models.IntegerField(default=0, blank=True, null=True)
+    downvotes = models.IntegerField(default=0, blank=True, null=True)
+
+    def __str__(self):
+        return self.question.title
+
