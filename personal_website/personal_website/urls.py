@@ -23,7 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('blog/', include('blog.urls')),
     path('auth/', include('authuser.urls')),
-    path('community-support/', include('qna.urls')),
+    path('community/', include('qna.urls')),
     path('portfolio/', include('portfolio.urls')),
     path('', include('landing.urls')),
     path('codes/', include('code_arena.urls')),

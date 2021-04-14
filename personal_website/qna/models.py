@@ -54,3 +54,11 @@ class Answer(models.Model):
     def __str__(self):
         return self.question.title
 
+
+def get_all_related_topic(): 
+    questions = Question.objects.all()
+    related_topics = []
+    for question in questions:
+        related_topics.append(question.tags)
+
+    return related_topics
