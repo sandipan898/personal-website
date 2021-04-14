@@ -11,6 +11,7 @@ class Question(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=400, blank=True, null=True)
     body = RichTextField(blank=True, null=True)
+    featured = models.BooleanField(default=False, blank=True, null=True)
     is_answered = models.BooleanField(default=False, blank=True, null=True)
     published = models.BooleanField(default=False, blank=True, null=True)
     published_on = models.DateField(auto_now_add=True, blank=True, null=True)

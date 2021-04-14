@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 
 from .models import Question, Answer
 from .forms import QuestionPostForm, AnswerPostForm
+
 # Create your views here.
 
 
@@ -12,7 +13,7 @@ class HomeView(View):
     template_name = "qna/home.html"
 
     def get(self, request, *args, **kwargs):
-        questions = Question.objects.all()
+        questions = Question.objects.filter(featured=True)
         context = {
             "questions": questions
         }
