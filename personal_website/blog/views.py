@@ -1,7 +1,6 @@
 from django import views
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views import generic
-from django.views.generic import DetailView
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
