@@ -1,0 +1,179 @@
+{% extends 'blog/base-qna.html' %}
+{% load static %}
+
+{% block extra_head %}
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>Blog Home</title>
+{% endblock %}
+
+{% block content %}
+<!--Main Navigation-->
+
+<main class="mt-5 pt-5">
+    <div class="container">
+
+        <!--Section: Jumbotron-->
+        <section class="card wow fadeIn"
+            style="background-image: url(https://mdbootstrap.com/img/Photos/Others/gradient1.jpg);">
+
+            <!-- Content -->
+            <div class="card-body text-white text-center py-5 px-5 my-5">
+
+                <h1 class="mb-4">
+                    <strong>Explore the World of Technology with Sandipan</strong>
+                </h1>
+                <p>
+                    <strong>Best & free guide of responsive web design</strong>
+                </p>
+                <p class="mb-4">
+                    <strong>The most comprehensive tutorial for the Bootstrap 4. Loved by over 500 000 users. Video and
+                        written
+                        versions available. Create your own, stunning website.</strong>
+                </p>
+                <a href="#section" class="btn btn-outline-white btn-lg">Let's Larn Together
+                    <i class="fas fa-graduation-cap ml-2"></i>
+                </a>
+            </div>
+            <!-- Content -->
+        </section>
+        <!--Section: Jumbotron-->
+
+        <hr class="mt-5">
+
+        <!--Section: Cards-->
+        <section class="text-center" id="section">
+            <p class="display-6 mb-4">Featured Articles</p>
+            <!--Grid row-->
+            <div class="row mb-4 wow fadeIn">
+                
+                {% for article in articles %}
+                <!--Grid column-->
+                <div class="col-lg-6 col-md-6 mb-4">
+                    <!--Card-->
+                    <div class="card">
+
+                        <!--Card image-->
+                        <div class="view overlay">
+                            <img class="container mt-4" src="{{article.imageURL}}" alt="">
+                            <a href="{{article.get_absolute_url}}">
+                                <div class="mask rgba-white-slight"></div>
+                            </a>
+                        </div>
+
+                        <!--Card content-->
+                        <div class="card-body">
+                            <!--Title-->
+                            <h4 class="card-title">{{article.title}}</h4>
+                            <!--Text-->
+                            <p class="card-text">Written by <strong>{{article.author}}</strong></p>
+                            <p class="card-text">Topic related to: <strong>{{article.topic_related_to}}</strong></p>
+                            <p class="card-text">Tags: {{article.topic_related_to}}</p>
+                            <a href="{{article.get_absolute_url}}" class="btn btn-primary btn-md">Read Article
+                                <i class="fas fa-book ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <!--/.Card-->
+
+                </div>
+                <!--Grid column-->
+                {% endfor %}
+                
+            </div>
+            <!--Grid row-->
+
+            <a href="{% url 'article-list' %}" class="btn btn-primary">Explore All Articles</a>
+            <hr>
+
+            <!--Grid row-->
+            <div class="row mb-4 wow fadeIn">
+                <p class="display-6 mb-4">More for you</p>
+                <!--Grid column-->
+                <div class="col-lg-6 col-md-12 mb-4">
+
+                    <!--Card-->
+                    <div class="card">
+
+                        <!--Card image-->
+                        <div class="view overlay">
+                            <img src="" class="card-img-top" alt="">
+                            <a href="" target="_blank">
+                                <div class="mask rgba-white-slight"></div>
+                            </a>
+                        </div>
+
+                        <!--Card content-->
+                        <div class="card-body">
+                            <!--Title-->
+                            <h4 class="card-title">All About CS</h4>
+                            <!--Text-->
+                            <p class="card-text">Visit our YouTube Channel <strong>all about CS</strong> and start
+                                learning today</p>
+                            <p class="card-text">
+                                Learn <strong>python, c, java, problem solving, os, computer technologies, programming
+                                    tips and tricks, termux, arduino programming and many more</strong>
+                            </p>
+                            <a href="https://www.youtube.com/channel/UCVqV59BoYbuqYCJio13aygQ" target="_blank" class="btn btn-primary btn-md">
+                                Visit Channel
+                                <i class="fas fa-play ml-2"></i>
+                            </a>
+                        </div>
+
+                    </div>
+                    <!--/.Card-->
+
+                </div>
+                <!--Grid column-->
+
+                <!--Grid column-->
+                <div class="col-lg-6 col-md-12 mb-4">
+
+                    <!--Card-->
+                    <div class="card">
+
+                        <!--Card image-->
+                        <div class="view overlay">
+                            <img src="" class="card-img-top" alt="">
+                            <a href="" target="_blank">
+                                <div class="mask rgba-white-slight"></div>
+                            </a>
+                        </div>
+
+                        <!--Card content-->
+                        <div class="card-body">
+                            <!--Title-->
+                            <h4 class="card-title">Sandipan Das Portfolio</h4>
+                            <!--Text-->
+                            <p class="card-text">Visit developer <strong>Sandipan Das</strong>'s professional portfolio page and know more.</p>
+                            <p class="card-text">
+                                Learn <strong>python, c, java, problem solving, os, computer technologies, programming
+                                    tips and tricks, termux, arduino programming and many more</strong>
+                            </p>
+                            <a href="{% url 'portfolio' %}" target="_blank" class="btn btn-primary btn-md">
+                                Visit Portfolio 
+                                <i class="fas fa-user-circle ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <!--/.Card-->
+
+                </div>
+                <!--Grid column-->
+
+            </div>
+            <!--Grid row-->
+
+            <a href="{% url 'create-article' %}" class="btn btn-primary btn-lg">
+                Create and publish your own article 
+                <i class="fas fa-edit ml-2"></i>
+            </a>            
+
+        </section>
+        <!--Section: Cards-->
+
+    </div>
+</main>
+<!--Main layout-->
+
+{% endblock %}

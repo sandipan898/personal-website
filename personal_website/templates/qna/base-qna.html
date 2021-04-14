@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <header>
+        {% include 'qna/navbar.html' %}
+    </header>
+    <div class="heavy-rain-gradient">
+        {% block content %}
+        {% endblock %}
+    </div>
+    {% include "qna/footer.html" %}
+{% endblock %}
