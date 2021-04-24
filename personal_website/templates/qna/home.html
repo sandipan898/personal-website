@@ -5,6 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <title>Community Home</title>
+<style>
+    .gradient-custom1 {
+        /* fallback for old browsers */
+        background: #7bb6ea;
+
+        /* Chrome 10-25, Safari 5.1-6 */
+        background: -webkit-linear-gradient(to right, rgba(123, 182, 234, 0.6), rgba(105, 215, 221, 0.6));
+
+        /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background: linear-gradient(to right, rgba(123, 182, 234, 0.6), rgba(105, 215, 221, 0.6))
+    }
+</style>
 {% endblock %}
 
 {% block content %}
@@ -14,8 +26,9 @@
     <div class="container">
 
         <!--Section: Jumbotron-->
-        <section class="card wow fadeIn"
-            style="background-image: url(https://mdbootstrap.com/img/Photos/Others/gradient1.jpg);">
+        <!-- <section class="card wow fadeIn"
+            style="background-image: url(https://mdbootstrap.com/img/Photos/Others/gradient1.jpg);"> -->
+            <section class="card wow fadeIn primary-color">
 
             <!-- Content -->
             <div class="card-body text-white text-center py-5 px-5 my-5">
