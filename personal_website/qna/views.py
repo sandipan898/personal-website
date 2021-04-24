@@ -83,7 +83,7 @@ def create_question_view(request):
             )
             new_question.save()
             messages.success(request, "Post will be published Soon!")
-            return redirect('article-home')
+            return redirect('qna-home')
     else:
         form = QuestionPostForm()
         context['form'] = form

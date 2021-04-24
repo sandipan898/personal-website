@@ -34,15 +34,14 @@
             <div class="card-body text-white text-center py-5 px-5 my-5">
 
                 <h1 class="mb-4">
-                    <strong>Explore the World of Technology with Sandipan</strong>
+                    <strong>Post your Query and start a valuable Discussion</strong>
                 </h1>
                 <p>
-                    <strong>Best & free guide of responsive web design</strong>
+                    <strong>Stuck in writing your code or want to know more about Technology?</strong>
                 </p>
                 <p class="mb-4">
-                    <strong>The most comprehensive tutorial for the Bootstrap 4. Loved by over 500 000 users. Video and
-                        written
-                        versions available. Create your own, stunning website.</strong>
+                    <strong>Post your query and start a discussion as well as join a discussion and help others to 
+                        get the thing done.</strong>
                 </p>
                 <a href="#section" class="btn btn-outline-white btn-lg">Let's Larn Together
                     <i class="fas fa-graduation-cap ml-2"></i>
@@ -56,7 +55,7 @@
 
         <!--Section: Cards-->
         <section class="text-center" id="section">
-            <p class="display-6 mb-4">Featured Articles</p>
+            <p class="display-6 mb-4">Featured Discussions and Questionss</p>
             <!--Grid row-->
             <div class="row mb-4 wow fadeIn">
                 
@@ -96,7 +95,7 @@
             </div>
             <!--Grid row-->
 
-            <a href="{% url 'article-list' %}" class="btn btn-primary">Explore All Articles</a>
+            <a href="{% url 'qna-list' %}" class="btn btn-primary">Explore All Questions</a>
             <hr>
 
             <!--Grid row-->
@@ -156,6 +155,41 @@
                         <!--Card content-->
                         <div class="card-body">
                             <!--Title-->
+                            <h4 class="card-title">Technical Blogs and Articles</h4>
+                            <!--Text-->
+                            <p class="card-text">Visit our <strong>Technical Blogs and Articles</strong> section to know more.</p>
+                            <p class="card-text">
+                                Explore and Read Articles on a varity of technologies and also share your
+                                technical thoughts and Knowledges by posting new Articles.
+                            </p>
+                            <a href="{% url 'article-home' %}" target="_blank" class="btn btn-primary btn-md">
+                                Visit Site 
+                                <i class="fas fa-external-link-alt pl-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <!--/.Card-->
+
+                </div>
+                <!--Grid column-->
+
+                <!--Grid column-->
+                <div class="col-lg-6 col-md-12 mb-4">
+
+                    <!--Card-->
+                    <div class="card">
+
+                        <!--Card image-->
+                        <div class="view overlay">
+                            <img src="" class="card-img-top" alt="">
+                            <a href="" target="_blank">
+                                <div class="mask rgba-white-slight"></div>
+                            </a>
+                        </div>
+
+                        <!--Card content-->
+                        <div class="card-body">
+                            <!--Title-->
                             <h4 class="card-title">Sandipan Das Portfolio</h4>
                             <!--Text-->
                             <p class="card-text">Visit developer <strong>Sandipan Das</strong>'s professional portfolio page and know more.</p>
@@ -177,8 +211,8 @@
             </div>
             <!--Grid row-->
 
-            <a href="{% url 'create-article' %}" class="btn btn-primary btn-lg">
-                Create and publish your own article 
+            <a href="{% url 'qna-create' %}" class="btn btn-primary btn-lg my-4">
+                Post your own Question and start a Discussion 
                 <i class="fas fa-edit ml-2"></i>
             </a>            
 

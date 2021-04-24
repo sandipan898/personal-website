@@ -8,5 +8,5 @@ urlpatterns = [
     path('', HomeView.as_view(), name='qna-home'),
     path('question/all', question_list_view, name='qna-list'),
     path('question/detail/<slug:slug>/', QuestionDetailView.as_view(), name='qna-detail'),
-    path('question/create/', create_question_view, name='qna-question'),  
+    path('question/create/', create_question_view, name='qna-create'),  
 ]
