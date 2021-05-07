@@ -23,23 +23,23 @@ class HomeView(View):
 class QuestionDetailView(View):
     template_name = 'qna/details.html'
     
-    def get(self, *args, **kwargs):
+    def get(self, request, *args, **kwargs):
         selected_question = get_object_or_404(Question, slug=kwargs['slug'])
         # selected_question.get_answer_count
         # selected_question.save()
         related_questions = Question.objects.all()
-        answers = Answer.objects.filter(article=selected_question)
+        answers = Answer.objects.filter(question=selected_question)
         form = AnswerPostForm()
-        self.context['form'] = form
-
+        
         context = {
             'question': selected_question,
             'related_questions': related_questions, 
             'answers': answers,
-            'answer_count': answers.count()
+            'answer_count': answers.count(),
+            'form': form,
         }
         # self.context.update(context)
-        return render(self.request, self.template_name, context=context)
+        return render(request, self.template_name, context=context)
     
     # @login_required(login_url='/auth/login/')
     def post(self, *args, slug, **kwargs):
@@ -82,6 +82,7 @@ def create_question_view(request):
                 tags = form.cleaned_data['tags'],
             )
             new_question.save()
+            print("question is created")
             messages.success(request, "Post will be published Soon!")
             return redirect('qna-home')
     else:

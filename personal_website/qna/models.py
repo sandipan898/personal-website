@@ -9,13 +9,13 @@ from django.template.defaultfilters import slugify
 
 class Question(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    title = models.CharField(max_length=400, blank=True, null=True)
+    title = models.CharField(unique=True, max_length=400, blank=True, null=True)
     body = RichTextField(blank=True, null=True)
     featured = models.BooleanField(default=False, blank=True, null=True)
     is_answered = models.BooleanField(default=False, blank=True, null=True)
     published = models.BooleanField(default=False, blank=True, null=True)
     published_on = models.DateField(auto_now_add=True, blank=True, null=True)
-    slug = models.SlugField(blank=True, null=True)
+    slug = models.SlugField(unique=True, blank=True, null=True)
     answer_count = models.IntegerField(default=0, blank=True, null=True)
     tags = TaggableManager(blank=True)
     upvotes = models.IntegerField(default=0, blank=True, null=True)
@@ -29,8 +29,9 @@ class Question(models.Model):
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):
-        return reverse("article-detail", kwargs={
-            'slug': self.slug
+        return reverse("qna-detail", kwargs={
+            'slug': self.slug, 
+            # 'id': self.id
         })
     
     @property

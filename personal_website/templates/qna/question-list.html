@@ -18,14 +18,14 @@
         <div class="card-body text-white text-center py-5 px-5 my-5">
 
           <h1 class="mb-4">
-            <strong>Explore High Quality Knowledgable Tech Articles</strong>
+            <strong>Explore all the Queries and Discussion on any Technology</strong>
           </h1>
           <p>
-            <strong>Articles from developers, engineers, experienced industrial person and enthusiast students</strong>
+            <strong>Be a part of the Developer's Community and join or start a new discussion and let the community fix your problem</strong>
           </p>
 
-          <a href="#articles" class="btn btn-outline-white btn-md">
-            Explore Articles <i class="fas fa-explore ml-2"></i>
+          <a href="#questions" class="btn btn-outline-white btn-md">
+            Explore Discussions <i class="fas fa-explore ml-2"></i>
           </a>
 
         </div>
@@ -34,7 +34,7 @@
       <!--Section: Jumbotron-->
 
       <!--Section: Cards-->
-      <section class="pt-5" id="articles">
+      <section class="pt-5" id="questions">
 
         <!-- Heading & Description -->
         <div class="wow fadeIn content">
@@ -42,12 +42,12 @@
           <!--Section heading-->
           <h2 class="h3 text-center mb-4">Categories</h2>
           <!--Section description-->
-          <p class="h5 text-center">Choose your catagory of Articles</p>
+          <p class="h5 text-center">Choose your catagory of Questions</p>
           <div class="my-3">
             <div class="row wow fadeIn">
-              {% for topic in related_topics %}
+              {% for question in questions %}
               <div class="col-sm-2">
-                <a class="" href>{{topic}}</a>
+                <a class="white-text" href>{{question}}</a>
               </div>
               {% endfor %}
             </div>
@@ -56,7 +56,7 @@
         <!-- Heading & Description -->
         <hr class="mb-5">
 
-        {% for article in articles %}
+        {% for question in questions %}
         <!--Grid row-->
         <div class="row wow fadeIn bg-white">
 
@@ -67,7 +67,7 @@
               <div class="view overlay">
                 <div class="embed-responsive embed-responsive-16by9">
                   <img class="embed-responsive-item"
-                    src="{% if article.imageURL %}{{article.imageURL}} {% else %} {% static 'images/article_dummy.png' %} {% endif %}"></img>
+                    src="{% if question.imageURL %}{{article.imageURL}} {% else %} {% static 'images/article_dummy.png' %} {% endif %}"></img>
                 </div>
               </div>
             </div>
@@ -77,12 +77,12 @@
           <!--Grid column-->
           <div class="col-md-7 col-lg-7 ml-xl-4 mb-4 mt-4">
             <h3 class="mb-3 font-weight-bold dark-grey-text">
-              <strong>{{article.title}}</strong>
+              <strong>{{question.title}}</strong>
             </h3>
-            <p class="card-text">Written by <strong>{{article.author}}</strong></p>
-            <p class="card-text">Topic related to: <strong>{{article.topic_related_to}}</strong></p>
-            <p class="card-text">Tags: {{article.topic_related_to}}</p>
-            <a href="{{article.get_absolute_url}}" class="btn btn-primary btn-md">Read Article
+            <p class="card-text">Written by <strong>{{question.author}}</strong></p>
+            <!-- <p class="card-text">Topic related to: <strong>{{question.topic_related_to}}</strong></p> -->
+            <p class="card-text">Tags: {{article.tags}}</p>
+            <a href="{{question.get_absolute_url}}" class="btn btn-primary btn-md">Show Discussion
               <i class="fas fa-book ml-2"></i>
             </a>
           </div>
