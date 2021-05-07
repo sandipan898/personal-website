@@ -9,7 +9,7 @@
 
     {% block extra_head %} {% endblock %}
 </head>
-<body class="heavy-rain-gradient">
+<body class="{% block bodyclass %}{% endblock %}">
     
     {% block body %}
     {% endblock %}

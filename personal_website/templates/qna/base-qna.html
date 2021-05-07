@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 
 {% block body %}
-    <header>
+    <header class="mb-2">
         {% include 'qna/navbar.html' %}
     </header>
-    <div class="stylish-color">
+    <div class="{% block bodyclass %}stylish-color{% endblock %}" >
         {% block content %}
         {% endblock %}
     </div>
