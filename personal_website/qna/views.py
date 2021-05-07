@@ -66,7 +66,7 @@ class QuestionDetailView(View):
             return redirect('/community/question/detail/'+slug)
 
 
-@login_required(login_url='/auth/login/')
+@login_required(login_url='/auth/login/', redirect_field_name='qna-create')
 def create_question_view(request):
     template_name = 'qna/question-form.html'
     context = {}

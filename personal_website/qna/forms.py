@@ -20,7 +20,7 @@ class QuestionPostForm(forms.ModelForm):
     )
     tags = forms.CharField(
         required=False,
-        label="Enter Tags related to your Post",
+        label="Enter Tags related to your Question Topic",
         max_length=100,
         widget=forms.TextInput(attrs={
             'class': 'form-control',

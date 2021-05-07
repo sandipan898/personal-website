@@ -10,6 +10,7 @@ urlpatterns = [
         LoginView.as_view(
             template_name="authuser/login.html",
             authentication_form=UserLoginForm,
+            # redirect_field_name=''
         ), 
         name='user-login'
     ),
