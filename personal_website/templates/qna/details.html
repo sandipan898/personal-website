@@ -2,250 +2,182 @@
 {% load static %}
 
 {% block content %}
-  <!--Main Layout-->
-  <main>
-    <div class="container">
+<!--Main Layout-->
+<main>
+  <div class="container">
 
-      <!--Section: Blog v.4-->
-      <section class="section mt-5 pb-3 wow fadeIn">
+    <!--Section: Blog v.4-->
+    <section class="section mt-5 pb-3 wow fadeIn">
 
-        <!--Grid row-->
-        <div class="row">
-          <div class="col-md-12">
-            <!-- Card -->
-            <div class="card card-cascade wider reverse">
+      <!--Grid row-->
+      <div class="row">
+        <br>
+        <div class="col-md-12">
+          <!-- Card -->
+          <div class="pt-5 card card-cascade wider reverse">
 
-              <!-- Card image -->
-              <div class="view view-cascade overlay">
-                <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Slides/img%20(134).jpg" alt="Card image cap">
-                <a href="#!">
-                  <div class="mask rgba-white-slight"></div>
-                </a>
-              </div>
-
-              <!--Post data-->
-              <div class="card-body card-body-cascade text-center">
-                <h2><a><strong>{{question.title}}</strong></a></h2>
-                <p>Written by <a>{{question.author}}</a>, on {{question.published_on}}</p>
-
-                <!--Social shares-->
-                <div class="social-counters">
-                  <!--Comments-->
-                  <a class="btn btn-blue-grey" href="#answers">
-                    <i class="fas fa-comments left "></i>
-                    <span class="">{{answer_count}} Answers</span>
-                  </a>
-                  <div class="mt-4 d-flex justify-content-center">
-                    <span onclick="console.log('Clicked')" class=" p-2 m-1 badge blue"><i class="fa fa-thumbs-up" aria-hidden="true"> {{question.upvotes}}</i></span>
-                    <span onclick="console.log('Clicked')" class=" p-2 m-1 badge red"><i class="fa fa-thumbs-down" aria-hidden="true"> {{question.downvotes}}</i></span>
-                  </div>
-                </div>
-                <!--Social shares-->
-
-              </div>
-              <!--Post data-->
+            <!-- Card image -->
+            <div class="view view-cascade overlay">
+              <a href="#!">
+                <div class="mask rgba-white-slight"></div>
+              </a>
             </div>
 
-            <!--Excerpt-->
-            <div class="text-wrap white-text excerpt mt-5 wow fadeIn" data-wow-delay="0.3s">
-              <h3>Question Body:</h3>
-              <br>
-              <div id="question-body" class="text-wrap p-4 unique-color-dark">
-              {{question.body | safe}}
-              </div>
+            <!--Post data-->
+            <div class="card-body card-body-cascade text-center">
+              <h2><a><strong>{{question.title}}</strong></a></h2>
+              <p>Posted by <a>{{question.author}}</a>, on {{question.published_on}}</p>
 
-              <!-- <blockquote class="blockquote mt-4 mb-4">
+              <!--Social shares-->
+              <div class="social-counters">
+                <!--Comments-->
+                <a class="btn btn-blue-grey" href="#answers">
+                  <i class="fas fa-comments left "></i>
+                  <span class="">{{answer_count}} Answers</span>
+                </a>
+                <div class="mt-4 d-flex justify-content-center">
+                  <span onclick="console.log('Clicked')" class="btn p-2 m-1 badge blue"><i class="fa fa-thumbs-up"
+                      aria-hidden="true"> {{question.upvotes}}</i></span>
+                  <span onclick="console.log('Clicked')" class="btn p-2 m-1 badge red"><i class="fa fa-thumbs-down"
+                      aria-hidden="true"> {{question.downvotes}}</i></span>
+                </div>
+              </div>
+              <!--Social shares-->
+
+            </div>
+            <!--Post data-->
+          </div>
+
+          <!--Excerpt-->
+          <div class="text-wrap white-text excerpt mt-5 wow fadeIn" data-wow-delay="0.3s">
+            <h3>Question Body:</h3>
+            <br>
+            <div id="question-body" class="text-wrap p-4 unique-color-dark">
+              {{question.body | safe}}
+            </div>
+
+            <!-- <blockquote class="blockquote mt-4 mb-4">
                 <p class="mb-0"><em>Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe
                     eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic
                     tenetur a sapiente delectus.</em></p>
                 <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
               </blockquote> -->
 
-              <div class="mt-4 d-flex justify-content-end">
-                <span class=" py-2 badge blue">Tags: {{question.tags}}</span>
+            <div class="mt-4 d-flex justify-content-end">
+              <span class=" py-2 badge blue">Tags: {{question.tags}}</span>
+            </div>
+
+          </div>
+
+          <hr class="hr-light hr-bold">
+
+          <div id="answers">
+            <h3 class="text-white mt-4">Answers</h3>
+            {% if answers %}
+            {% for answer in answers %}
+            <div class="text-wrap white-text excerpt mt-5 wow fadeIn" data-wow-delay="0.3s">
+              <div id="answer-body" class="text-wrap p-4 #424242 grey darken-4">
+                <h5>Answered by {{answer.author}}</h5>
+                <hr class="hr-light">
+                {{question.body | safe}}
+                <div class="mt-4 d-flex justify-content-end">
+                  <span class="btn p-2 m-1 badge blue"><i class="fa fa-thumbs-up" aria-hidden="true">
+                      {{answer.upvotes}}</i></span>
+                  <span class="btn p-2 m-1 badge red"><i class="fa fa-thumbs-down" aria-hidden="true">
+                      {{answer.downvotes}}</i></span>
+                </div>
+
               </div>
-
             </div>
 
-            <hr class="hr-light hr-bold">
-
-            <div id="answers">
-              <h3 class="text-white mt-4">Answers</h3>
-              {% if answers %}
-                {% for answer in answers %}
-                  <div class="text-wrap white-text excerpt mt-5 wow fadeIn" data-wow-delay="0.3s">
-                    <div id="answer-body" class="text-wrap p-4 #424242 grey darken-4">
-                      <h5>Answered by {{answer.author}}</h5>
-                      <hr class="hr-light">
-                      {{question.body | safe}}
-                      <div class="mt-4 d-flex justify-content-end">
-                        <span class=" p-2 m-1 badge blue"><i class="fa fa-thumbs-up" aria-hidden="true"> {{answer.upvotes}}</i></span>
-                        <span class=" p-2 m-1 badge red"><i class="fa fa-thumbs-down" aria-hidden="true"> {{answer.downvotes}}</i></span>
-                      </div>
-
-                    </div>
-                  </div>
-
-                {% endfor %}
-              {% endif %}
-            </div>
+            {% endfor %}
+            {% endif %}
           </div>
         </div>
-        <!--Grid row-->
+      </div>
+      <!--Grid row-->
 
-      </section>
-      <!--Section: Blog v.4-->
+    </section>
+    <!--Section: Blog v.4-->
 
-      <hr class="mb-5 mt-4">
+    <hr class="mb-5 mt-4">
 
-      <!--Section: Blog v.2-->
-      <section class="section extra-margins pb-3 wow fadeIn" data-wow-delay="0.3s">
+    <!--Section: Blog v.2-->
+    <section class="section extra-margins pb-3 wow fadeIn" data-wow-delay="0.3s">
 
-        <!--Section heading-->
-        <h3 class="text-center my-5 text-center h3 pt-3">Recent posts</h3>
+      <!--Section heading-->
+      <h3 class="text-center my-5 text-center h3 pt-3">Recent posts</h3>
 
-        <!--Grid row-->
+      <!--Grid row-->
+      <div class="row">
+        {% for question in related_questions %}
+        <!--Grid column-->
+        <div class="col-lg-4 col-md-6 mb-4">
+
+          <!--Card-->
+          <div class="card unique-color-dark text-white">
+
+            <!--Card image-->
+            <div class="view overlay">
+              <a href="{{question.get_absolute_url}}">
+                <div class="mask rgba-white-slight"></div>
+              </a>
+            </div>
+
+            <!--Card content-->
+            <div class="card-body text-white">
+              <!--Title-->
+              <h4 class="card-title">{{question.title}}</h4>
+              <!--Text-->
+              <p class="card-text">Written by <strong>{{question.author}}</strong></p>
+              <p class="card-text">Tags: <strong>{{question.tags}}</strong></p>
+              <a href="{{question.get_absolute_url}}" class="btn btn-primary btn-md">Read Article
+                <i class="fas fa-book ml-2"></i>
+              </a>
+            </div>
+          </div>
+
+        </div>
+        <!--Grid column-->
+        {% endfor %}
+
+      </div>
+      <!--Grid row-->
+
+    </section>
+    <!--Section: Blog v.2-->
+
+    <hr class="hr">
+
+    <!--Author box-->
+    <section>
+
+      <div class="jumbotron p-5 text-center text-md-left author-box wow fadeIn" data-wow-delay="0.3s">
+        <!--Name-->
+        <h4 class="h3-responsive text-center font-weight-bold dark-grey-text">About author</h4>
+        <hr>
         <div class="row">
-
-          <!--Grid column-->
-          <div class="col-lg-4 col-md-12 mb-4">
-
-            <!--Card Light-->
-            <div class="card">
-              <!--Card image-->
-              <div class="view overlay">
-                <img src="https://mdbootstrap.com/img/Photos/Lightbox/Original/img%20%28147%29.jpg" class="card-img-top"
-                  alt="">
-                <a>
-                  <div class="mask"></div>
-                </a>
-              </div>
-              <!--/.Card image-->
-              <!--Card content-->
-              <div class="card-body">
-                <!--Social shares button-->
-                <a class="activator mr-3"><i class="fas fa-share-alt"></i></a>
-                <!--Title-->
-                <h4 class="card-title">Card title</h4>
-                <hr>
-                <!--Text-->
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                  card's content.</p>
-                <a class="link-text">
-                  <h5>Read more <i class="fas fa-chevron-right"></i></h5>
-                </a>
-              </div>
-              <!--/.Card content-->
-            </div>
-            <!--/.Card Light-->
-
+          <!--Avatar-->
+          <div class="col-12 col-md-2 mb-md-0 mb-4">
+            <img src="{{question.author.imageURL}}"
+              class="img-fluid rounded-circle z-depth-2">
           </div>
-          <!--Grid column-->
-
-          <!--Grid column-->
-          <div class="col-lg-4 col-md-6 mb-4">
-
-            <!--Card Light-->
-            <div class="card">
-              <!--Card image-->
-              <div class="view overlay">
-                <img src="https://mdbootstrap.com/img/Photos/Lightbox/Original/img%20%2850%29.jpg" class="card-img-top"
-                  alt="">
-                <a>
-                  <div class="mask"></div>
-                </a>
-              </div>
-              <!--/.Card image-->
-              <!--Card content-->
-              <div class="card-body">
-                <!--Social shares button-->
-                <a class="activator mr-3"><i class="fas fa-share-alt"></i></a>
-                <!--Title-->
-                <h4 class="card-title">Card title</h4>
-                <hr>
-                <!--Text-->
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                  card's content.</p>
-                <a class="link-text">
-                  <h5>Read more <i class="fas fa-chevron-right"></i></h5>
-                </a>
-              </div>
-              <!--/.Card content-->
-            </div>
-            <!--/.Card Light-->
-
-          </div>
-          <!--Grid column-->
-
-          <!--Grid column-->
-          <div class="col-lg-4 col-md-6 mb-4">
-
-            <!--Card Light-->
-            <div class="card">
-              <!--Card image-->
-              <div class="view overlay">
-                <img src="https://mdbootstrap.com/img/Photos/Lightbox/Original/img%20%2897%29.jpg" class="card-img-top"
-                  alt="">
-                <a>
-                  <div class="mask"></div>
-                </a>
-              </div>
-              <!--/.Card image-->
-              <!--Card content-->
-              <div class="card-body">
-                <!--Social shares button-->
-                <a class="activator mr-3"><i class="fas fa-share-alt"></i></a>
-                <!--Title-->
-                <h4 class="card-title">Card title</h4>
-                <hr>
-                <!--Text-->
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                  card's content.</p>
-                <a class="link-text">
-                  <h5>Read more <i class="fas fa-chevron-right"></i></h5>
-                </a>
-              </div>
-              <!--/.Card content-->
-            </div>
-            <!--/.Card Light-->
-
-          </div>
-          <!--Grid column-->
-
-        </div>
-        <!--Grid row-->
-
-      </section>
-      <!--Section: Blog v.2-->
-
-      <!--Author box-->
-      <section>
-
-        <div class="jumbotron p-5 text-center text-md-left author-box wow fadeIn" data-wow-delay="0.3s">
-          <!--Name-->
-          <h4 class="h3-responsive text-center font-weight-bold dark-grey-text">About author</h4>
-          <hr>
-          <div class="row">
-            <!--Avatar-->
-            <div class="col-12 col-md-2 mb-md-0 mb-4">
-              <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(32).jpg" class="img-fluid rounded-circle z-depth-2">
-            </div>
-            <!--Author Data-->
-            <div class="col-12 col-md-10">
-              <h5 class="font-weight-bold dark-grey-text mb-3">
-                <strong>{{question.author}}</strong>
-              </h5>
-              <p>Author Bio</p>
-            </div>
+          <!--Author Data-->
+          <div class="col-12 col-md-10">
+            <h5 class="font-weight-bold dark-grey-text mb-3">
+              <strong>{{question.author.username}}</strong>
+            </h5>
+            <p>{{question.author.bio}}</p>
           </div>
         </div>
+      </div>
 
-      </section>
-      <!--/.Author box-->
+    </section>
+    <!--/.Author box-->
 
-    </div>
+  </div>
 
-  </main>
-  <!--Main Layout-->
+</main>
+<!--Main Layout-->
 
 {% endblock %}

@@ -31,7 +31,7 @@
             <section class="card wow fadeIn primary-color">
 
             <!-- Content -->
-            <div class="card-body text-white text-center py-5 px-5 my-5">
+            <div class="card-body text-white text-center py-4 px-5 mt-5">
 
                 <h1 class="mb-4">
                     <strong>Post your Query and start a valuable Discussion</strong>
@@ -46,42 +46,49 @@
                 <a href="#section" class="btn btn-outline-white btn-lg">Let's Larn Together
                     <i class="fas fa-graduation-cap ml-2"></i>
                 </a>
+
+            <hr class="mt-5">
+
+            <a href="{% url 'qna-create' %}" class="btn my-4 #424242 grey darken-3">
+                Post your own Question and start a Discussion 
+                <i class="fas fa-edit ml-2"></i>
+            </a> 
             </div>
             <!-- Content -->
+
         </section>
         <!--Section: Jumbotron-->
 
+        
         <hr class="mt-5">
 
         <!--Section: Cards-->
         <section class="text-center" id="section">
-            <p class="display-6 mb-4">Featured Discussions and Questionss</p>
+            <p class="display-6 mb-4 text-white">Featured Discussions and Questionss</p>
             <!--Grid row-->
             <div class="row mb-4 wow fadeIn">
                 
-                {% for article in articles %}
+                {% for question in questions %}
                 <!--Grid column-->
                 <div class="col-lg-6 col-md-6 mb-4">
                     <!--Card-->
-                    <div class="card">
+                    <div class="card unique-color-dark text-white">
 
                         <!--Card image-->
                         <div class="view overlay">
-                            <img class="container mt-4" src="{{article.imageURL}}" alt="">
-                            <a href="{{article.get_absolute_url}}">
+                            <a href="{{question.get_absolute_url}}">
                                 <div class="mask rgba-white-slight"></div>
                             </a>
                         </div>
 
                         <!--Card content-->
-                        <div class="card-body">
+                        <div class="card-body text-white">
                             <!--Title-->
-                            <h4 class="card-title">{{article.title}}</h4>
+                            <h4 class="card-title">{{question.title}}</h4>
                             <!--Text-->
-                            <p class="card-text">Written by <strong>{{article.author}}</strong></p>
-                            <p class="card-text">Topic related to: <strong>{{article.topic_related_to}}</strong></p>
-                            <p class="card-text">Tags: {{article.topic_related_to}}</p>
-                            <a href="{{article.get_absolute_url}}" class="btn btn-primary btn-md">Read Article
+                            <p class="card-text">Written by <strong>{{question.author}}</strong></p>
+                            <p class="card-text">Tags: <strong>{{question.tags}}</strong></p>
+                            <a href="{{question.get_absolute_url}}" class="btn btn-primary btn-md">Read Article
                                 <i class="fas fa-book ml-2"></i>
                             </a>
                         </div>
@@ -105,7 +112,7 @@
                 <div class="col-lg-6 col-md-12 mb-4">
 
                     <!--Card-->
-                    <div class="card">
+                    <div class="card #e0e0e0 grey lighten-2">
 
                         <!--Card image-->
                         <div class="view overlay">
@@ -142,7 +149,7 @@
                 <div class="col-lg-6 col-md-12 mb-4">
 
                     <!--Card-->
-                    <div class="card">
+                    <div class="card #e0e0e0 grey lighten-2">
 
                         <!--Card image-->
                         <div class="view overlay">
@@ -177,7 +184,7 @@
                 <div class="col-lg-6 col-md-12 mb-4">
 
                     <!--Card-->
-                    <div class="card">
+                    <div class="card #e0e0e0 grey lighten-2">
 
                         <!--Card image-->
                         <div class="view overlay">
@@ -209,12 +216,7 @@
                 <!--Grid column-->
 
             </div>
-            <!--Grid row-->
-
-            <a href="{% url 'qna-create' %}" class="btn btn-primary btn-lg my-4">
-                Post your own Question and start a Discussion 
-                <i class="fas fa-edit ml-2"></i>
-            </a>            
+            <!--Grid row-->           
 
         </section>
         <!--Section: Cards-->
