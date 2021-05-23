@@ -25,6 +25,7 @@ class QuestionDetailView(View):
     
     def get(self, request, *args, **kwargs):
         selected_question = get_object_or_404(Question, slug=kwargs['slug'])
+        print(selected_question.author.bio)
         # selected_question.get_answer_count
         # selected_question.save()
         related_questions = Question.objects.all()

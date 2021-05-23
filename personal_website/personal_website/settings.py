@@ -128,6 +128,8 @@ AUTHENTICATION_BACKENDS = [
     # 'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
+# AUTH_USER_MODEL = 'authuser.UserProfile'
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/

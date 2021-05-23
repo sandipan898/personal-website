@@ -5,10 +5,11 @@ from ckeditor.fields import RichTextField
 from django.shortcuts import reverse
 from django.template.defaultfilters import slugify
 
+from authuser.models import UserProfile
 # Create your models here.
 
 class Question(models.Model):
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    author = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     title = models.CharField(unique=True, max_length=400, blank=True, null=True)
     body = RichTextField(blank=True, null=True)
     featured = models.BooleanField(default=False, blank=True, null=True)

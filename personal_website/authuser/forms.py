@@ -45,7 +45,7 @@ class SignupUserForm(UserCreationForm):
     bio = forms.CharField(
         label="Bio", 
         required=False, 
-        max_length=400, 
+        max_length=1000, 
         widget=forms.Textarea(
             attrs={
                 'class': 'form-control',
