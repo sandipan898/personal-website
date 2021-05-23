@@ -1,5 +1,22 @@
 {% extends 'base.html' %}
-
+{% block extra_head %}
+<style>
+    @media only screen and (max-width: 748px) {
+        #question-body {
+            word-wrap: break-word;
+            padding-left: 10px !important;
+            font-size: 12px;
+            text-wrap: initial;
+        }
+        #answer-body {
+            word-wrap: break-word;
+            padding-left: 10px !important;
+            font-size: 12px;
+            text-wrap: initial;
+        }
+    }
+</style>
+{% endblock %}
 {% block body %}
     <header class="mb-2">
         {% include 'qna/navbar.html' %}

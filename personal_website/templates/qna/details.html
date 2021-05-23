@@ -31,11 +31,14 @@
                 <!--Social shares-->
                 <div class="social-counters">
                   <!--Comments-->
-                  <a class="btn btn-blue-grey ">
+                  <a class="btn btn-blue-grey" href="#answers">
                     <i class="fas fa-comments left "></i>
-                    <span class="clearfix d-none d-md-block">{{answer_count}} Answers</span>
+                    <span class="">{{answer_count}} Answers</span>
                   </a>
-
+                  <div class="mt-4 d-flex justify-content-center">
+                    <span onclick="console.log('Clicked')" class=" p-2 m-1 badge blue"><i class="fa fa-thumbs-up" aria-hidden="true"> {{question.upvotes}}</i></span>
+                    <span onclick="console.log('Clicked')" class=" p-2 m-1 badge red"><i class="fa fa-thumbs-down" aria-hidden="true"> {{question.downvotes}}</i></span>
+                  </div>
                 </div>
                 <!--Social shares-->
 
@@ -44,11 +47,12 @@
             </div>
 
             <!--Excerpt-->
-            <div class="white-text excerpt mt-5 wow fadeIn" data-wow-delay="0.3s">
+            <div class="text-wrap white-text excerpt mt-5 wow fadeIn" data-wow-delay="0.3s">
               <h3>Question Body:</h3>
               <br>
+              <div id="question-body" class="text-wrap p-4 unique-color-dark">
               {{question.body | safe}}
-              </p>
+              </div>
 
               <!-- <blockquote class="blockquote mt-4 mb-4">
                 <p class="mb-0"><em>Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe
@@ -58,12 +62,32 @@
               </blockquote> -->
 
               <div class="mt-4 d-flex justify-content-end">
-                <span class="badge pink">{{question.tags}}</span>
-                <!-- <span class="badge badge-primary mx-1">Adventure</span> -->
-                <!-- <span class="badge grey mr-1">Photography</span> -->
-                <!-- <span class="badge badge-info">Education</span> -->
+                <span class=" py-2 badge blue">Tags: {{question.tags}}</span>
               </div>
 
+            </div>
+
+            <hr class="hr-light hr-bold">
+
+            <div id="answers">
+              <h3 class="text-white mt-4">Answers</h3>
+              {% if answers %}
+                {% for answer in answers %}
+                  <div class="text-wrap white-text excerpt mt-5 wow fadeIn" data-wow-delay="0.3s">
+                    <div id="answer-body" class="text-wrap p-4 #424242 grey darken-4">
+                      <h5>Answered by {{answer.author}}</h5>
+                      <hr class="hr-light">
+                      {{question.body | safe}}
+                      <div class="mt-4 d-flex justify-content-end">
+                        <span class=" p-2 m-1 badge blue"><i class="fa fa-thumbs-up" aria-hidden="true"> {{answer.upvotes}}</i></span>
+                        <span class=" p-2 m-1 badge red"><i class="fa fa-thumbs-down" aria-hidden="true"> {{answer.downvotes}}</i></span>
+                      </div>
+
+                    </div>
+                  </div>
+
+                {% endfor %}
+              {% endif %}
             </div>
           </div>
         </div>

@@ -66,8 +66,8 @@
             <div class="view overlay rounded z-depth-1-half">
               <div class="view overlay">
                 <div class="embed-responsive embed-responsive-16by9">
-                  <img class="embed-responsive-item"
-                    src="{% if question.imageURL %}{{article.imageURL}} {% else %} {% static 'images/article_dummy.png' %} {% endif %}"></img>
+                  <img class="embed-responsive-item" alt="Image"
+                    src="{% if question.imageURL %}{{article.imageURL}} {% else %} {% static 'images/article_dummy.png' %} {% endif %}">
                 </div>
               </div>
             </div>
