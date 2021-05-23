@@ -40,9 +40,9 @@
         <div class="wow fadeIn content">
           <hr class="mb-5">
           <!--Section heading-->
-          <h2 class="h3 text-center mb-4">Categories</h2>
+          <h2 class="h3 white-text text-center mb-4">Categories</h2>
           <!--Section description-->
-          <p class="h5 text-center">Choose your catagory of Questions</p>
+          <p class="h5 white-text text-center">Choose your catagory of Questions</p>
           <div class="my-3">
             <div class="row wow fadeIn">
               {% for question in questions %}
@@ -58,32 +58,21 @@
 
         {% for question in questions %}
         <!--Grid row-->
-        <div class="row wow fadeIn bg-white">
+        <div class="mx-2 row wow fadeIn unique-color-dark text-white">
 
           <!--Grid column-->
           <div class="col-md-5 col-lg-4 mb-4 mt-4">
-            <!--Featured image-->
-            <div class="view overlay rounded z-depth-1-half">
-              <div class="view overlay">
-                <div class="embed-responsive embed-responsive-16by9">
-                  <img class="embed-responsive-item" alt="Image"
-                    src="{% if question.imageURL %}{{article.imageURL}} {% else %} {% static 'images/article_dummy.png' %} {% endif %}">
-                </div>
-              </div>
-            </div>
+            <h4 class="card-title"><strong>{{question.title}}</strong></h4>
           </div>
           <!--Grid column-->
 
           <!--Grid column-->
           <div class="col-md-7 col-lg-7 ml-xl-4 mb-4 mt-4">
-            <h3 class="mb-3 font-weight-bold dark-grey-text">
-              <strong>{{question.title}}</strong>
-            </h3>
+            <!--Text-->
             <p class="card-text">Written by <strong>{{question.author}}</strong></p>
-            <!-- <p class="card-text">Topic related to: <strong>{{question.topic_related_to}}</strong></p> -->
-            <p class="card-text">Tags: {{article.tags}}</p>
-            <a href="{{question.get_absolute_url}}" class="btn btn-primary btn-md">Show Discussion
-              <i class="fas fa-book ml-2"></i>
+            <p class="card-text">Tags: <strong>{{question.tags}}</strong></p>
+            <a href="{{question.get_absolute_url}}" class="btn btn-primary btn-md">Read Article
+                <i class="fas fa-book ml-2"></i>
             </a>
           </div>
           <!--Grid column-->
