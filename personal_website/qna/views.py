@@ -2,9 +2,12 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.views import View, generic
 from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
 
 from .models import Question, Answer
 from .forms import QuestionPostForm, AnswerPostForm
+
+import json
 
 # Create your views here.
 
@@ -104,3 +107,28 @@ def question_list_view(request):
     }
     return render(request, template_name=template_name, context=context)  
   
+
+def change_votes(request):
+    response_body = json.loads(request.body)
+
+    if response_body['action'] == 'qs-upvote':
+        question = Question.objects.get(id=response_body['id'])
+        question.upvotes += 1
+        question.save()
+    elif response_body['action'] == 'qs-downvote':
+        print("Action Triggered")
+        question = Question.objects.get(id=response_body['id'])
+        question.downvotes += 1
+        question.save()
+    elif response_body['action'] == 'ans-upvote':
+        print("Action Triggered")
+        answer = Answer.objects.get(id=response_body['id'])
+        answer.upvotes += 1
+        answer.save()
+    elif response_body['action'] == 'ans-downvote':
+        print("Action Triggered")
+        answer = Answer.objects.get(id=response_body['id'])
+        answer.downvotes += 1
+        answer.save()
+
+    return JsonResponse('Item is added', safe=False)

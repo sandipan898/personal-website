@@ -1,8 +1,5 @@
 {% load static %}
-<script
-type="text/javascript"
-src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.0.0/mdb.min.js"
-></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.0.0/mdb.min.js"></script>
 <script type="text/javascript" src="{% static 'mdb/js/jquery-3.4.1.min.js'} %"></script>
 <script type="text/javascript" src="{% static 'mdb/js/popper.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'mdb/js/bootstrap.min.js' %}"></script>
@@ -13,3 +10,50 @@ src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.0.0/mdb.min.js"
     new WOW().init();
 </script>
 
+<script defer>
+    function getToken(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = cookies[i].trim();
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+    const url = '/community/question/change-vote/';
+    const slug = window.location.href.pathname;
+    console.log(slug);
+
+    document.querySelectorAll('span.change-vote')
+        .forEach(btn => {
+            btn.addEventListener('click', event => {
+                let action = btn.dataset.action;
+                let id = btn.dataset.id;
+                console.log("Action: ", action);
+                console.log("Id: ", id);
+                fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': getToken('csrftoken')
+                    },
+                    body: JSON.stringify({ 'id': id, 'action': action })
+                })
+                .then((response) => {
+                    return response.json();
+                })
+                .then((data) => {
+                    console.log("data: ", data)
+                    location.reload();
+                })
+            })
+        });
+
+</script>

@@ -36,9 +36,9 @@
                   <span class="">{{answer_count}} Answers</span>
                 </a>
                 <div class="mt-4 d-flex justify-content-center">
-                  <span onclick="console.log('Clicked')" class="btn p-2 m-1 badge blue"><i class="fa fa-thumbs-up"
+                  <span data-id="{{question.id}}" data-action="qs-upvote" class="btn p-2 m-1 badge blue change-vote"><i class="fa fa-thumbs-up"
                       aria-hidden="true"> {{question.upvotes}}</i></span>
-                  <span onclick="console.log('Clicked')" class="btn p-2 m-1 badge red"><i class="fa fa-thumbs-down"
+                  <span data-id="{{question.id}}" data-action="qs-downvote" onclick="console.log('Clicked')" class="btn p-2 m-1 badge red change-vote"><i class="fa fa-thumbs-down"
                       aria-hidden="true"> {{question.downvotes}}</i></span>
                 </div>
               </div>
@@ -81,12 +81,11 @@
                 <hr class="hr-light">
                 {{question.body | safe}}
                 <div class="mt-4 d-flex justify-content-end">
-                  <span class="btn p-2 m-1 badge blue"><i class="fa fa-thumbs-up" aria-hidden="true">
+                  <span data-id="{{answer.id}}" data-action="ans-upvote" class="btn p-2 m-1 badge blue change-vote"><i class="fa fa-thumbs-up" aria-hidden="true">
                       {{answer.upvotes}}</i></span>
-                  <span class="btn p-2 m-1 badge red"><i class="fa fa-thumbs-down" aria-hidden="true">
+                  <span data-id="{{answer.id}}" data-action="ans-downvote" class="btn p-2 m-1 badge red change-vote"><i class="fa fa-thumbs-down" aria-hidden="true">
                       {{answer.downvotes}}</i></span>
                 </div>
-
               </div>
             </div>
 
