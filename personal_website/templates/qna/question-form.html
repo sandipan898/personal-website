@@ -10,11 +10,11 @@
 </style>
 <main class="mt-5 pt-5">
     <div class="container">
-        <section class="card wow fadeIn"
+        <section class="card wow fadeIn mb-4" 
             style="background-image: url(https://mdbootstrap.com/img/Photos/Others/gradient1.jpg);">
-            <div class="card-body text-white py-5 px-5 my-5">
-                <h1 class="my-4">
-                    <strong>Post your Question</strong>
+            <div class="card-body text-white py-3 px-3 my-5 align-center">
+                <h1 class="my-4 display-4">
+                    Post your Question
                 </h1>
                 <form method="POST" class="">
                     {% csrf_token %}
@@ -35,7 +35,7 @@
                     </div>
                     {{form.media}}
 
-                    <button type="submit" class="btn btn-block #424242 grey darken-3 mb-4">Post Article</button>
+                    <button type="submit" class="btn #424242 grey darken-3 mb-4">Post Article</button>
                 </form>
             </div>
         </section>
