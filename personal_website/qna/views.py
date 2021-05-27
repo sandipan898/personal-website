@@ -44,8 +44,11 @@ class QuestionDetailView(View):
         # self.context.update(context)
         return render(request, self.template_name, context=context)
     
-    @login_required(login_url='/auth/login/')
+    # @login_required(login_url='/auth/login/')
     def post(self, *args, slug, **kwargs):
+        if not self.request.user.is_authenticated:
+            return redirect('user-login')
+            
         form = AnswerPostForm(self.request.POST)     
         selected_question = get_object_or_404(Question, slug=slug)
         # print(selected_question)
@@ -53,7 +56,8 @@ class QuestionDetailView(View):
             print(form.cleaned_data)
             new_answer = Answer.objects.create(
                 question=selected_question,
-                author=form.cleaned_data['author'], 
+                # author=form.cleaned_data['author'], 
+                author=self.request.user.username, 
                 body = form.cleaned_data['body'],
             )        
             new_answer.save()
