@@ -36,10 +36,11 @@
                   <span class="">{{answer_count}} Answers</span>
                 </a>
                 <div class="mt-4 d-flex justify-content-center">
-                  <span data-id="{{question.id}}" data-action="qs-upvote" class="btn p-2 m-1 badge blue change-vote"><i class="fa fa-thumbs-up"
-                      aria-hidden="true"> {{question.upvotes}}</i></span>
-                  <span data-id="{{question.id}}" data-action="qs-downvote" onclick="console.log('Clicked')" class="btn p-2 m-1 badge red change-vote"><i class="fa fa-thumbs-down"
-                      aria-hidden="true"> {{question.downvotes}}</i></span>
+                  <span data-id="{{question.id}}" data-action="qs-upvote" class="btn p-2 m-1 badge blue change-vote"><i
+                      class="fa fa-thumbs-up" aria-hidden="true"> {{question.upvotes}}</i></span>
+                  <span data-id="{{question.id}}" data-action="qs-downvote" onclick="console.log('Clicked')"
+                    class="btn p-2 m-1 badge red change-vote"><i class="fa fa-thumbs-down" aria-hidden="true">
+                      {{question.downvotes}}</i></span>
                 </div>
               </div>
               <!--Social shares-->
@@ -71,6 +72,11 @@
 
           <hr class="hr-light hr-bold">
 
+          <a href="#postAnswer" class="btn btn-primary my-4">
+            Post your Answer
+            <i class="fas fa-edit ml-2"></i>
+          </a>
+
           <div id="answers">
             <h3 class="text-white mt-4">Answers</h3>
             {% if answers %}
@@ -79,11 +85,13 @@
               <div id="answer-body" class="text-wrap p-4 #424242 grey darken-4">
                 <h5>Answered by {{answer.author}}</h5>
                 <hr class="hr-light">
-                {{question.body | safe}}
+                {{answer.body | safe}}
                 <div class="mt-4 d-flex justify-content-end">
-                  <span data-id="{{answer.id}}" data-action="ans-upvote" class="btn p-2 m-1 badge blue change-vote"><i class="fa fa-thumbs-up" aria-hidden="true">
+                  <span data-id="{{answer.id}}" data-action="ans-upvote" class="btn p-2 m-1 badge blue change-vote"><i
+                      class="fa fa-thumbs-up" aria-hidden="true">
                       {{answer.upvotes}}</i></span>
-                  <span data-id="{{answer.id}}" data-action="ans-downvote" class="btn p-2 m-1 badge red change-vote"><i class="fa fa-thumbs-down" aria-hidden="true">
+                  <span data-id="{{answer.id}}" data-action="ans-downvote" class="btn p-2 m-1 badge red change-vote"><i
+                      class="fa fa-thumbs-down" aria-hidden="true">
                       {{answer.downvotes}}</i></span>
                 </div>
               </div>
@@ -97,12 +105,55 @@
       <!--Grid row-->
 
     </section>
+
+    <!--Post Answer-->
+    <section id="postAnswer">
+      <div class="card mb-3 m-2 wow fadeIn #37474f mdb-color darken-3">
+        <div class="card-header font-weight-bold text-white">Post Your Answer</div>
+        <div class="card-body">
+
+          <!-- Default form reply -->
+          <form class="form" action="{{question.get_absolute_url}}" method="POST">
+
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+
+            {% for field in form %}
+            <div class="form-group form-row">
+              <div class="form-group col-md-8 mb-0">
+                <div class="form-outline mb-4 p-2">
+                  {{field}}
+                  <label class="text-white form-label" for="{{field.id_for_label}}">{{field.label}}</label>
+                </div>
+              </div>
+              <div class="form-group col-md-4 mb-0 text-primary">
+                {{field.help_text}}
+              </div>
+              <div class="form-group col-md-4 mb-0 red-text">
+                {{field.errors}}
+              </div>
+            </div>
+
+            {% endfor %}
+            {{form.media}}
+            <div class="text-center mt-4">
+              <button class="btn btn-info btn-md" type="submit">Post Answer</button>
+            </div>
+          </form>
+          <!-- Default form reply -->
+
+        </div>
+      </div>
+    </section>
+    <!--Post Answer-->
+
+
     <!--Section: Blog v.4-->
 
     <hr class="mb-5 mt-4">
 
     <!--Section: Blog v.2-->
-    <section class="section extra-margins pb-3 wow fadeIn" data-wow-delay="0.3s">
+    <section class="section m-3 extra-margins pb-3 wow fadeIn" data-wow-delay="0.3s">
 
       <!--Section heading-->
       <h3 class="text-center my-5 text-center h3 pt-3">Recent posts</h3>
@@ -144,12 +195,13 @@
       <!--Grid row-->
 
     </section>
+
     <!--Section: Blog v.2-->
 
     <hr class="hr">
 
     <!--Author box-->
-    <section>
+    <section class="section m-3">
 
       <div class="jumbotron p-5 text-center text-md-left author-box wow fadeIn" data-wow-delay="0.3s">
         <!--Name-->
@@ -158,8 +210,7 @@
         <div class="row">
           <!--Avatar-->
           <div class="col-12 col-md-2 mb-md-0 mb-4">
-            <img src="{{question.author.imageURL}}"
-              class="img-fluid z-depth-2">
+            <img src="{{question.author.imageURL}}" class="img-fluid z-depth-2">
           </div>
           <!--Author Data-->
           <div class="col-12 col-md-10">

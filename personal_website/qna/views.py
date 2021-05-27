@@ -28,7 +28,6 @@ class QuestionDetailView(View):
     
     def get(self, request, *args, **kwargs):
         selected_question = get_object_or_404(Question, slug=kwargs['slug'])
-        print(selected_question.author.bio)
         # selected_question.get_answer_count
         # selected_question.save()
         related_questions = Question.objects.all()
@@ -45,13 +44,13 @@ class QuestionDetailView(View):
         # self.context.update(context)
         return render(request, self.template_name, context=context)
     
-    # @login_required(login_url='/auth/login/')
+    @login_required(login_url='/auth/login/')
     def post(self, *args, slug, **kwargs):
         form = AnswerPostForm(self.request.POST)     
         selected_question = get_object_or_404(Question, slug=slug)
-        print(selected_question)
+        # print(selected_question)
         if form.is_valid():
-
+            print(form.cleaned_data)
             new_answer = Answer.objects.create(
                 question=selected_question,
                 author=form.cleaned_data['author'], 

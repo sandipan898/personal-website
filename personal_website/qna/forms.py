@@ -41,7 +41,7 @@ class AnswerPostForm(forms.ModelForm):
         label="Your Name",
         max_length=200,
         widget=forms.TextInput(attrs={
-            'class': 'form-control',
+            'class': 'form-control #37474f mdb-color darken-3 text-white',
         })
     )
     body = forms.CharField(

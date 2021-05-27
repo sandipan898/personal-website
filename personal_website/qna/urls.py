@@ -10,4 +10,5 @@ urlpatterns = [
     path('question/detail/<slug:slug>/', QuestionDetailView.as_view(), name='qna-detail'),
     path('question/create/', create_question_view, name='qna-create'),  
     path('question/change-vote/', change_votes, name='change-vote'),  
+    path('question/post-answer/', change_votes, name='post-answer'),  
 ]
