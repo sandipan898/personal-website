@@ -17,8 +17,14 @@
                 <h1 class="my-4">
                     <strong>Sign In</strong>
                 </h1>
+                
+                {% if next %}
+                <!-- <form action="auth/login/?next={{next}}" method="post" > -->
+                {%else%}
+                <!-- <form role="form" action="{% url 'user-login' %}" method="POST"> -->
+                {% endif %}
 
-                <form role="form" action="{% url 'user-login' %}" method="POST">
+                <form role="form" action="/auth/login/" method="POST">
                     {% csrf_token %}
                     {{ form.non_field_errors }}
 

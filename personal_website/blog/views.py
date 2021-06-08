@@ -1,13 +1,15 @@
 from django import views
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views import generic
-from django.urls import reverse, reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth import login, authenticate
 from django.core.files.uploadedfile import SimpleUploadedFile
+from django.http import JsonResponse
 from .models import Article, get_all_related_topic, Comment, Reply
 from .forms import ArticlePostForm, CommentForm
+
+import json
 
 # Create your views here.
 
@@ -130,3 +132,30 @@ def create_article_view(request):
         context['form'] = form
     
     return render(request, template_name, context=context)
+
+
+def change_votes(request):
+    response_body = json.loads(request.body)
+
+    if response_body['action'] == 'at-upvote':
+        article = Article.objects.get(id=response_body['id'])
+        article.upvotes += 1
+        article.save()
+    elif response_body['action'] == 'at-downvote':
+        print("Action Triggered")
+        article = Article.objects.get(id=response_body['id'])
+        article.downvotes += 1
+        article.save()
+
+    # elif response_body['action'] == 'ans-upvote':
+    #     print("Action Triggered")
+    #     answer = Comment.objects.get(id=response_body['id'])
+    #     answer.upvotes += 1
+    #     answer.save()
+    # elif response_body['action'] == 'ans-downvote':
+    #     print("Action Triggered")
+    #     answer = Comment.objects.get(id=response_body['id'])
+    #     answer.downvotes += 1
+    #     answer.save()
+
+    return JsonResponse('Item is added', safe=False)

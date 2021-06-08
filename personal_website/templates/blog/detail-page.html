@@ -54,11 +54,11 @@
         <div class="card card-comments mb-3 mx-3">
           <div class="mt-4 d-flex justify-content-center">
             <span class="card-header font-weight-bold justify-content-left">{{comment_count}} comments</span>
-            <span data-id="{{question.id}}" data-action="qs-upvote" class="btn p-2 m-1 badge blue change-vote"><i
-                class="fa fa-thumbs-up" aria-hidden="true"> {{question.upvotes}}</i></span>
-            <span data-id="{{question.id}}" data-action="qs-downvote" onclick="console.log('Clicked')"
+            <span data-id="{{article.id}}" data-action="at-upvote" class="btn p-2 m-1 badge blue change-vote"><i
+                class="fa fa-thumbs-up" aria-hidden="true"> {{article.upvotes}}</i></span>
+            <span data-id="{{article.id}}" data-action="at-downvote" onclick="console.log('Clicked')"
               class="btn p-2 m-1 badge red change-vote"><i class="fa fa-thumbs-down" aria-hidden="true">
-                {{question.downvotes}}</i></span>
+                {{article.downvotes}}</i></span>
           </div>
           <div class="card-body">
 
@@ -201,11 +201,11 @@
   <!--Section: Post-->
 
         <!--Card-->
-        <div class="card mb-4 wow fadeIn">
+        <div class="card m-4 mx-5 wow fadeIn">
 
           <div class="card-header font-weight-bold">
             <span>About author</span>
-            <span class="pull-right">
+            <span class="pull-right ml-4">
               <a href="">
                 <i class="fab fa-facebook-f mr-2"></i>
               </a>
@@ -225,7 +225,7 @@
           <div class="card-body">
 
             <div class="media d-block d-md-flex mt-3">
-              <img class="d-flex mb-3 mx-auto z-depth-1" src="{{ user.imageURL }}" alt="Author image"
+              <img class="d-flex mb-3 mx-auto z-depth-1" src="{% if user.imageURL %} {{ user.imageURL }} {% else %} {% static 'images/avatar-image.png' %} {% endif %}" alt="Author image"
                 style="width: 100px;">
               <div class="media-body text-center text-md-left ml-md-3 ml-0">
                 <h5 class="mt-0 font-weight-bold">{{user.get_full_name}}

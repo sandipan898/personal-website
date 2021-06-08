@@ -27,10 +27,15 @@
         return cookieValue;
     }
 
-    const url = '/community/question/change-vote/';
-    const slug = window.location.href.pathname;
-    console.log(slug);
+    
+    const slug = window.location.pathname;
+    console.log("slug", slug.split('/'));
 
+    if (slug.split('/')[2] == 'article')  
+        var url = '/blog/article/change-vote/'
+    else if((slug.split('/')[2] == 'question')) 
+        var url = '/community/question/change-vote/';
+    
     document.querySelectorAll('span.change-vote')
         .forEach(btn => {
             btn.addEventListener('click', event => {
