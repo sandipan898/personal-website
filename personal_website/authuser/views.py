@@ -5,6 +5,7 @@ from .forms import SignupUserForm
 from .models import UserProfile
 from django.contrib.auth import login, authenticate
 from django.views import generic
+from django.contrib.auth.views import LoginView, LogoutView
 
 # Create your views here.
 

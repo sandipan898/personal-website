@@ -13,27 +13,23 @@
       <div class="row">
 
         <!--Grid column-->
-        <div class="card mb-4 wow fadeIn col-md-12 mb-4">
+        <div class="card mb-4 wow fadeIn col-md-12 mx-3">
           <h1 class="my-4">
             <strong>{{article.title}}</strong>
           </h1>
 
           <img src="{{ article.imageURL }}" class="img-fluid m-4" alt="">
-        </div>
-
-        <!--Card-->
-        <div class="card mb-4 wow fadeIn">
-
+        
           <!--Card content-->
           <div class="card-body text-center">
-            <h5><strong>{{article.title}}</strong></h5>
+            <!-- <h5><strong>{{article.title}}</strong></h5> -->
             <p>Posted by: {{article.author}}</p>
             <p>Article Topic: {{article.topic_related_to}}</p>
 
             <hr>
 
             <a class="btn btn-outline-primary" href="#article-content">
-              Read the Article<i class="fas fa-book ml-2"></i>
+              Start Reading<i class="fas fa-book ml-2"></i>
             </a>
 
           </div>
@@ -42,7 +38,7 @@
         <!--/.Card-->
 
         <!--Card-->
-        <div class="card mb-4 wow fadeIn">
+        <div class="card mb-4 wow fadeIn mx-3">
 
           <!--Card content-->
           <div id="article-content" class="card-body">
@@ -54,59 +50,27 @@
         </div>
         <!--/.Card-->
 
-        <!--Card-->
-        <div class="card mb-4 wow fadeIn">
-
-          <div class="card-header font-weight-bold">
-            <span>About author</span>
-            <span class="pull-right">
-              <a href="">
-                <i class="fab fa-facebook-f mr-2"></i>
-              </a>
-              <a href="">
-                <i class="fab fa-twitter mr-2"></i>
-              </a>
-              <a href="">
-                <i class="fab fa-instagram mr-2"></i>
-              </a>
-              <a href="">
-                <i class="fab fa-linkedin-in mr-2"></i>
-              </a>
-            </span>
-          </div>
-
-          <!--Card content-->
-          <div class="card-body">
-
-            <div class="media d-block d-md-flex mt-3">
-              <img class="d-flex mb-3 mx-auto z-depth-1" src="{{ user.imageURL }}" alt="Generic placeholder image"
-                style="width: 100px;">
-              <div class="media-body text-center text-md-left ml-md-3 ml-0">
-                <h5 class="mt-0 font-weight-bold">{{user.get_full_name}}
-                </h5>
-                {{user.userprofile.bio}}
-              </div>
-            </div>
-
-          </div>
-
-        </div>
-        <!--/.Card-->
-
         <!--Comments-->
-        <div class="card card-comments mb-3 wow fadeIn">
-          <div class="card-header font-weight-bold">{{comment_count}} comments</div>
+        <div class="card card-comments mb-3 mx-3">
+          <div class="mt-4 d-flex justify-content-center">
+            <span class="card-header font-weight-bold justify-content-left">{{comment_count}} comments</span>
+            <span data-id="{{article.id}}" data-action="at-upvote" class="btn p-2 m-1 badge blue change-vote"><i
+                class="fa fa-thumbs-up" aria-hidden="true"> {{article.upvotes}}</i></span>
+            <span data-id="{{article.id}}" data-action="at-downvote" onclick="console.log('Clicked')"
+              class="btn p-2 m-1 badge red change-vote"><i class="fa fa-thumbs-down" aria-hidden="true">
+                {{article.downvotes}}</i></span>
+          </div>
           <div class="card-body">
 
             {% for comment in comments %}
             <div class="media d-block d-md-flex mt-4">
-              <img class="d-flex mb-3 mx-auto " src="https://mdbootstrap.com/img/Photos/Avatars/img (20).jpg"
+              <img class="d-flex mb-3 mx-auto " src="{% static 'images/avatar-image.png' %}"
                 alt="Generic placeholder image">
               <div class="media-body text-center text-md-left ml-md-3 ml-0">
                 <h5 class="mt-0 font-weight-bold">{{comment.comment_author}}
-                  <a href="" class="pull-right">
+                  <!-- <a href="" class="pull-right">
                     <i class="fas fa-reply"></i>
-                  </a>
+                  </a> -->
                 </h5>
                 {{comment.comment_body}}
 
@@ -144,12 +108,8 @@
             {% endfor %}
 
           </div>
-        </div>
-        <!--/.Comments-->
-
-        <!--Reply-->
-        <div class="card mb-3 wow fadeIn">
-          <div class="card-header font-weight-bold">Leave a comment</div>
+          <hr class="hr-dark">
+          <div class="card-title font-weight-bold ml-2">Leave a comment</div>
           <div class="card-body">
 
             <!-- Default form reply -->
@@ -195,8 +155,8 @@
   <hr class="my-5">
 
   <!--Section: Cards-->
-  <section class="text-center" id="related_post">
-
+  <section class="text-center  mx-3" id="related_post">
+  <p class="display-5"><strong> More Related Articles</strong></p>
     <!--Grid row-->
     <div class="row m-4 wow fadeIn">
       {% for article in related_articles %}
@@ -240,7 +200,45 @@
 
   <!--Section: Post-->
 
-  </div>
+        <!--Card-->
+        <div class="card m-4 mx-5 wow fadeIn">
+
+          <div class="card-header font-weight-bold">
+            <span>About author</span>
+            <span class="pull-right ml-4">
+              <a href="">
+                <i class="fab fa-facebook-f mr-2"></i>
+              </a>
+              <a href="">
+                <i class="fab fa-twitter mr-2"></i>
+              </a>
+              <a href="">
+                <i class="fab fa-instagram mr-2"></i>
+              </a>
+              <a href="">
+                <i class="fab fa-linkedin-in mr-2"></i>
+              </a>
+            </span>
+          </div>
+
+          <!--Card content-->
+          <div class="card-body">
+
+            <div class="media d-block d-md-flex mt-3">
+              <img class="d-flex mb-3 mx-auto z-depth-1" src="{% if user.imageURL %} {{ user.imageURL }} {% else %} {% static 'images/avatar-image.png' %} {% endif %}" alt="Author image"
+                style="width: 100px;">
+              <div class="media-body text-center text-md-left ml-md-3 ml-0">
+                <h5 class="mt-0 font-weight-bold">{{user.get_full_name}}
+                </h5>
+                {{user.userprofile.bio}}
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+        <!--/.Card-->
+
 </main>
 <!--Main layout-->
 {% endblock %}

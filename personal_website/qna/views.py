@@ -2,9 +2,12 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.views import View, generic
 from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
 
 from .models import Question, Answer
 from .forms import QuestionPostForm, AnswerPostForm
+
+import json
 
 # Create your views here.
 
@@ -25,7 +28,6 @@ class QuestionDetailView(View):
     
     def get(self, request, *args, **kwargs):
         selected_question = get_object_or_404(Question, slug=kwargs['slug'])
-        print(selected_question.author.bio)
         # selected_question.get_answer_count
         # selected_question.save()
         related_questions = Question.objects.all()
@@ -44,14 +46,18 @@ class QuestionDetailView(View):
     
     # @login_required(login_url='/auth/login/')
     def post(self, *args, slug, **kwargs):
+        if not self.request.user.is_authenticated:
+            return redirect('user-login')
+            
         form = AnswerPostForm(self.request.POST)     
         selected_question = get_object_or_404(Question, slug=slug)
-        print(selected_question)
+        # print(selected_question)
         if form.is_valid():
-
+            print(form.cleaned_data)
             new_answer = Answer.objects.create(
                 question=selected_question,
-                author=form.cleaned_data['author'], 
+                # author=form.cleaned_data['author'], 
+                author=self.request.user.username, 
                 body = form.cleaned_data['body'],
             )        
             new_answer.save()
@@ -104,3 +110,28 @@ def question_list_view(request):
     }
     return render(request, template_name=template_name, context=context)  
   
+
+def change_votes(request):
+    response_body = json.loads(request.body)
+
+    if response_body['action'] == 'qs-upvote':
+        question = Question.objects.get(id=response_body['id'])
+        question.upvotes += 1
+        question.save()
+    elif response_body['action'] == 'qs-downvote':
+        print("Action Triggered")
+        question = Question.objects.get(id=response_body['id'])
+        question.downvotes += 1
+        question.save()
+    elif response_body['action'] == 'ans-upvote':
+        print("Action Triggered")
+        answer = Answer.objects.get(id=response_body['id'])
+        answer.upvotes += 1
+        answer.save()
+    elif response_body['action'] == 'ans-downvote':
+        print("Action Triggered")
+        answer = Answer.objects.get(id=response_body['id'])
+        answer.downvotes += 1
+        answer.save()
+
+    return JsonResponse('Item is added', safe=False)

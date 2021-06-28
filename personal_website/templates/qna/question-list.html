@@ -70,8 +70,9 @@
           <div class="col-md-7 col-lg-7 ml-xl-4 mb-4 mt-4">
             <!--Text-->
             <p class="card-text">Written by <strong>{{question.author}}</strong></p>
-            <p class="card-text">Tags: <strong>{{question.tags}}</strong></p>
-            <a href="{{question.get_absolute_url}}" class="btn btn-primary btn-md">Read Article
+            <p class="card-text">Answered: <strong>{{question.answer_count}}</strong> times</p>
+            <!-- <p class="card-text">Tags: <strong>{{question.tags}}</strong></p> -->
+            <a href="{{question.get_absolute_url}}" class="btn btn-primary btn-md">Explore Discussion
                 <i class="fas fa-book ml-2"></i>
             </a>
           </div>
