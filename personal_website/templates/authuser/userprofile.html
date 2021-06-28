@@ -17,7 +17,7 @@
                     <div class="card-body p-1 m-1">
                         <div class="view overlay">
                             <img class="container"
-                              src="{% if post_form.image %}{{post_form.user.imageURL}} {% else %} {% static 'images/article_dummy.png' %} {% endif %}"
+                              src="{% if post_form.image %}{{post_form.user.imageURL}} {% else %} {% static 'images/avatar.png' %} {% endif %}"
                               alt="">
                             <a href="#">
                               <div class="mask rgba-white-slight"></div>
@@ -29,8 +29,8 @@
             <div class="col-8">
                 <section class="card wow fadeIn">
                     <div class="card-body py-2 px-2 m-2">
-                        <h1 class="my-4">
-                            <strong>SignUp</strong>
+                        <h1 class="display-5 mb-5">
+                            <strong>Update Information</strong>
                         </h1>
                         <form class="form" action="{% url 'user-profile' %}" method="POST">
                             {% csrf_token %}
@@ -56,7 +56,7 @@
                             {% endfor %}
 
                             <div class="pt-4">
-                                <button type="submit" class="btn btn-primary active">Sign Up</button>
+                                <button type="submit" class="btn btn-primary active">Update</button>
                             </div>
                         </form>
                     </div>
