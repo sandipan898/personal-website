@@ -51,7 +51,7 @@
                         </div>
                     </div>
                 </form>
-                <div>New User? <a href="{% url 'user-signup-with-param' %}?next={{next}}"> Create an Account here</a></div>
+                <div>New User? <a href="{% if next %}{% url 'user-signup-with-param' %}?next={{next}} {% else %} {% url 'user-signup' %} {% endif %}"> Create an Account here</a></div>
             </div>
         </section>
     </div>

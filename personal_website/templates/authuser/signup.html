@@ -12,7 +12,7 @@
                 <form class="form" action="{% url 'user-signup' %}?next={{next}}" method="POST">
                     {% csrf_token %}
                     {{ form.non_field_errors }}
-
+                    
                     {% for field in form %}
                     <div class="form-group form-row">
                         <div class="form-group col-md-8 mb-0">

@@ -26,10 +26,12 @@ class UserSignupView(generic.CreateView):
     def post(self, request, *args, **kwargs):
         try:
             next_path = str(request.get_full_path()).split('next=')[1]
+            if next_path is 'None' or '':
+                next_path = '/'
         except Exception as e:
             next_path = '/'
+        print(next_path)
         form = SignupUserForm(request.POST)
-        print(form)
         if form.is_valid():
             user = form.save()
             user.refresh_from_db()  # load the profile instance created by the signal
@@ -37,6 +39,7 @@ class UserSignupView(generic.CreateView):
             login(request, user)
             return redirect(next_path)
         else:
+            print(form.errors)
             context = {'form': SignupUserForm(request.POST), 'errors': form.errors}
             return render(request, template_name=self.template_name, context=context)
 
