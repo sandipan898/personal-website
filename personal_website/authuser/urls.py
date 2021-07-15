@@ -5,6 +5,7 @@ from .forms import  UserLoginForm
 
 urlpatterns = [
     path('signup/', UserSignupView.as_view(), name='user-signup'),
+    path('signup', UserSignupView.as_view(), name='user-signup-with-param'),
     # path(
     #     'login/', 
     #     LoginView.as_view(

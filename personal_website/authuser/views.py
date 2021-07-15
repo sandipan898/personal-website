@@ -4,9 +4,11 @@ from django.urls import reverse, reverse_lazy
 from django.contrib.auth import login, authenticate
 from django.views import generic
 from django.contrib.auth.views import LoginView, LogoutView
+# from django.contrib.auth.views import 
 from django.contrib import messages
 
 from .forms import SignupUserForm, UserLoginForm
+
 # from allauth.account.forms import LoginForm
 
 # Create your views here.
@@ -15,16 +17,28 @@ class UserSignupView(generic.CreateView):
     form_class = SignupUserForm
     template_name = "authuser/signup.html"
     success_url = reverse_lazy('user-login')
+    
+    def get(self, request, *args, **kwargs):
+        form = SignupUserForm()
+        context={'form': form, 'next': str(request.GET.get('next'))}
+        return render(request, template_name=self.template_name, context=context)
 
-    # def get(self, request, *args):
-    #     print("User Signup")
-    #     return render(self.request, template_name=self.template_name)
-
-
-# class UserLoginView(LoginView):
-#     template_name="authuser/login.html"
-#     authentication_form=UserLoginForm
-
+    def post(self, request, *args, **kwargs):
+        try:
+            next_path = str(request.get_full_path()).split('next=')[1]
+        except Exception as e:
+            next_path = '/'
+        form = SignupUserForm(request.POST)
+        print(form)
+        if form.is_valid():
+            user = form.save()
+            user.refresh_from_db()  # load the profile instance created by the signal
+            user.save()
+            login(request, user)
+            return redirect(next_path)
+        else:
+            context = {'form': SignupUserForm(request.POST), 'errors': form.errors}
+            return render(request, template_name=self.template_name, context=context)
 
 class UserLoginView(LoginView):
     template_name="authuser/login.html"
