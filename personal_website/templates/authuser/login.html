@@ -24,7 +24,7 @@
                 <!-- <form role="form" action="{% url 'user-login' %}" method="POST"> -->
                 {% endif %}
 
-                <form role="form" action="/auth/login/" method="POST">
+                <form role="form" action="{% url 'user-login' %}?next={{next}}" method="POST">
                     {% csrf_token %}
                     {{ form.non_field_errors }}
 

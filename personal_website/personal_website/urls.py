@@ -21,6 +21,7 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('admin/', include('django.contrib.auth.urls')),
     path('blog/', include('blog.urls')),
     path('auth/', include('authuser.urls')),
     path('community/', include('qna.urls')),

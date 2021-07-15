@@ -9,7 +9,7 @@
                 <h1 class="my-4">
                     <strong>SignUp</strong>
                 </h1>
-                <form class="form" action="{% url 'user-signup' %}" method="POST">
+                <form class="form" action="{% url 'user-signup' %}?next={{next}}" method="POST">
                     {% csrf_token %}
                     {{ form.non_field_errors }}
 
