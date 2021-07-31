@@ -85,36 +85,32 @@ class UserProfileView(generic.View):
     def get(self, request, *args, **kwargs):
         template_name = 'authuser/userprofile.html'
         user = UserProfile(user=request.user)
-        print(user.image)
-        user_data = {
-            "username": user.user.username,
-            "first_name": user.user.first_name,
-            "last_name": user.user.last_name,
-            "email":user.user.email,
-            "bio":user.bio,
-            # 'password1':user.user.password,
-            "image":user.image,
-        }
-        form_data = EditUserForm(
-            initial=user_data
-        )
-        # print(form_data)
+        print(user)
+        # user_data = {
+        #     "username": user.user.username,
+        #     "first_name": user.user.first_name,
+        #     "last_name": user.user.last_name,
+        #     "email":user.user.email,
+        #     "bio":user.bio,
+        #     "image":user.imageURL
+        # }
+        form_data = EditUserForm(instance=user.user)
         return render(request, template_name=template_name, context={'form_data': form_data})
     
     def post(self, request, *args, **kwargs):
-        post_data = EditUserForm(request.POST, request.FILES, instance=request.user.userprofile)
+        userprofile = UserProfile.objects.get(
+            user=request.user,
+        )
+        post_data = EditUserForm(request.POST, request.FILES, instance=userprofile)
         if post_data.is_valid():
             print(post_data.cleaned_data)
-            updated_user = UserProfile.objects.get(
-                user=request.user,
-            )
-            updated_user.user.username=post_data.cleaned_data['username']
-            updated_user.user.first_name=post_data.cleaned_data['first_name']
-            updated_user.user.last_name=post_data.cleaned_data['last_name']
-            updated_user.user.email=post_data.cleaned_data['email']
-            updated_user.bio=post_data.cleaned_data['bio']
-            updated_user.image=post_data.cleaned_data['image']
-            # updated_user = post_data.save()
+            # updated_user.user.username=post_data.cleaned_data['username']
+            userprofile.user.first_name=post_data.cleaned_data['first_name']
+            # userprofile.user.last_name=post_data.cleaned_data['last_name']
+            # userprofile.user.email=post_data.cleaned_data['email']
+            # userprofile.bio=post_data.cleaned_data['bio']
+            # userprofile.image=post_data.cleaned_data['image']
+            updated_user = post_data.save()
             print(updated_user.user.first_name)
             updated_user.save()
         else:

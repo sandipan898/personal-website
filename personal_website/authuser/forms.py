@@ -156,6 +156,7 @@ class EditUserForm(forms.ModelForm):
         )
     )
     username = UsernameField(
+        required=False, 
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control',
