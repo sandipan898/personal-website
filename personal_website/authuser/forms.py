@@ -123,3 +123,69 @@ class UserLoginForm(AuthenticationForm):
             }
         )
     )
+
+
+class EditUserForm(forms.ModelForm):
+    email = forms.EmailField(
+        label="Email",
+        required=False, 
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control',
+            }
+        )
+    )
+    first_name = forms.CharField(
+        label="First name", 
+        required=False, 
+        max_length=100, 
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control',
+            }
+        )
+    )
+    last_name = forms.CharField(
+        label="Last name", 
+        required=False, 
+        max_length=100, 
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control',
+            }
+        )
+    )
+    username = UsernameField(
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control',
+            }
+        )
+    )
+    bio = forms.CharField(
+        label="Bio", 
+        required=False, 
+        max_length=1000, 
+        widget=forms.Textarea(
+            attrs={
+                'class': 'form-control',
+            }
+        )
+    )
+
+    image = forms.ImageField(
+        allow_empty_file=True, 
+        required=False,
+        # widget=forms.ImageField()
+    )
+
+    class Meta:
+        model = User
+        fields = [
+            "username",
+            "first_name",
+            "last_name",
+            "email",
+            "bio",
+            "image"
+        ]

@@ -1,20 +1,17 @@
 from django.shortcuts import render, HttpResponse, redirect
-from django.views.generic import DetailView
+# from django.views.generic import DetailView
 from django.urls import reverse, reverse_lazy
-from django.contrib.auth.forms import UserCreationForm
+# from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 from django.urls import reverse, reverse_lazy
-from .forms import SignupUserForm
-from .models import UserProfile
 from django.contrib.auth import login, authenticate
 from django.views import generic
-from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.views import LoginView
 # from django.contrib.auth.views import 
 from django.contrib import messages
 
-from .forms import SignupUserForm, UserLoginForm
-
-# from allauth.account.forms import LoginForm
+from .models import UserProfile
+from .forms import SignupUserForm, UserLoginForm, EditUserForm
 
 # Create your views here.
 
@@ -31,11 +28,10 @@ class UserSignupView(generic.CreateView):
     def post(self, request, *args, **kwargs):
         try:
             next_path = str(request.get_full_path()).split('next=')[1]
-            if next_path is 'None' or '':
+            if next_path == 'None' or next_path == '':
                 next_path = '/'
         except Exception as e:
             next_path = '/'
-        print(next_path)
         form = SignupUserForm(request.POST)
         if form.is_valid():
             user = form.save()
@@ -47,6 +43,7 @@ class UserSignupView(generic.CreateView):
             print(form.errors)
             context = {'form': SignupUserForm(request.POST), 'errors': form.errors}
             return render(request, template_name=self.template_name, context=context)
+
 
 class UserLoginView(LoginView):
     template_name="authuser/login.html"
@@ -83,44 +80,54 @@ class UserLoginView(LoginView):
             self.context['error_msg'] = 'User does not exist'
         return render(request, template_name=self.template_name, context=self.context)
         
+
 class UserProfileView(generic.View):
     def get(self, request, *args, **kwargs):
         template_name = 'authuser/userprofile.html'
         user = UserProfile(user=request.user)
-        print(user)
+        print(user.image)
         user_data = {
             "username": user.user.username,
             "first_name": user.user.first_name,
             "last_name": user.user.last_name,
             "email":user.user.email,
             "bio":user.bio,
-            'password1':user.user.password,
+            # 'password1':user.user.password,
             "image":user.image,
         }
-        form_data = SignupUserForm(
+        form_data = EditUserForm(
             initial=user_data
         )
         # print(form_data)
         return render(request, template_name=template_name, context={'form_data': form_data})
     
     def post(self, request, *args, **kwargs):
-        post_data = SignupUserForm(data=request.POST,)
+        post_data = EditUserForm(request.POST, request.FILES, instance=request.user.userprofile)
         if post_data.is_valid():
-            print("Valid!")
-            user = UserProfile.objects.get(
-                user__username=request.user.username,
+            print(post_data.cleaned_data)
+            updated_user = UserProfile.objects.get(
+                user=request.user,
             )
-            updated_user = user.objects.update(
-                user__username=post_data.cleaned_data['username'],
-                user__first_name=post_data.cleaned_data['first_name'],
-                user__last_name=post_data.cleaned_data['last_name'],
-                user__email=post_data.cleaned_data['email'],
-                bio=post_data.cleaned_data['bio'],
-                user__password=post_data.cleaned_data['password1'],
-                image=post_data.cleaned_data['image'],
-            )
-            print(updated_user)
+            updated_user.user.username=post_data.cleaned_data['username']
+            updated_user.user.first_name=post_data.cleaned_data['first_name']
+            updated_user.user.last_name=post_data.cleaned_data['last_name']
+            updated_user.user.email=post_data.cleaned_data['email']
+            updated_user.bio=post_data.cleaned_data['bio']
+            updated_user.image=post_data.cleaned_data['image']
+            # updated_user = post_data.save()
+            print(updated_user.user.first_name)
             updated_user.save()
-        print(post_data.errors)
-        print("User")
+        else:
+            print(post_data.errors)
         return redirect('user-profile')
+
+# class UserProfileView(generic.UpdateView):
+#     model = UserProfile
+#     fields = ["username",
+#             "first_name",
+#             "last_name",
+#             "email",
+#             "bio",
+#             "image"] 
+#     slug_field = 'username'
+#     slug_url_kwarg = 'slug'

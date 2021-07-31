@@ -35,7 +35,7 @@
                         <form class="form" action="{% url 'user-profile' %}" method="POST">
                             {% csrf_token %}
                             {{ form_data.non_field_errors }}
-
+                            {{form.errors}}
                             {% for field in form_data %}
                             <div class="form-group form-row">
                                 <div class="form-group col-md-8 mb-0">
